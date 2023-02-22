@@ -3,6 +3,7 @@ const emailValidator = require("email-validator");
 
 const userModel = {
   async insertUser(formData) {
+    
     // récupérer les data du formulaire
     const pseudo = formData.pseudo;
     const email = formData.email;
