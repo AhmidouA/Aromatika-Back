@@ -3,6 +3,7 @@ const { userController } = require ('../controller')
 
 const router = express.Router();
 
+
 /**
  * GET /signup - route pour récupere la page formulaire d'inscription
  */
