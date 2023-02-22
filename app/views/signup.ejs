@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST</title>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script>
+      function onSubmit(token) {
+        document.getElementById("contact-form").submit();
+      }
+    </script>
 </head>
 <body>
     <h1 class="large text-primary">Sign Up</h1>
-    <p class="lead"><i class="fas fa-user"></i> Create Your Account</p>
-    
-    <form class="form" method="POST" action="/signup">
+    <p class="lead"><i class="fas fa-user"></i> Create Your Account</p> 
+    <form class="form" method="POST" action="/signup" id="contact-form">
         <div class="form-group">
             <input type="text" placeholder="Pseudo" name="pseudo" />
         </div>
@@ -28,7 +32,7 @@
                 name="passwordConfirm"
             />
         </div>
-        <input type="submit" class="btn btn-primary" data-sitekey="6LcgRp4kAAAAAL5qsyptov_cQ9D2pPjsjWcLNkc4" value="Register" />
+        <button class="g-recaptcha" data-sitekey="6LcA2J4kAAAAAEEIido8TZUe0aPHY59mZdh4vzy6" data-callback="onSubmit">Submit</button>
     </form>
     <p class="my-1">Already have an account? <a href="/login">Sign In</a></p>
 </body>

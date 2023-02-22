@@ -1,9 +1,11 @@
 const express = require('express');
 const app = express();
+require('dotenv').config();
 const {oilRouter, userRouter} = require('./app/routers');
 
-app.use(express.urlencoded({extends: true}));
-app.use(express.json());
+
+app.use(express.urlencoded({extended:true}));
+// app.use(express.json());
 
 
 const PORT = process.env.PORT ?? 3000;

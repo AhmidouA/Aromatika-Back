@@ -1,15 +1,20 @@
-
-
+const {userModel} = require("../models")
 
 const userController = {
     index (req, res) {
         res.render("signup")
     },
-    signup (req, res) {
-        const {pseudo, email, password } = req.body;
+    async signup (req, res) {
+        const formData = req.body;
 
-        res.redirect("/signup")
+        const isError = await userModel.insertUser(formData)
 
+        if (isError) {
+            res.render("5OO")
+        } else {
+            res.redirect("/signup")
+        }
+        
     }
 };
 
