@@ -1,6 +1,5 @@
-const userModel = require ("./user")
-
+const userModel = require("./user");
 
 module.exports = {
-    userModel
+  userModel,
 };

@@ -1,5 +1,5 @@
-const express = require ('express');
-const { oilController } = require ('../controller')
+const express = require("express");
+const { oilController } = require("../controller");
 
 const router = express.Router();
 

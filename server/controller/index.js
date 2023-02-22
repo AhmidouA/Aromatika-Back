@@ -1,5 +1,4 @@
-const userController = require ('./userController')
-const oilController = require ('./oilController')
+const userController = require("./userController");
+const oilController = require("./oilController");
 
-
-module.exports = { userController, oilController};
+module.exports = { userController, oilController };
