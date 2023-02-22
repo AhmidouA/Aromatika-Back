@@ -1,9 +1,10 @@
 const { dbClient } = require("../service");
 const emailValidator = require("email-validator");
+const bcryptjs = require('bcryptjs');
 
 const userModel = {
   async insertUser(formData) {
-    
+
     // récupérer les data du formulaire
     const pseudo = formData.pseudo;
     const email = formData.email;
@@ -34,9 +35,12 @@ const userModel = {
       throw err;
     }
 
+    // le hash du mot de passe
+    const hash = await bcryptjs.hash(password, 10)
+
     // Insérer l'utilisateur si le pseudo et l'email n'existent pas déjà
     const sqlQuery = `INSERT INTO "user" (pseudo, email, password) VALUES ($1, $2, $3)`;
-    const values = [pseudo, email, password];
+    const values = [pseudo, email, hash];
 
     try {
       const result = await dbClient.query(sqlQuery, values);
