@@ -1,6 +1,6 @@
 const { dbClient } = require("../service");
 const emailValidator = require("email-validator");
-const bcryptjs = require('bcryptjs');
+const bcrypt = require('bcrypt');
 
 const userModel = {
   async insertUser(formData) {
@@ -36,7 +36,7 @@ const userModel = {
     }
 
     // le hash du mot de passe
-    const hash = await bcryptjs.hash(password, 10)
+    const hash = await bcrypt.hash(password, 10)
 
     // Insérer l'utilisateur si le pseudo et l'email n'existent pas déjà
     const sqlQuery = `INSERT INTO "user" (pseudo, email, password) VALUES ($1, $2, $3)`;
