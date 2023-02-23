@@ -1,8 +1,6 @@
 BEGIN;
 
-// INSERT INTO to CONTINUE
-
-[
+INSERT INTO to CONTINUE
   {
     "id": 1,
     "name": "Abricot",
@@ -83,6 +81,7 @@ BEGIN;
     "scent": "Légèrement boisée",
     "image": ""
   },
+  { 
   "id": 9,
   "name": "Carthame",
   "botanicName": "Carthamus tinctorius",
@@ -282,6 +281,6 @@ BEGIN;
   "scent": "Neutre",
   "image": ""
 }
-]
 
-COMMIT;
+
+//COMMIT;

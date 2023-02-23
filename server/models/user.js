@@ -1,10 +1,10 @@
 const { dbClient } = require("../service");
 const emailValidator = require("email-validator");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 const userModel = {
+  // methode inserer un nouvelle utilisateur.
   async insertUser(formData) {
-
     // récupérer les data du formulaire
     const pseudo = formData.pseudo;
     const email = formData.email;
@@ -36,10 +36,10 @@ const userModel = {
     }
 
     // le hash du mot de passe
-    const hash = await bcrypt.hash(password, 10)
+    const hash = await bcrypt.hash(password, 10);
 
     // Insérer l'utilisateur si le pseudo et l'email n'existent pas déjà
-    const sqlQuery = `INSERT INTO "user" (pseudo, email, password) VALUES ($1, $2, $3)`;
+    const sqlQuery = `INSERT INTO "user" (pseudo, email, password, role_id) VALUES ($1, $2, $3, 1)`;
     const values = [pseudo, email, hash];
 
     try {
@@ -47,6 +47,40 @@ const userModel = {
       console.log("result>>>>>", result);
     } catch (err) {
       console.error(err);
+    }
+  },
+
+  // methode se connecter
+  async loginUser(email, password) {
+    const sqlQuery = `SELECT * FROM "user" WHERE email=$1`;
+    const values = [email];
+    // console.log("sqlQuery", sqlQuery)
+    // console.log("values>>>>>>>>>>", values)
+
+    try {
+      const result = await dbClient.query(sqlQuery, values);
+      const user = result.rows[0];
+      console.log("user>>>>>>>>", user)
+
+      // Vérifier si l'utilisateur existe
+      if (!user) {
+        throw new Error("Utilisateur est incorrect");
+      }
+
+      // Vérifier si le mot de passe est correct
+      const passwordMatch = await bcrypt.compare(password, user.password);
+      if (passwordMatch) {
+        // Retourner l'utilisateur
+        return user;
+    } else {
+        throw new Error("Le mot de passe est incorrect.");
+    }
+
+    
+    } catch (err) {
+      console.error(err);
+      // Retourner l'utilisateur
+      return null;
     }
   },
 };

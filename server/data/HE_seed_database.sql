@@ -1,8 +1,8 @@
-BEGIN;
+-- BEGIN;
 
-INSERT INTO "oil" ("name", "botanic_name", "description", "molecule", "extraction", "scent", "plant_family", "image");
+-- INSERT INTO "oil" ("name", "botanic_name", "description", "molecule", "extraction", "scent", "plant_family", "image");
 
-// Create the other INSERT INTO 
+-- // Create the other INSERT INTO 
 
 [
   {
@@ -13,7 +13,7 @@ INSERT INTO "oil" ("name", "botanic_name", "description", "molecule", "extractio
     "extraction": "Distillation à la vapeur",
     "scent": "aromatique, fraîche, puissante, aux notes boisées",
     "plantFamily": "Myrtacées",
-   " "image": "
+    "image": ""
   },
   {
     "name": "Basilic Exotique",

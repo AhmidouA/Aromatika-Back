@@ -92,11 +92,18 @@ CREATE TABLE oil_has_administration (
     "updated_at" TIMESTAMPTZ
 );
 
+CREATE TABLE role (
+	id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+	name text NOT NULL UNIQUE,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    "updated_at" TIMESTAMPTZ
+);
 CREATE TABLE user (
 	id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	pseudo text NOT NULL UNIQUE,
     mail text NOT NULL UNIQUE,
     password text NOT NULL,
+    role_id INTEGER REFERENCES roles("id"),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ
 );
@@ -107,13 +114,6 @@ CREATE TABLE oil_has_user (
     user_id int NULL REFERENCES "user"("id"),
     favorite BOOLEAN NOT NULL,
     aromatheque BOOLEAN NOT NULL,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    "updated_at" TIMESTAMPTZ
-);
-
-CREATE TABLE role (
-	id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	name text NOT NULL UNIQUE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ
 );
