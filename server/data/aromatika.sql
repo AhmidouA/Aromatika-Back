@@ -1,5 +1,19 @@
 BEGIN;
 
+DROP TABLE IF EXISTS family,
+category,
+family_has_category,
+oil,
+oil_has_category,
+part_of_plant,
+property,
+oil_has_property,
+administration,
+oil_has_administration,
+"role",
+"user",
+oil_has_user;
+
 CREATE TABLE family (
 	id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	name text NOT NULL UNIQUE,
@@ -8,13 +22,6 @@ CREATE TABLE family (
 );
 
 CREATE TABLE category (
-	id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	name text NOT NULL UNIQUE,
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    "updated_at" TIMESTAMPTZ
-);
-
-CREATE TABLE family (
 	id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	name text NOT NULL UNIQUE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -92,18 +99,18 @@ CREATE TABLE oil_has_administration (
     "updated_at" TIMESTAMPTZ
 );
 
-CREATE TABLE role (
+CREATE TABLE "role" (
 	id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	name text NOT NULL UNIQUE,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ
 );
-CREATE TABLE user (
+CREATE TABLE "user" (
 	id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	pseudo text NOT NULL UNIQUE,
     mail text NOT NULL UNIQUE,
     password text NOT NULL,
-    role_id INTEGER REFERENCES roles("id"),
+    role_id INTEGER REFERENCES role("id"),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     "updated_at" TIMESTAMPTZ
 );
@@ -111,7 +118,7 @@ CREATE TABLE user (
 CREATE TABLE oil_has_user (
 	id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     oil_id int NULL REFERENCES "oil"("id"),
-    user_id int NULL REFERENCES "user"("id"),
+    "user_id" int NULL REFERENCES "user"("id"),
     favorite BOOLEAN NOT NULL,
     aromatheque BOOLEAN NOT NULL,
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
