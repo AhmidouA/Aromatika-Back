@@ -1,15 +1,26 @@
-const auth = (req, res, next) => {
-  // on ne souhaite pas oublier l'utilisateur ici, ça sera au logout
-  if (req.session?.user) {
-    // middleware pour garder la session active
-    res.locals.user = req.session.user;
-    return next();
-  }
+const jwt = require('jsonwebtoken');
 
-  req.status = 403;
-  // le redirger vers l'acceuil au logout ou si il ne trouve pas de session active
-  return res.redirect("/");
+
+const auth = { 
+  checkToken(req, res, next) {
+    try {
+        // Split le token en 2 partie bearer et le token  => Récuperer que le 1 element du tableau
+        const token = req.headers.authorization.split(" ")[1];
+
+        // vérifier le token générer et le stocker dans la request
+        req.token = jwt.verify(token, process.env.SECRET);
+        console.log("token validé de: ", req.token);
+
+        next();
+    } catch {
+        res.status(401).json({Message: "Token d'authentification invalide"})
+    }
+  }
 };
+
+
+
+
 
 // Simple JWT access and refresh tokens
 /* 
@@ -50,6 +61,7 @@ const tokens = generateTokens(user);
 
 console.log('Access token:', tokens.accessToken);
 console.log('Refresh token:', tokens.refreshToken);
+*/
+
 
 module.exports = auth;
-*/

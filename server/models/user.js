@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const userModel = {
   // methode inserer un nouvelle utilisateur.
   async insertUser(formData) {
+    
     // récupérer les data du formulaire
     const username = formData.username;
     const mail = formData.email;
@@ -44,7 +45,7 @@ const userModel = {
 
     try {
       const result = await dbClient.query(sqlQuery, values);
-      console.log("result>>>>>", result);
+      // console.log("result>>>>>", result);
     } catch (err) {
       console.error(err);
     }

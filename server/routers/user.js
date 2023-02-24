@@ -1,6 +1,7 @@
 const express = require("express");
 // controller de l'utilisateur
 const { userController } = require("../controller");
+const { auth } = require("../service");
 
 const router = express.Router();
 
@@ -17,5 +18,9 @@ router.post("/signup", userController.signup);
  */
 router.get("/login", userController.indexLoginPage);
 router.post("/login", userController.login);
+
+
+// user profile avec middleware token
+router.get('/profil', auth.checkToken, userController.show);
 
 module.exports = router;

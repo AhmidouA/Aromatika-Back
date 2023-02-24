@@ -1,5 +1,5 @@
 const { userModel } = require("../models");
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 const userController = {
   indexSignupPage(req, res) {
@@ -26,11 +26,16 @@ const userController = {
   },
 
   async login(req, res) {
+    // récupere les données du formulaire (email et mot de passe)
     const { email, password } = req.body;
 
-    // generation du token (Code a terminer)
-    // var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
-    // console.log("TOKEN : >>>>>>",token);
+    // Les donnée du formulaire 
+    console.log("{ email, password }>>>>>>   ",
+     { email,password });
+
+    // generation du token grace a l'email d'identification 
+    var token = jwt.sign(email, process.env.SECRET);
+    console.log("TOKEN : >>>>>>",token);
 
     try {
       // Appel du datamapper pour récupérer l'utilisateur
@@ -45,19 +50,21 @@ const userController = {
       const formattedUser = {
         id: user.id,
         name: user.username,
-        role: {
-          name: user.role_name  // Récupérer l'id du rôle à partir de la clé étrangère dans la table utilisateur
-        }
+        role_Id: user.role_id  // Récupérer l'id du rôle à partir de la clé étrangère dans la table utilisateur
+        
       };
       
-    
+    // stock les info de la session dans formattedUser
     req.session.user = formattedUser;
     console.log("formattedUser>>>>>>>", formattedUser)
     
 
 
-      // Si l'utilisateur existe et le mot de passe est correct, rediriger vers la page d'accueil
-      res.json({ message: "connexion" });
+      // Si l'utilisateur existe et le mot de passe est correct on le connecte et on renvoi le token
+      res.json({ message: "connexion", 
+          token
+      });
+      //res.redirect('/');
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "internal server error" });
@@ -67,6 +74,12 @@ const userController = {
   logout(req, res) {
     req.session.destroy();
     res.json({ message: "déconnexion" });
+    // res.redirect('/');
+  },
+
+  show (req, res) {
+
+    res.status(200).json({Message: "Vous etes bien authentifié avec l'email " + req.token})
   },
 };
 

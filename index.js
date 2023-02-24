@@ -31,9 +31,18 @@ app.use(
   })
 );
 
+// middelware de session permet l'accées a certaine fonctionnalité (feature)
+app.use((req, res, next) => {
+  if (req.session.user) {
+      res.locals.user = req.session.user;
+  }
+  next();
+});
+
 // utilisation de nos routes
 app.use(userRouter);
 app.use(oilRouter);
+
 
 // l'écoute du serveur
 app.listen(PORT, () => {
