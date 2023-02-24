@@ -107,7 +107,7 @@ CREATE TABLE "role" (
 );
 CREATE TABLE "user" (
 	id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-	pseudo text NOT NULL UNIQUE,
+	username text NOT NULL UNIQUE,
     mail text NOT NULL UNIQUE,
     password text NOT NULL,
     role_id INTEGER REFERENCES role("id"),

@@ -44,14 +44,15 @@ const userController = {
       // stocke la session de l'utilisateur. Elle permet de garder la session active de l'utilisateur par rapport a son role
       const formattedUser = {
         id: user.id,
-        name: user.name,
+        name: user.pseudo,
         role: {
-          name: user.role_name // Récupérer le nom du rôle à partir de la clé étrangère
+          name: user.role_id // Récupérer le nom du rôle à partir de la clé étrangère
         }
       };
       
-    console.log("formattedUser>>>>>>>", formattedUser)
+    
     req.session.user = formattedUser;
+    console.log("formattedUser>>>>>>>", formattedUser)
     
 
 

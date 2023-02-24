@@ -6,14 +6,14 @@ const userModel = {
   // methode inserer un nouvelle utilisateur.
   async insertUser(formData) {
     // récupérer les data du formulaire
-    const pseudo = formData.pseudo;
-    const email = formData.email;
+    const username = formData.username;
+    const mail = formData.email;
     const password = formData.password;
-    const passwordConfirm = formData.passwordConfirm;
+    const confirmPassword = formData.confirmPassword;
 
     // Vérifier si le pseudo et l'email n'existent pas déjà dans la base de données
-    const sqlCheckQuery = `SELECT * FROM "user" WHERE pseudo=$1 OR email=$2`;
-    const checkValues = [pseudo, email];
+    const sqlCheckQuery = `SELECT * FROM "user" WHERE username=$1 OR mail=$2`;
+    const checkValues = [username, mail];
     const resultCheck = await dbClient.query(sqlCheckQuery, checkValues);
 
     // Vérifier si le pseudo ou email dans la bdd
@@ -23,12 +23,12 @@ const userModel = {
 
     try {
       // Vérifier le format de email grace a emailValidator
-      if (!emailValidator.validate(email)) {
+      if (!emailValidator.validate(mail)) {
         throw new Error("Email invalide");
       }
 
       // Vérifier entre le mot de passe et la confirmation du mot de passe
-      if (password !== passwordConfirm) {
+      if (password !== confirmPassword) {
         throw new Error("le mot de passe ne correspond pas");
       }
     } catch (err) {
@@ -39,8 +39,8 @@ const userModel = {
     const hash = await bcrypt.hash(password, 10);
 
     // Insérer l'utilisateur si le pseudo et l'email n'existent pas déjà
-    const sqlQuery = `INSERT INTO "user" (pseudo, email, password, role_id) VALUES ($1, $2, $3, 1)`;
-    const values = [pseudo, email, hash];
+    const sqlQuery = `INSERT INTO "user" (username, mail, password, role_id) VALUES ($1, $2, $3, 1)`;
+    const values = [username, mail, hash];
 
     try {
       const result = await dbClient.query(sqlQuery, values);
@@ -51,9 +51,9 @@ const userModel = {
   },
 
   // methode se connecter
-  async loginUser(email, password) {
-    const sqlQuery = `SELECT * FROM "user" WHERE email=$1`;
-    const values = [email];
+  async loginUser(mail, password) {
+    const sqlQuery = `SELECT * FROM "user" WHERE mail=$1`;
+    const values = [mail];
     // console.log("sqlQuery", sqlQuery)
     // console.log("values>>>>>>>>>>", values)
 
