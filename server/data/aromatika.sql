@@ -125,4 +125,8 @@ CREATE TABLE oil_has_user (
     "updated_at" TIMESTAMPTZ
 );
 
+
+INSERT INTO role(name) VALUES ('member');
+INSERT INTO role(name) VALUES ('admin');
+
 COMMIT;
