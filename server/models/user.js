@@ -11,14 +11,14 @@ const userModel = {
     const password = formData.password;
     const confirmPassword = formData.confirmPassword;
 
-    // Vérifier si le pseudo et l'email n'existent pas déjà dans la base de données
+    // Vérifier si le username et l'email n'existent pas déjà dans la base de données
     const sqlCheckQuery = `SELECT * FROM "user" WHERE username=$1 OR mail=$2`;
     const checkValues = [username, mail];
     const resultCheck = await dbClient.query(sqlCheckQuery, checkValues);
 
     // Vérifier si le pseudo ou email dans la bdd
     if (resultCheck.rowCount > 0) {
-      throw new Error("Le pseudo ou l'email est déjà utilisé.");
+      throw new Error("Le username ou l'email est déjà utilisé.");
     }
 
     try {
