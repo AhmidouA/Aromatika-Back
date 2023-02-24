@@ -2,10 +2,17 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const { oilRouter, userRouter } = require("./server/routers");
+const cors = require ('cors');
 
+
+// middleware par default pour permettre d'appeler l'api (Tout le monde par default)
+app.use(cors());
 // formatage de données envoyées à un serveur
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.json());
+// le contenu du body sera du json
+app.use(express.json());
+
+
 
 // Le port du serveur
 const PORT = process.env.PORT ?? 3000;

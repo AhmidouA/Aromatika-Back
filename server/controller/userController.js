@@ -1,4 +1,5 @@
 const { userModel } = require("../models");
+// const jwt = require('jsonwebtoken');
 
 const userController = {
   indexSignupPage(req, res) {
@@ -26,6 +27,10 @@ const userController = {
 
   async login(req, res) {
     const { email, password } = req.body;
+
+    // generation du token (Code a terminer)
+    // var token = jwt.sign({ foo: 'bar' }, 'shhhhh');
+    // console.log("TOKEN : >>>>>>",token);
 
     try {
       // Appel du datamapper pour récupérer l'utilisateur

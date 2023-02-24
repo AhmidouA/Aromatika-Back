@@ -12,6 +12,7 @@ const auth = (req, res, next) => {
 };
 
 // Simple JWT access and refresh tokens
+/* 
 const jwt = require('jsonwebtoken');
 const secretKey = 'my_secret_key';
 const accessTokenExpiration = '15m'; // Token expiration time (15 minutes)
@@ -51,3 +52,4 @@ console.log('Access token:', tokens.accessToken);
 console.log('Refresh token:', tokens.refreshToken);
 
 module.exports = auth;
+*/
