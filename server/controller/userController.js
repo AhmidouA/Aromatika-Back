@@ -1,5 +1,9 @@
 const { userModel } = require("../models");
-const jwt = require('jsonwebtoken');
+// module JWT pour les Token
+const jwt = require("jsonwebtoken");
+
+// Option refresh du token stocker
+const refreshTokenExpiration = "7d";
 
 const userController = {
   indexSignupPage(req, res) {
@@ -29,13 +33,17 @@ const userController = {
     // récupere les données du formulaire (email et mot de passe)
     const { email, password } = req.body;
 
-    // Les donnée du formulaire 
-    console.log("{ email, password }>>>>>>   ",
-     { email,password });
+    // Les donnée du formulaire
+    console.log("{ email, password }>>>>>>   ", { email, password });
 
-    // generation du token grace a l'email d'identification 
-    var token = jwt.sign(email, process.env.SECRET);
-    console.log("TOKEN : >>>>>>",token);
+    // generation du token grace a l'email d'identification et une durée de 30min pour le token
+    // Le refresh du token dure 7jours pour éviter de demander a l'utilisateur de se connecter toutes les 30min
+    var token = jwt.sign({ email }, process.env.SECRET, {
+      expiresIn: "30m",
+      expiresIn: refreshTokenExpiration,
+    });
+
+    console.log("TOKEN : >>>>>>", token);
 
     try {
       // Appel du datamapper pour récupérer l'utilisateur
@@ -50,20 +58,15 @@ const userController = {
       const formattedUser = {
         id: user.id,
         name: user.username,
-        role_Id: user.role_id  // Récupérer l'id du rôle à partir de la clé étrangère dans la table utilisateur
-        
+        role_Id: user.role_id, // Récupérer l'id du rôle à partir de la clé étrangère dans la table utilisateur
       };
-      
-    // stock les info de la session dans formattedUser
-    req.session.user = formattedUser;
-    console.log("formattedUser>>>>>>>", formattedUser)
-    
 
+      // stock les info de la session dans formattedUser
+      req.session.user = formattedUser;
+      console.log("formattedUser>>>>>>>", formattedUser);
 
       // Si l'utilisateur existe et le mot de passe est correct on le connecte et on renvoi le token
-      res.json({ message: "connexion", 
-          token
-      });
+      res.json({ message: "connexion", token });
       //res.redirect('/');
     } catch (err) {
       console.error(err);
@@ -77,9 +80,18 @@ const userController = {
     // res.redirect('/');
   },
 
-  show (req, res) {
+  show(req, res) {
+    // Avoir les valeurs de l'objet du token depuis req.token
+    const reqValeus = Object.values(req.token);
+    // console.log("reqValeus>>>>>>>>", reqValeus)
 
-    res.status(200).json({Message: "Vous etes bien authentifié avec l'email " + req.token})
+    // Prendre la 1er valeur de l'objet envoyer = le mail de l'utilisateur
+    const reqMailValue = reqValeus[0];
+    // console.log("reqMailValue>>>>>>>>", reqMailValue)
+
+    res.status(200).json({
+      Message: "Vous etes bien authentifié avec l'email " + reqMailValue,
+    });
   },
 };
 

@@ -1,26 +1,23 @@
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-
-const auth = { 
+const auth = {
   checkToken(req, res, next) {
     try {
-        // Split le token en 2 partie bearer et le token  => Récuperer que le 1 element du tableau
-        const token = req.headers.authorization.split(" ")[1];
+      // Split le token en 2 partie bearer et le token  => Récuperer que le 1 element du tableau
+      const token = req.headers.authorization.split(" ")[1];
 
-        // vérifier le token générer et le stocker dans la request
-        req.token = jwt.verify(token, process.env.SECRET);
-        console.log("token validé de: ", req.token);
+      // vérifier le token générer et le stocker dans la request
+      //Middleware pour garder la session active
+      req.token = jwt.verify(token, process.env.SECRET);
 
-        next();
+      console.log("token validé de: ", Object.values(req.token));
+
+      next();
     } catch {
-        res.status(401).json({Message: "Token d'authentification invalide"})
+      res.status(401).json({ Message: "Token d'authentification invalide" });
     }
-  }
+  },
 };
-
-
-
-
 
 // Simple JWT access and refresh tokens
 /* 
@@ -62,6 +59,5 @@ const tokens = generateTokens(user);
 console.log('Access token:', tokens.accessToken);
 console.log('Refresh token:', tokens.refreshToken);
 */
-
 
 module.exports = auth;

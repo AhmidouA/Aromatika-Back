@@ -19,8 +19,7 @@ router.post("/signup", userController.signup);
 router.get("/login", userController.indexLoginPage);
 router.post("/login", userController.login);
 
-
 // user profile avec middleware token
-router.get('/profil', auth.checkToken, userController.show);
+router.get("/profil", auth.checkToken, userController.show);
 
 module.exports = router;
