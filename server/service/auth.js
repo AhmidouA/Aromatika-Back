@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 const auth = {
+  // verification du token
   checkToken(req, res, next) {
     try {
       // Split le token en 2 partie bearer et le token  => Récuperer que le 1 element du tableau
@@ -17,8 +18,27 @@ const auth = {
       res.status(401).json({ Message: "Token d'authentification invalide" });
     }
   },
+
+  // middleware d'erreur 404 
+  notFound (req, res, next) {
+    const error = new Error;
+    error.status = 400;
+    res.json({message : 
+      `La page demandée ${req.url} n'existe pas`});
+
+    next(error);
+}, 
 };
 
+
+module.exports = auth;
+
+
+
+
+
+
+// code a regarder et a utiliser plus tard 
 // Simple JWT access and refresh tokens
 /* 
 const jwt = require('jsonwebtoken');
@@ -59,5 +79,3 @@ const tokens = generateTokens(user);
 console.log('Access token:', tokens.accessToken);
 console.log('Refresh token:', tokens.refreshToken);
 */
-
-module.exports = auth;

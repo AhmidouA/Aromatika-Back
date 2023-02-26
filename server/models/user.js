@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 const userModel = {
   // methode inserer un nouvelle utilisateur.
   async insertUser(formData) {
-    
     // récupérer les data du formulaire
     const username = formData.username;
     const mail = formData.email;
@@ -61,7 +60,7 @@ const userModel = {
     try {
       const result = await dbClient.query(sqlQuery, values);
       const user = result.rows[0];
-      console.log("user>>>>>>>>", user)
+      console.log("user>>>>>>>>", user);
 
       // Vérifier si l'utilisateur existe
       if (!user) {
@@ -73,11 +72,9 @@ const userModel = {
       if (passwordMatch) {
         // Retourner l'utilisateur
         return user;
-    } else {
+      } else {
         throw new Error("Le mot de passe est incorrect.");
-    }
-
-    
+      }
     } catch (err) {
       console.error(err);
       // Retourner l'utilisateur

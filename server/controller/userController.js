@@ -25,7 +25,9 @@ const userController = {
     } catch (err) {
       console.error(err);
       // si y'a une erreur dans le formulaire envoi une erreur
-      res.status(400).json({ message: "Mauvaise info" });
+      res
+        .status(400)
+        .json({ message: "Le Pseudo ou l'email est déjà utilisé" });
     }
   },
 
