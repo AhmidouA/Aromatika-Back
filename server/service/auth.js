@@ -21,12 +21,14 @@ const auth = {
 
   // middleware d'erreur 404 
   notFound (req, res, next) {
-    const error = new Error;
-    error.status = 400;
-    res.json({message : 
-      `La page demandée ${req.url} n'existe pas`});
 
-    next(error);
+    // Instance de error 
+    const error = new Error(`La page demandée est ${req.url}`);
+    error.status = 400;
+    
+    res.json({ Message : "la page que vous cherchez n'existe pas"})
+
+    next(console.error(error));
 }, 
 };
 
