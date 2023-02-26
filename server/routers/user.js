@@ -1,9 +1,15 @@
 const express = require("express");
 // controller de l'utilisateur
 const { userController } = require("../controller");
+// middleware authentification
 const { auth } = require("../service");
 
 const router = express.Router();
+
+/**
+ * GET /logout - route pour la décoonnexion
+ */
+router.get("/", userController.homePage);
 
 /**
  * GET /signup - route pour récupere la page formulaire d'inscription
@@ -19,7 +25,14 @@ router.post("/signup", userController.signup);
 router.get("/login", userController.indexLoginPage);
 router.post("/login", userController.login);
 
-// user profile avec middleware token
-router.get("/profil", auth.checkToken, userController.show);
+/**
+ * GET /logout - route pour la décoonnexion
+ */
+router.get("/logout", auth.checkToken, userController.logout);
+
+/**
+ * GET /profile - route pour le profil de l'utilisateur avec un middleware token
+ */
+router.get("/profile", auth.checkToken, userController.profile);
 
 module.exports = router;

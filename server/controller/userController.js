@@ -6,6 +6,10 @@ const jwt = require("jsonwebtoken");
 const refreshTokenExpiration = "7d";
 
 const userController = {
+  homePage(req, res) {
+    res.json({ message: "Bienvenu sur Aromatokä" });
+  },
+
   indexSignupPage(req, res) {
     res.json({ message: "Inscription" });
   },
@@ -74,13 +78,7 @@ const userController = {
     }
   },
 
-  logout(req, res) {
-    req.session.destroy();
-    res.json({ message: "déconnexion" });
-    // res.redirect('/');
-  },
-
-  show(req, res) {
+  profile(req, res) {
     // Avoir les valeurs de l'objet du token depuis req.token
     const reqValeus = Object.values(req.token);
     // console.log("reqValeus>>>>>>>>", reqValeus)
@@ -92,6 +90,14 @@ const userController = {
     res.status(200).json({
       Message: "Vous etes bien authentifié avec l'email " + reqMailValue,
     });
+  },
+
+  logout(req, res) {
+    // supprimer la session enregistré et son token
+    delete req.session.user;
+    delete req.token;
+
+    res.json({ message: "déconnexion" });
   },
 };
 
