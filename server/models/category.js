@@ -1,6 +1,7 @@
 const { dbClient } = require("../service");
 
 const categoryModel = {
+  // Méthode pour avoir toutes catégorie d'une famille de la base de données
   async GetCategories(familyName) {
     // console.log("familyName>>>>>>>>>>>", familyName)
 
@@ -22,14 +23,17 @@ const categoryModel = {
       // On retourne les catégories récupérées sous forme de tableau d'objets rows
       return result.rows;
     } catch (err) {
-      throw new Error("Erreur lors de la récupération des catégories");
+      throw new Error(
+        `Erreur lors de la récupération des catégories ${err.message}`
+      );
     }
   },
 
+  // Méthode pour donner une catégorie dans la base de données
   async GetOneCategory(id) {
     // Requête pour récupérer une catégorie dans la table category
     const sqlCheckQuery = `SELECT * FROM category WHERE id = $1;`;
-    console.log("sqlCheckQuery>>>>>>>>>>>", sqlCheckQuery);
+    // console.log("sqlCheckQuery>>>>>>>>>>>", sqlCheckQuery);
     const values = [id];
     console.log("id>>>>>>>>>>>", id);
 
@@ -38,37 +42,55 @@ const categoryModel = {
       console.log("result>>>>>>>>>>>", result);
       return result.rows[0];
     } catch (err) {
-      throw new Error("Erreur lors de la récupération de la catégorie");
+      throw new Error(
+        `Erreur lors de la récupération de la catégorie ${err.message}`
+      );
     }
   },
 
-  async insertCategory(category, family) {
+  // Méthode pour inserer une catégorie dans la base de données
+  async insertCategory(category) {
     // Requête pour insérer une nouvelle catégorie dans la table category
     const sqlQueryCategory = `INSERT INTO category (name) VALUES ($1) RETURNING id`;
     // Requête  pour insérer une nouvelle catégorie dans la table family_has_category,
     // qui relie la famille passée à la nouvelle catégorie créée
-    const sqlQueryFamily = `INSERT INTO family_has_category (family_id, category_id, name) VALUES ($1, $2, $3)`;
+    const sqlQueryCategoryFamily = `INSERT INTO family_has_category (family_id, category_id, name) VALUES ($1, $2, $3) RETURNING *`;
+    // Requête pour insérer id famille (family_id) de la nouvelle catégorie
+    const sqlQueryFamily = "SELECT id FROM family WHERE name = $1";
+    // la requête pour lui insere automatiquement l'id a la famille "essential" =  family_id = 1
+    // Valeur de la famille "essential"
+    const familyNameAutoValues = ["essential"];
 
     // valeur pour la catégorie (Not Null) est le nom
     const valuesCategory = [category.name];
     console.log("valuesCategory>>>>>>>>>>>", valuesCategory);
 
     try {
-      // On insérer la catégorie de la première requête
+      // la requête pour récupérer l'ID de la famille "Essential"
+      const familyResultQuery = await dbClient.query(
+        sqlQueryFamily,
+        familyNameAutoValues
+      );
+      // Récupérer de l'ID de la famille "Essential"
+      const familyId = familyResultQuery.rows[0].id;
+
+      // la requête pour insérer une nouvelle catégorie dans la table "category"
       const categoryResult = await dbClient.query(
         sqlQueryCategory,
         valuesCategory
       );
-      // On récupère l'identifiant de la catégorie créée
+      // Récupérer de l'ID de la catégorie créée
       const categoryId = categoryResult.rows[0].id;
+      // Récupérer du nom de la catégorie
+      const categoryName = valuesCategory[0];
 
-      // variable qui regoupe les valeur la family (family_id), categoryId (id de la catégorie)de valuesCategory (catégorie.name)
-      const regroupFamilyCategorie = [family, categoryId, valuesCategory];
+      // la requête pour insérer dans la table de jointure "family_has_category"
+      const regroupFamilyCategorieValue = [familyId, categoryId, categoryName];
 
-      // On exécute la deuxième requête pour lier la famille à la catégorie créée (table de la jointure)
+      // la requête pour insérer une nouvelle entrée dans la table de jointure "family_has_category"
       const familyResult = await dbClient.query(
-        sqlQueryFamily,
-        regroupFamilyCategorie
+        sqlQueryCategoryFamily,
+        regroupFamilyCategorieValue
       );
 
       return familyResult;
@@ -79,30 +101,20 @@ const categoryModel = {
     }
   },
 
-  async getOneCategories(req, res) {
-    const id = req.params.id;
-    console.log("id>>>>>>", id);
+  // Méthode pour mettre à jour une catégorie dans la base de données
+  // les paramettre Id est tjr avant car nous utilisons l'ID pour identifier la catégorie que nous voulons mettre à jour
+  async updateOneCategory(id, categoryName) {
+    const sqlQuery = `UPDATE category SET name = $1 WHERE id = $2;`;
+    const values = [categoryName.name, id];
+    console.log("values>>>>>>>>>>>", values);
 
     try {
-      const category = await categoryModel.GetOneCategories(id);
-      console.log("category>>>>>>", category);
-      res.status(200).json(category);
+      const result = await dbClient.query(sqlQuery, values);
+      console.log("response>>>>>>>>>>>", result);
+      return result;
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: "Erreur serveur" });
-    }
-  },
-  async addCategory(req, res) {
-    const formData = req.body;
-    console.log("formData>>>>>>", formData);
-
-    try {
-      const categoryId = await categoryModel.insertCategory(formData);
-      console.log("categoryId>>>>>>", categoryId);
-      res.status(200).json({ message: "Catégorie créée", categoryId });
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: "Erreur serveur" });
+      throw new Error(`
+    Erreur lors de la mise à jour de la catégorie ${err.message}`);
     }
   },
 };

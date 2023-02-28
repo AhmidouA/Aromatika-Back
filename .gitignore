@@ -1,6 +1,5 @@
 node_modules
 .env
-note.md
 dataTest
 views
 conception
@@ -8,4 +7,3 @@ public
 authfront
 data test
 script
-script/importData.js

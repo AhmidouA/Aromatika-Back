@@ -7,7 +7,7 @@ const { auth } = require("../service");
 const router = express.Router();
 
 /**
- * GET /categories Poour avoir toutes les categories des huiles par famille
+ * GET /categories - route pour avoir toutes les categories des huiles par famille
  */
 router.get("/categories/:family", categoryController.getAllCategories);
 
@@ -18,14 +18,19 @@ router.get("/categories/:family", categoryController.getAllCategories);
 router.post("/categories/:family", categoryController.addCategory);
 
 /**
- * GET /categories Poour avoir une categorie des huiles
+ * GET /category route - Pour avoir une categorie des huiles
  *
  */
 router.get("/category/:id", categoryController.getOneCategories);
 
 /**
+ * patch /category - route pour modifier une categorie des huiles
+ *
+ */
+router.patch("/category/:id", categoryController.updateCategory);
+
+/**
  * POST /categories - route pour ajouter une categories des huiles
- * PATCH /categories - route pour modifier une categories des huiles
  * DELETE /categories - route pour supprimer une categories des huiles
  */
 
