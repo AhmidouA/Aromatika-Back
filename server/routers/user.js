@@ -7,7 +7,7 @@ const { auth } = require("../service");
 const router = express.Router();
 
 /**
- * GET /logout - route pour la décoonnexion
+ * GET / - route pour la home Page (Page d'acceuil)
  */
 router.get("/", userController.homePage);
 

@@ -4,7 +4,7 @@ const app = express();
 require("dotenv").config();
 
 // Les routers
-const { oilRouter, userRouter } = require("./server/routers");
+const { oilRouter, userRouter, categoryRouter } = require("./server/routers");
 
 // les cors pour l'appel a l'Api
 const cors = require ('cors');
@@ -45,8 +45,12 @@ app.use((req, res, next) => {
 });
 
 // utilisation de nos routes
-app.use(userRouter);
-app.use(oilRouter);
+app.use(
+  userRouter, 
+  oilRouter, 
+  categoryRouter
+);
+
 
 
 // middleware 404

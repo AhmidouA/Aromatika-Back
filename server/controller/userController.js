@@ -76,7 +76,7 @@ const userController = {
       //res.redirect('/');
     } catch (err) {
       console.error(err);
-      res.status(500).json({ message: "internal server error" });
+      res.status(500).json({ message: "Erreur serveur" });
     }
   },
 
@@ -90,8 +90,7 @@ const userController = {
     // console.log("reqMailValue>>>>>>>>", reqMailValue)
 
     res.status(200).json({
-      Message: "Vous etes bien authentifié avec l'email " + reqMailValue,
-    });
+      Message: "Vous etes bien authentifié avec l'email " + reqMailValue});
   },
 
   logout(req, res) {

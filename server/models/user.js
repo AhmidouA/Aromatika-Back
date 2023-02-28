@@ -44,7 +44,7 @@ const userModel = {
 
     try {
       const result = await dbClient.query(sqlQuery, values);
-      // console.log("result>>>>>", result);
+      console.log("result>>>>>", result);
     } catch (err) {
       console.error(err);
     }
