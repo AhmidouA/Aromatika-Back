@@ -90,7 +90,8 @@ const userController = {
     // console.log("reqMailValue>>>>>>>>", reqMailValue)
 
     res.status(200).json({
-      Message: "Vous etes bien authentifié avec l'email " + reqMailValue});
+      Message: "Vous etes bien authentifié avec l'email " + reqMailValue,
+    });
   },
 
   logout(req, res) {

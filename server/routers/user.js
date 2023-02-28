@@ -35,4 +35,4 @@ router.get("/logout", auth.checkToken, userController.logout);
  */
 router.get("/profile", auth.checkToken, userController.profile);
 
-module.exports = router; 
+module.exports = router;

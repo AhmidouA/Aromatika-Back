@@ -6,6 +6,6 @@ views
 conception
 public
 authfront
-dataTest
 data test
 script
+script/importData.js
