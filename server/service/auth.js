@@ -19,28 +19,51 @@ const auth = {
     }
   },
 
-  // middleware d'erreur 404 
-  notFound (req, res, next) {
-
-    // Instance de error 
+  // middleware d'erreur 404
+  notFound(req, res, next) {
+    // Instance de error
     const error = new Error(`La page demandée est ${req.url}`);
     error.status = 400;
-    
-    res.json({ Message : "la page que vous cherchez n'existe pas"})
+
+    res.json({ Message: "la page que vous cherchez n'existe pas" });
 
     next(console.error(error));
-}, 
-};
+  },
 
+  // Middleware admin
+  isAdmin(req, res, next) {
+    // Récupération du role de l'user grace a la session
+    const roleId = req.session.user.role_id;
+    console.log("roleId>>>>>>", roleId);
+
+    // Vérifie si le token est présent dans la requête
+    const token = req.headers.authorization.split(" ")[1];
+    if (!token) {
+      return res
+        .status(401)
+        .json({ message: "Token d'authentification invalide" });
+    }
+    try {
+      // Vérifie si le token est valide et récupère les informations de l'utilisateur
+      const decodedToken = jwt.verify(token, process.env.SECRET);
+      console.log("decodedToken: ", decodedToken);
+
+      // Vérifie si l'utilisateur a le rôle d'administrateur (2)
+      if (roleId !== 2) {
+        return res.status(401).json({ message: "Non autorisé" });
+      }
+
+      // Passe à la suite des middlewares
+      next();
+    } catch (err) {
+      return res.status(401).json({ message: "Token invalide" });
+    }
+  },
+};
 
 module.exports = auth;
 
-
-
-
-
-
-// code a regarder et a utiliser plus tard 
+// code Sophie a regarder et a utiliser plus tard
 // Simple JWT access and refresh tokens
 /* 
 const jwt = require('jsonwebtoken');

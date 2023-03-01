@@ -70,11 +70,9 @@ const categoryController = {
 
       // vérifie qui il trouve au moins une catégorie
       if (result.rowCount > 0) {
-        res
-          .status(200)
-          .json({
-            message: `La catégorie ${name.name} a bien été mise à jour avec succès`,
-          });
+        res.status(200).json({
+          message: `La catégorie ${name.name} a bien été mise à jour avec succès`,
+        });
       } else {
         res.status(404).json({ message: "Catégorie introuvable" });
       }
@@ -103,13 +101,9 @@ const categoryController = {
 
       // Supprimer la catégorie
       const result = await categoryModel.deleteOneCategory(categoryId);
-
-      console.log("resultController>>>>>>", result);
-      res
-        .status(201)
-        .json({
-          Message: `la catégorie ${categoryName} a bien été supprimée `,
-        });
+      res.status(201).json({
+        Message: `la catégorie ${categoryName} a bien été supprimée `,
+      });
     } catch (err) {
       console.error(err);
       console.error(

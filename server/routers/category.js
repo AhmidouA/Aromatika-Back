@@ -15,7 +15,7 @@ router.get("/categories/:family", categoryController.getAllCategories);
  * POST /categories - route pour ajouter une categories des huiles
  *
  */
-router.post("/categories/:family", categoryController.addCategory);
+router.post("/categories/:family", auth.isAdmin, categoryController.addCategory);
 
 /**
  * GET /category route - Pour avoir une categorie des huiles
@@ -27,12 +27,12 @@ router.get("/category/:id", categoryController.getOneCategories);
  * PATCH /category - route pour modifier une categorie des huiles
  *
  */
-router.patch("/category/:id", categoryController.updateCategory);
+router.patch("/category/:id", auth.isAdmin, categoryController.updateCategory);
 
 /**
  * DELETE /categories - route pour supprimer une categories des huiles
  * 
  */
-router.delete("/category/:id", categoryController.deleteCategory);
+router.delete("/category/:id", auth.isAdmin, categoryController.deleteCategory);
 
 module.exports = router;

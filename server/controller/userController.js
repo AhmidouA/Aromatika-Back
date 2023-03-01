@@ -38,10 +38,10 @@ const userController = {
   async login(req, res) {
     // récupere les données du formulaire (email et mot de passe)
     const { email, password } = req.body;
-
+    
     // Les donnée du formulaire
     console.log("{ email, password }>>>>>>   ", { email, password });
-
+    
     // generation du token grace a l'email d'identification et une durée de 30min pour le token
     // Le refresh du token dure 7jours pour éviter de demander a l'utilisateur de se connecter toutes les 30min
     var token = jwt.sign({ email }, process.env.SECRET, {
@@ -64,7 +64,8 @@ const userController = {
       const formattedUser = {
         id: user.id,
         name: user.username,
-        role_Id: user.role_id, // Récupérer l'id du rôle à partir de la clé étrangère dans la table utilisateur
+        createdAt: user.created_at,
+        role_id: user.role_id, // Récupérer l'id du rôle à partir de la clé étrangère dans la table utilisateur
       };
 
       // stock les info de la session dans formattedUser
@@ -85,12 +86,22 @@ const userController = {
     const reqValeus = Object.values(req.token);
     // console.log("reqValeus>>>>>>>>", reqValeus)
 
+    // La date de creation du compte (Demande du front pour afficher au profil)
+    // générer grace a la session user dans login
+    const createdAt = req.session.user.createdAt;
+    // console.log("createdAt>>>>>>>>", createdAt)
+    const userName = req.session.user.name;
+    console.log("userName>>>>>>>>", userName)
+
+
     // Prendre la 1er valeur de l'objet envoyer = le mail de l'utilisateur
     const reqMailValue = reqValeus[0];
     // console.log("reqMailValue>>>>>>>>", reqMailValue)
 
     res.status(200).json({
       Message: "Vous etes bien authentifié avec l'email " + reqMailValue,
+      createdAt: createdAt,
+      userName: userName
     });
   },
 
