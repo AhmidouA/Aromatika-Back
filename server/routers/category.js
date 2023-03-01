@@ -24,17 +24,15 @@ router.post("/categories/:family", categoryController.addCategory);
 router.get("/category/:id", categoryController.getOneCategories);
 
 /**
- * patch /category - route pour modifier une categorie des huiles
+ * PATCH /category - route pour modifier une categorie des huiles
  *
  */
 router.patch("/category/:id", categoryController.updateCategory);
 
 /**
- * POST /categories - route pour ajouter une categories des huiles
  * DELETE /categories - route pour supprimer une categories des huiles
+ * 
  */
-
-// router.patch("/category", categoryController);
-// router.delete("/category", categoryController);
+router.delete("/category/:id", categoryController.deleteCategory);
 
 module.exports = router;

@@ -28,7 +28,7 @@ const categoryController = {
 
     try {
       // Appel de la méthode du modèle (dataMapper) pour donner une catégorie
-      const category = await categoryModel.GetOneCategory(id);
+      const category = await categoryModel.getOneCategory(id);
       console.log("category>>>>>>", category);
 
       res.status(200).json(category);
@@ -70,10 +70,46 @@ const categoryController = {
 
       // vérifie qui il trouve au moins une catégorie
       if (result.rowCount > 0) {
-        res.status(200).json({ message: "Catégorie mise à jour avec succès" });
+        res
+          .status(200)
+          .json({
+            message: `La catégorie ${name.name} a bien été mise à jour avec succès`,
+          });
       } else {
         res.status(404).json({ message: "Catégorie introuvable" });
       }
+    } catch (err) {
+      console.error(err);
+      console.error(
+        `Erreur lors de la modification de la catégorie: ${err.message}`
+      );
+      res
+        .status(500)
+        .json({ message: `La catégorie ${name.name} existe déja` });
+    }
+  },
+
+  // Méthode pour supprimer une catégorie
+  async deleteCategory(req, res) {
+    const categoryId = req.params.id;
+    console.log("categoryId>>>>>>", categoryId);
+
+    try {
+      // Récupérer la catégorie avant de la supprimer
+      const category = await categoryModel.getOneCategory(categoryId);
+      console.log("category>>>>>>", category);
+      const categoryName = category.name;
+      console.log("categoryName>>>>>>", categoryName);
+
+      // Supprimer la catégorie
+      const result = await categoryModel.deleteOneCategory(categoryId);
+
+      console.log("resultController>>>>>>", result);
+      res
+        .status(201)
+        .json({
+          Message: `la catégorie ${categoryName} a bien été supprimée `,
+        });
     } catch (err) {
       console.error(err);
       console.error(

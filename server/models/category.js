@@ -30,7 +30,7 @@ const categoryModel = {
   },
 
   // Méthode pour donner une catégorie dans la base de données
-  async GetOneCategory(id) {
+  async getOneCategory(id) {
     // Requête pour récupérer une catégorie dans la table category
     const sqlCheckQuery = `SELECT * FROM category WHERE id = $1;`;
     // console.log("sqlCheckQuery>>>>>>>>>>>", sqlCheckQuery);
@@ -74,7 +74,7 @@ const categoryModel = {
       // Récupérer de l'ID de la famille "Essential"
       const familyId = familyResultQuery.rows[0].id;
 
-      // la requête pour insérer une nouvelle catégorie dans la table "category"
+       // Exécution de la requête pour insérer une nouvelle catégorie dans la table "category"
       const categoryResult = await dbClient.query(
         sqlQueryCategory,
         valuesCategory
@@ -84,10 +84,10 @@ const categoryModel = {
       // Récupérer du nom de la catégorie
       const categoryName = valuesCategory[0];
 
-      // la requête pour insérer dans la table de jointure "family_has_category"
+       // Valeurs à insérer dans la table de jointure "family_has_category"
       const regroupFamilyCategorieValue = [familyId, categoryId, categoryName];
 
-      // la requête pour insérer une nouvelle entrée dans la table de jointure "family_has_category"
+      // Exécution de la requête pour insérer une nouvelle entrée dans la table de jointure "family_has_category"
       const familyResult = await dbClient.query(
         sqlQueryCategoryFamily,
         regroupFamilyCategorieValue
@@ -104,11 +104,15 @@ const categoryModel = {
   // Méthode pour mettre à jour une catégorie dans la base de données
   // les paramettre Id est tjr avant car nous utilisons l'ID pour identifier la catégorie que nous voulons mettre à jour
   async updateOneCategory(id, categoryName) {
+
+    // Requête pour modifier une catégorie dans la table category
     const sqlQuery = `UPDATE category SET name = $1 WHERE id = $2;`;
+    // Tableau des valeurs à insérer
     const values = [categoryName.name, id];
     console.log("values>>>>>>>>>>>", values);
 
     try {
+      // Exécution de la requête SQL pour mettre à jour la catégorie de la BDD
       const result = await dbClient.query(sqlQuery, values);
       console.log("response>>>>>>>>>>>", result);
       return result;
@@ -117,6 +121,41 @@ const categoryModel = {
     Erreur lors de la mise à jour de la catégorie ${err.message}`);
     }
   },
+
+  // Méthode pour supprimer une catégorie dans la base de données
+  async deleteOneCategory(id) {
+
+    // la requête pour supprimer la catégorie de la table de jointure "family_has_category"
+    const deleteFamilyHasCategoryQuery = `DELETE FROM family_has_category WHERE category_id=$1`;
+    const categoryValuesId = [id];
+    console.log("categoryValuesId>>>>>>>>>>>", categoryValuesId);
+    
+    try {
+      // Car quand on essaye de supprimer la catégorie avant la jointure ça ne marche pas 
+      // il demande la contrainte de la FK 
+      // Supprimer les enregistrements correspondants dans la table de jointure
+      await dbClient.query(deleteFamilyHasCategoryQuery, categoryValuesId);
+      
+
+
+        // la requête pour supprimer la catégorie dans la table "category"
+      const sqlQueryCategory = `DELETE FROM category WHERE id=$1;`;
+      const result = await dbClient.query(sqlQueryCategory, categoryValuesId);
+
+      // Récupérer de l'ID de la catégorie supprimé 
+      const deletedCategory = result.rows[0];
+      console.log("result DataMapper>>>>>>>>>>>", deletedCategory);
+      return deletedCategory;
+
+    } catch (err) {
+      throw new Error(`Erreur lors de la suppression de la catégorie: ${err.message}`);
+    }
+  }
 };
 
 module.exports = categoryModel;
+
+
+
+
+
