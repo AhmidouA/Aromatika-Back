@@ -23,7 +23,8 @@ const oilModel = {
 
   // Méthode pour créer une nouvelle huile
   async insertOil(data) {
-    const query = "INSERT INTO oil(name, botanic_name, description, extraction, molecule, plant_family, scent, image) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;";
+    const query =
+      "INSERT INTO oil(name, botanic_name, description, extraction, molecule, plant_family, scent, image) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;";
     const values = [
       data.name,
       data.botanic_name,
@@ -33,9 +34,9 @@ const oilModel = {
       data.plant_family,
       data.scent,
       data.image,
-    ]
+    ];
 
-    console.log("values>>>>>>>", values)  
+    console.log("values>>>>>>>", values);
 
     try {
       // exécution de la requête
