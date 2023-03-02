@@ -1,4 +1,4 @@
-const { userModel } = require("../models");
+const { userModel, oilModel } = require("../models");
 // module JWT pour les Token
 const jwt = require("jsonwebtoken");
 
@@ -81,7 +81,7 @@ const userController = {
     }
   },
 
-  profile(req, res) {
+  async profile(req, res) {
     // Avoir les valeurs de l'objet du token depuis req.token
     const reqValeus = Object.values(req.token);
     // console.log("reqValeus>>>>>>>>", reqValeus)
@@ -91,7 +91,11 @@ const userController = {
     const createdAt = req.session.user.createdAt;
     // console.log("createdAt>>>>>>>>", createdAt)
     const userName = req.session.user.name;
-    console.log("userName>>>>>>>>", userName)
+    // console.log("userName>>>>>>>>", userName)
+    const userId = req.session.user.id;
+
+    const userFavorites = await userModel.findFavoritesByUserId(userId)
+    
 
 
     // Prendre la 1er valeur de l'objet envoyer = le mail de l'utilisateur
@@ -101,9 +105,66 @@ const userController = {
     res.status(200).json({
       Message: "Vous etes bien authentifié avec l'email " + reqMailValue,
       createdAt: createdAt,
-      userName: userName
+      userName: userName,
+      userFavorites: userFavorites
     });
   },
+  async addFavorite(req, res) {
+    const { user_id, oil_id } = req.body;
+    console.log("{ user_Id, oil_Id }>>>>>>>>", { user_id, oil_id })
+
+    try {
+      // Check si l'user est bien inscrit dans la bdd 
+    const user = await userModel.getUserById(user_id);
+    console.log("{ user }>>>>>>>>",user )
+    if (!user) {
+      return res.status(404).json({ error: 'Utilisateur non trouvé.' });
+    }
+      
+      // recuépere de l'id de l'huile 
+      const oil = await oilModel.getOilById(oil_id);
+      // Check pour voir si l'huile existe bien 
+      if (!oil) {
+        return res.status(404).json({ error: 'Huile non trouvée.' });
+      }
+
+      // Ajoute l'huile aux favoris de l'user
+      const favorite = await userModel.addFavoritsUser(user_id, oil_id);
+      console.log("{ favorite }>>>>>>>>",favorite )
+
+      res.status(200).json({ message: 'Favori ajouté.', favorite });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erreur lors de l\'ajout du favori.' });
+    }
+  },
+  
+  async deleteFavorite(req, res) {
+    const { user_id, oil_id } = req.body;
+    console.log("{ { user_Id, oil_Id } }>>>>>>>>",{ user_id, oil_id } )
+    try {
+         // Check si l'user est bien inscrit dans la bdd 
+    const user = await userModel.getUserById(user_id);
+    console.log("{ user }>>>>>>>>",user )
+    if (!user) {
+      return res.status(404).json({ error: 'Utilisateur non trouvé.' });
+    }
+       // Recuépere de l'id de l'huile 
+      const oil = await oilModel.getOilById(oil_id);
+      // Check pour voir si l'huile existe bien 
+      if (!oil) {
+        return res.status(404).json({ error: 'Huile non trouvée.' });
+      }
+      // Supprime l'huile aux favoris de l'user
+      const favorite = await userModel.deleteFavoritsUser(user_id, oil_id);
+      console.log("{ favorite }>>>>>>>>",favorite )
+      res.status(200).json({ message: 'Favori supprimé.', favorite });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Erreur lors de la suppression du favori.' });
+    }
+  },
+  
 
   logout(req, res) {
     // supprimer la session enregistré et son token

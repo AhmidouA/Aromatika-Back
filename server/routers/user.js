@@ -35,4 +35,17 @@ router.get("/logout", auth.checkToken, userController.logout);
  */
 router.get("/profile", auth.checkToken, userController.profile);
 
+
+/**
+ * POST /profile/favorites - route pour ajouter un favoris
+ */
+router.post('/profile/favorites', auth.checkToken, userController.addFavorite);
+
+/**
+ * DELETE /profile - route pour supprimer un favoris
+ * Pour la méthode DELETE il est important d'inclure 
+ * l'ID car nous voulons supprimer une ressource existante dans la base de données qui a un ID.
+ */
+router.delete('/profile/favorites/:id', auth.checkToken, userController.deleteFavorite);
+
 module.exports = router;

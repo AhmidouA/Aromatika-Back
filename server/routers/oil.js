@@ -3,6 +3,6 @@ const { oilController } = require("../controller");
 
 const router = express.Router();
 
-router.get("/oil", oilController.index);
+router.get("/essential/:id ", oilController.index);
 
 module.exports = router;

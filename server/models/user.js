@@ -3,7 +3,7 @@ const emailValidator = require("email-validator");
 const bcrypt = require("bcrypt");
 
 const userModel = {
-  // methode inserer un nouvelle utilisateur.
+  // methode inserer un nouvelle user.
   async insertUser(formData) {
     // récupérer les data du formulaire
     const username = formData.username;
@@ -79,6 +79,72 @@ const userModel = {
       console.error(err);
       // Retourner l'utilisateur
       return null;
+    }
+  },
+
+  // methode trouver les favoris d'un user.
+  async findFavoritesByUserId(id) {
+    const sqlQuery =
+      "SELECT * FROM oil_has_user WHERE user_id = $1 AND favorite = true;";
+    const values = [id];
+    // console.log("sqlQuery", sqlQuery);
+    // console.log("values>>>>>>>>>>", values);
+    try {
+      const result = await dbClient.query(sqlQuery, values);
+      return result.rows;
+    } catch (error) {
+      console.error(error);
+      throw new Error("introvable.");
+    }
+  },
+
+  // methode ajouter des huile aux favoris d'un user.
+  async addFavoritsUser(userId, oilId) {
+    const sqlQuery =
+      "INSERT INTO oil_has_user(user_id, oil_id, favorite) VALUES($1, $2, $3) RETURNING *;";
+    const values = [userId, oilId, true];
+    // console.log("sqlQuery", sqlQuery);
+    // console.log("values>>>>>>>>>>", values);
+    try {
+      const result = await dbClient.query(sqlQuery, values);
+      return result.rows[0];
+    } catch (error) {
+      console.error(error);
+      throw new Error("Erreur lors de l'ajout du favori.");
+    }
+  },
+
+  // methode supprimer des huile aux favoris d'un user.
+  async deleteFavoritsUser(userId, oilId) {
+    const sqlQuery =
+      "DELETE FROM oil_has_user WHERE user_id = $1 AND oil_id = $2 AND favorite = true RETURNING *;";
+    const values = [userId, oilId];
+    // console.log("sqlQuery", sqlQuery);
+    // console.log("values>>>>>>>>>>", values);
+    try {
+      const result = await dbClient.query(sqlQuery, values);
+      // console.log("result>>>>>>>>>>", result)
+      return result.rows[0];
+    } catch (error) {
+      console.error(error);
+      throw new Error("Erreur lors de la suppression du favori.");
+    }
+  },
+
+  // methode récuperer un user
+  async getUserById(userId) {
+    const sqlQuery = 'SELECT * FROM "user" WHERE id = $1;;';
+    const values = [userId];
+    // console.log("sqlQuery", sqlQuery);
+    // console.log("values>>>>>>>>>>", values);
+
+    try {
+      const result = await dbClient.query(sqlQuery, values);
+      // console.log("result>>>>>>>>>>", result)
+      return result.rows[0];
+    } catch (error) {
+      console.error(error);
+      throw new Error("Erreur lors de la récupération de l'utilisateur.");
     }
   },
 };
