@@ -35,7 +35,6 @@ router.get("/logout", auth.checkToken, userController.logout);
  */
 router.get("/profile", auth.checkToken, userController.profile);
 
-
 /**
  * POST /profile/favorites - route pour ajouter un favoris
  */

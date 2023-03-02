@@ -29,9 +29,11 @@ router.get("/category/:id", auth.checkToken, categoryController.getOneCategories
  */
 router.patch("/category/:id", auth.checkToken, auth.isAdmin, categoryController.updateCategory);
 
+
 /**
  * DELETE /categories - route pour supprimer une categories des huiles
- * 
+ * Pour la méthode DELETE il est important d'inclure 
+ * l'ID car nous voulons supprimer une ressource existante dans la base de données qui a un ID.
  */
 router.delete("/category/:id", auth.checkToken, auth.isAdmin, categoryController.deleteCategory);
 

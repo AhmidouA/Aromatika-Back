@@ -14,7 +14,6 @@ const categoryController = {
 
       res.status(200).json(categories);
     } catch (err) {
-      console.error(err);
       console.error(
         `Erreur lors de l'envoi de toutes les catégories: ${err.message}`
       );
@@ -24,7 +23,7 @@ const categoryController = {
   // Méthode pour donner une catégorie
   async getOneCategories(req, res) {
     const id = req.params.id;
-    console.log("id>>>>>>", id);
+    // console.log("id>>>>>>", id);
 
     try {
       // Appel de la méthode du modèle (dataMapper) pour donner une catégorie
@@ -60,8 +59,8 @@ const categoryController = {
   async updateCategory(req, res) {
     const name = req.body;
     const categoryId = req.params.id;
-    console.log("categoryId>>>>>>", categoryId);
-    console.log("name>>>>>>", name);
+    // console.log("categoryId>>>>>>", categoryId);
+    // console.log("name>>>>>>", name);
 
     try {
       // Appel de la méthode du modèle (dataMapper) pour mettre à jour la catégorie
@@ -77,7 +76,6 @@ const categoryController = {
         res.status(404).json({ message: "Catégorie introuvable" });
       }
     } catch (err) {
-      console.error(err);
       console.error(
         `Erreur lors de la modification de la catégorie: ${err.message}`
       );
@@ -90,14 +88,14 @@ const categoryController = {
   // Méthode pour supprimer une catégorie
   async deleteCategory(req, res) {
     const categoryId = req.params.id;
-    console.log("categoryId>>>>>>", categoryId);
+    // console.log("categoryId>>>>>>", categoryId);
 
     try {
       // Récupérer la catégorie avant de la supprimer
       const category = await categoryModel.getOneCategory(categoryId);
-      console.log("category>>>>>>", category);
+      // console.log("category>>>>>>", category);
       const categoryName = category.name;
-      console.log("categoryName>>>>>>", categoryName);
+      // console.log("categoryName>>>>>>", categoryName);
 
       // Supprimer la catégorie
       const result = await categoryModel.deleteOneCategory(categoryId);
@@ -105,7 +103,6 @@ const categoryController = {
         Message: `la catégorie ${categoryName} a bien été supprimée `,
       });
     } catch (err) {
-      console.error(err);
       console.error(
         `Erreur lors de la modification de la catégorie: ${err.message}`
       );
