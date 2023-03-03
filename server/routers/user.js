@@ -3,6 +3,9 @@ const express = require("express");
 const { userController } = require("../controller");
 // middleware authentification
 const { auth } = require("../service");
+const multer = require('multer');
+// destination stockage (bdd postgres)
+const public = multer({ dest: 'public/' });
 
 const router = express.Router();
 
@@ -46,5 +49,13 @@ router.post('/profile/favorites', auth.checkToken, userController.addFavorite);
  * l'ID car nous voulons supprimer une ressource existante dans la base de données qui a un ID.
  */
 router.delete('/profile/favorites/:id', auth.checkToken, userController.deleteFavorite);
+
+/**
+ * POST /profile/image - route pour ajouter une photo
+ * Un seul ficher a la fois qui peux etre téléchargé 
+ * ('image') est le champs renseigner dans le form (champs) de l'uploade
+ */
+router.post('/profile/picture/:id', auth.checkToken, public.single('image'), userController.addPicture);
+
 
 module.exports = router;
