@@ -44,7 +44,7 @@ const categoryController = {
     try {
       // Appel de la méthode du modèle (dataMapper) pour inserer une catégorie
       const category = await categoryModel.insertCategory(name);
-      res.status(201).json(category.rows[0]);
+      res.status(200).json(category.rows[0]);
     } catch (err) {
       console.error(
         `Erreur lors de la création de la catégorie: ${err.message}`
@@ -73,7 +73,7 @@ const categoryController = {
           message: `La catégorie ${name.name} a bien été mise à jour avec succès`,
         });
       } else {
-        res.status(404).json({ message: "Catégorie introuvable" });
+        res.status(500).json({ message: "Catégorie introuvable" });
       }
     } catch (err) {
       console.error(
@@ -99,7 +99,7 @@ const categoryController = {
 
       // Supprimer la catégorie
       const result = await categoryModel.deleteOneCategory(categoryId);
-      res.status(201).json({
+      res.status(200).json({
         Message: `la catégorie ${categoryName} a bien été supprimée `,
       });
     } catch (err) {

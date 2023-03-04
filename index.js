@@ -2,9 +2,41 @@ const express = require("express");
 const app = express();
 // module dotenv
 require("dotenv").config();
-
 // Les routers
 const { oilRouter, userRouter, categoryRouter } = require("./server/routers");
+
+/****************************/
+/**** Swagger generator  ****/
+/****************************/
+const expressJSDocSwagger = require('express-jsdoc-swagger');
+const options = {
+  info: {
+      version: '1.0.0',
+      title: 'Aromatikä',
+      description : 'The Api endpoint of the essential oils',
+      license: {
+          name: 'Oclock Project',
+      },
+  },
+  security: {
+      BasicAuth: {
+          type: 'http',
+          scheme: 'basic',
+      },
+  },
+  baseDir: __dirname,
+  // Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
+  filesPattern: './**/*.js',
+};
+
+expressJSDocSwagger(app)(options);
+
+
+/********************************/
+/**** Configuration express  ****/
+/********************************/
+
+
 
 // les cors pour l'appel a l'Api
 const cors = require("cors");

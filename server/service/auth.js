@@ -49,7 +49,7 @@ const auth = {
       console.log("decodedToken: ", decodedToken);
 
       // Vérifie si l'utilisateur a le rôle d'administrateur (2)
-      if (roleId !== 2) {
+      if (roleId !== 1) {
         return res.status(401).json({ message: "Non autorisé" });
       }
 

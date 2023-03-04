@@ -1,5 +1,6 @@
 const { oilModel } = require("../models");
 
+
 const oilController = {
   // Methode pour récupèrer les données d'une huile
   async getOilById(req, res) {
@@ -19,15 +20,7 @@ const oilController = {
   // Methode pour créer une huile
   async createOil(req, res) {
     const {
-      name,
-      botanic_name,
-      description,
-      extraction,
-      molecule,
-      plant_family,
-      scent,
-      image,
-    } = req.body;
+      name,botanic_name,description,extraction,molecule,plant_family,scent,image} = req.body;
     //  console.log("{ req Body }>>>>>>", {  name, botanic_name, description, extraction, molecule, plant_family, scent, image })
 
     // Vérifier que toutes les données (not null) sont présentes
@@ -51,7 +44,7 @@ const oilController = {
       res.status(201).json(oil);
     } catch (err) {
       console.error(`Erreur lors de la creation de l'huile: ${err.message}`);
-      res.status(500).json({ message: "Erreur serveur" });
+      res.status(500).json({ message: "Le nom ou le nom botanique existent déja" });
     }
   },
   // Methode pour modifie une huile

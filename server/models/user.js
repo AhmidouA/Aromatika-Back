@@ -39,7 +39,7 @@ const userModel = {
     const hash = await bcrypt.hash(password, 10);
 
     // Insérer l'utilisateur si le pseudo et l'email n'existent pas déjà
-    const sqlQuery = `INSERT INTO "user" (username, mail, password, role_id) VALUES ($1, $2, $3, 1)`;
+    const sqlQuery = `INSERT INTO "user" (username, mail, password, role_id) VALUES ($1, $2, $3, 2)`;
     const values = [username, mail, hash];
 
     try {
@@ -91,6 +91,7 @@ const userModel = {
     // console.log("values>>>>>>>>>>", values);
     try {
       const result = await dbClient.query(sqlQuery, values);
+      // console.log("result DataMapper>>>>>>>>>>", result);
       return result.rows;
     } catch (error) {
       console.error(error);
