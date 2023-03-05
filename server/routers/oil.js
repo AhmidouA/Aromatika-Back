@@ -6,6 +6,27 @@ const { auth } = require("../service");
 const router = express.Router();
 
 
+/**
+ * Un Huile 
+ * @typedef {object} Huile
+ * @property {string} name - Nom de le huile
+ * @property {string} botanic_name - Nom botanique de le huile
+ * @property {string} description - Description de le huile
+ * @property {string} extraction - La methode d'extraction de le huile
+ * @property {string} molecule - La molecule de le huile
+ * @property {string} plant_family - La famille de plante de le huile
+ * @property {string} scent - Le parfum de le huile
+ * @property {string} image - L'image de le huile
+ */
+
+/**
+ * GET /essential/{id}
+ * @summary Récupère une huile essentielle par son ID
+ * @tags Huiles Essentielles
+ * @param {integer} id.path.required - ID de l'huile essentielle à récupérer
+ * @return {object} 200 - Retourne l'huile essentielle correspondante à l'ID donné
+ * @return {object} 500 - Erreur lors de l'envoi d'une huile essentielle
+ */
 //GET /essential route - Pour avoir une huiles
 router.get("/essential/:id", oilController.getOilById);
 

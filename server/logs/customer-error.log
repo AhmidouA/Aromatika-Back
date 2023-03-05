@@ -1,0 +1,56 @@
+Date:[2023-03-05 01:06:10] [ERROR] Methode:[GET] Routes:[/essential/120] Message:Huile non trouvée
+Date:[2023-03-05 01:18:34] [ERROR] Methode:[GET] Routes:[/essential/155] Message:Huile non trouvée
+Date:[2023-03-05 11:21:18] [ERROR] Methode:[POST] Routes:[/essential] Message:Erreur lors de la creation de l'huileErreur lors de la création de l'huile : duplicate key value violates unique constraint "oil_name_key"
+Date:[2023-03-05 11:22:58] [ERROR] Methode:[POST] Routes:[/essential] Message:Erreur lors de la creation de l'huileErreur lors de la création de l'huile : duplicate key value violates unique constraint "oil_name_key"
+Date:[2023-03-05 11:23:40] [ERROR] Methode:[POST] Routes:[/essential] Message:Erreur lors de la creation de l'huile
+Date:[2023-03-05 11:25:18] [ERROR] Methode:[POST] Routes:[/essential] Message:Erreur lors de la creation de l'huileErreur lors de la création de l'huile : duplicate key value violates unique constraint "oil_name_key"
+Date:[2023-03-05 11:26:33] [ERROR] Methode:[POST] Routes:[/essential] Erreur lors de la creation de l'huile Erreur lors de la création de l'huile : duplicate key value violates unique constraint "oil_name_key"
+Date:[2023-03-05 11:27:21] [ERROR] Methode:[POST] Routes:[/essential] Erreur lors de la création de l'huile : duplicate key value violates unique constraint "oil_name_key"
+Date:[2023-03-05 11:29:34] [ERROR] Methode:[PATCH] Routes:[/essential/24] Erreur lors de la mise à jour de l'huile : duplicate key value violates unique constraint "oil_name_key"
+Date:[2023-03-05 11:30:05] [ERROR] Methode:[PATCH] Routes:[/essential/24] Erreur lors de la mise à jour de l'huile : duplicate key value violates unique constraint "oil_botanic_name_key"
+Date:[2023-03-05 11:31:19] [ERROR] Methode:[DELETE] Routes:[/essential/19] Cannot read properties of undefined (reading 'name')
+Date:[2023-03-05 11:32:12] [ERROR] Methode:[DELETE] Routes:[/essential/19] Cannot read properties of undefined (reading 'name')
+Date:[2023-03-05 11:33:43] [ERROR] Methode:[DELETE] Routes:[/essential/19] Cannot read properties of undefined (reading 'name')et avec l'id19
+Date:[2023-03-05 11:34:59] [ERROR] Methode:[DELETE] Routes:[/essential/19] Erreur lors de la suppression de l'huile avec l'id: 19
+Date:[2023-03-05 11:35:33] [ERROR] Methode:[GET] Routes:[/essential/155] Huile non trouvée
+Date:[2023-03-05 11:35:43] [ERROR] Methode:[GET] Routes:[/essential/119] Huile non trouvée
+Date:[2023-03-05 18:28:25] [ERROR] Methode:[GET] Routes:[/essential/119] Huile non trouvée
+Date:[2023-03-05 18:29:50] [ERROR] Methode:[GET] Routes:[/essential/119] Huile non trouvée
+Date:[2023-03-05 18:45:44] [ERROR] Methode:[GET] Routes:[/category/9] La catégorie avec l'id 9 n'a pas été trouvée.
+Date:[2023-03-05 19:08:51] [ERROR] Methode:[GET] Routes:[/essential/119] Huile non trouvée
+Date:[2023-03-05 19:11:44] [ERROR] Methode:[GET] Routes:[/category/9] La catégorie avec l'id 9 n'a pas été trouvée.
+Date:[2023-03-05 19:12:01] [ERROR] Methode:[GET] Routes:[/category/19] La catégorie avec l'id 19 n'a pas été trouvée.
+Date:[2023-03-05 19:12:56] [ERROR] Methode:[POST] Routes:[/categories/essential] Erreur serveur lors de la création de la catégorie
+Date:[2023-03-05 19:13:49] [ERROR] Methode:[POST] Routes:[/categories/essential] Erreur serveur lors de la création de la catégorie [object Object]
+Date:[2023-03-05 19:19:13] [ERROR] Methode:[POST] Routes:[/categories/essential] Erreur serveur lors de la création de la catégorie [object Object]
+Date:[2023-03-05 19:19:52] [ERROR] Methode:[POST] Routes:[/categories/essential] Erreur serveur lors de la création de la catégorie [object Object]
+Date:[2023-03-05 19:20:32] [ERROR] Methode:[POST] Routes:[/categories/essential] Erreur serveur lors de la création de la catégorie test1
+Date:[2023-03-05 19:24:45] [ERROR] Methode:[PATCH] Routes:[/category/11] Catégorie introuvablelolo
+Date:[2023-03-05 19:25:47] [ERROR] Methode:[PATCH] Routes:[/category/11] Catégorie introuvable lolo
+Date:[2023-03-05 19:26:20] [ERROR] Methode:[PATCH] Routes:[/category/11] Catégorie introuvable lolo
+Date:[2023-03-05 19:29:39] [ERROR] Methode:[PATCH] Routes:[/category/10] La catégorie lola existe déja
+Date:[2023-03-05 19:33:07] [ERROR] Methode:[PATCH] Routes:[/category/10] La catégorie lola existe déja
+Date:[2023-03-05 19:33:15] [ERROR] Methode:[PATCH] Routes:[/category/11] La catégorie lola existe déja
+Date:[2023-03-05 19:33:23] [ERROR] Methode:[PATCH] Routes:[/category/11] La catégorie lololol existe déja
+Date:[2023-03-05 19:33:33] [ERROR] Methode:[PATCH] Routes:[/category/11] La catégorie llalalalalalala existe déja
+Date:[2023-03-05 19:35:22] [ERROR] Methode:[PATCH] Routes:[/category/10] La catégorie lala existe déja
+Date:[2023-03-05 19:36:42] [ERROR] Methode:[PATCH] Routes:[/category/10] La catégorie lalo existe déja
+Date:[2023-03-05 19:37:48] [ERROR] Methode:[PATCH] Routes:[/category/11] Catégorie introuvable lalo
+Date:[2023-03-05 19:39:14] [ERROR] Methode:[PATCH] Routes:[/category/11] La catégorie  lalo est introuvable et son id est le: 11
+Date:[2023-03-05 19:40:06] [ERROR] Methode:[PATCH] Routes:[/category/11] La catégorie  lalo est introuvable et son id est le: 11
+Date:[2023-03-05 19:41:37] [ERROR] Methode:[PATCH] Routes:[/category/10] La catégorie diffusion existe déja
+Date:[2023-03-05 19:46:17] [ERROR] Methode:[PATCH] Routes:[/category/10] La catégorie diffusion existe déja
+Date:[2023-03-05 19:49:33] [ERROR] Methode:[DELETE] Routes:[/category/9] Erreur lors de la modification de la catégorie: Cannot read properties of undefined (reading 'name')
+Date:[2023-03-05 19:50:45] [ERROR] Methode:[DELETE] Routes:[/category/9] Erreur lors de la suppression de la catégorie avec lid: 9
+Date:[2023-03-05 19:51:35] [ERROR] Methode:[DELETE] Routes:[/category/9] Erreur lors de la suppression de la catégorie avec l'id: 9
+Date:[2023-03-05 19:55:46] [ERROR] Methode:[GET] Routes:[/essential/119] Huile non trouvée
+Date:[2023-03-05 19:57:47] [ERROR] Methode:[GET] Routes:[/essential/119] Huile avec l'id 119 n'a pas été trouvée
+Date:[2023-03-05 20:39:04] [ERROR] Methode:[POST] Routes:[/essential] Le nom ou le nom botanique existent déja
+Date:[2023-03-05 20:39:50] [ERROR] Methode:[POST] Routes:[/essential] Tous les champs n'ont pas été remplis
+Date:[2023-03-05 20:41:42] [ERROR] Methode:[POST] Routes:[/essential] Tous les champs n'ont pas été remplis
+Date:[2023-03-05 20:42:27] [ERROR] Methode:[POST] Routes:[/essential] Le nom ou le nom botanique existent déja
+Date:[2023-03-05 20:47:14] [ERROR] Methode:[PATCH] Routes:[/essential/23] Tous les champs doivent être remplis
+Date:[2023-03-05 20:48:42] [ERROR] Methode:[PATCH] Routes:[/essential/23] Erreur lors de la modification de l'huile: 23
+Date:[2023-03-05 20:49:54] [ERROR] Methode:[PATCH] Routes:[/essential/23] Erreur lors de la modification de l'huile: 23
+Date:[2023-03-05 20:50:20] [ERROR] Methode:[PATCH] Routes:[/essential/23] Erreur lors de la modification de l'huile: 23
+Date:[2023-03-05 20:53:53] [ERROR] Methode:[DELETE] Routes:[/essential/19] Erreur lors de la suppression de l'huile avec l'id: 19

@@ -196,7 +196,4 @@ INSERT INTO "role" ("name")
  VALUES ('admin'),
         ('member');
 
--- INSERT INTO "user" ("username", "mail", "password", "role_id")
--- VALUES ('Ahmed','Ahmed@oclock.com','Ahmed','1'),
--- ('Eric','Eric@oclock.com','Eric','2');
 COMMIT;

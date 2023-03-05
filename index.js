@@ -4,6 +4,9 @@ const app = express();
 require("dotenv").config();
 // Les routers
 const { oilRouter, userRouter, categoryRouter } = require("./server/routers");
+// midlleware error
+const error = require("./server/service/auth");
+
 
 /****************************/
 /**** Swagger generator  ****/
@@ -43,18 +46,19 @@ const cors = require("cors");
 // middleware par default pour permettre d'appeler l'api (Tout le monde par default)
 app.use(cors());
 
-const error = require("./server/service/auth");
 // formatage de données envoyées à un serveur
 app.use(express.urlencoded({ extended: true }));
 // le contenu du body sera du json
 app.use(express.json());
 
+// Utilise le stream d'enregistrement de fichier pour toutes les requêtes entrantes et les réponses sortantes
+app.use((err, req, res, next) => {
+  logError(req, err);
+  res.status(500).send('Quelque chose s\'est mal passé');
+});
+
 // Le port du serveur
 const PORT = process.env.PORT ?? 3000;
-
-// utilisation des views pour le client (TEST)
-app.set("view engine", "ejs");
-app.set("views", "./server/views");
 
 // middleware Session
 const session = require("express-session");

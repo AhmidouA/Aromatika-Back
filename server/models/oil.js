@@ -7,11 +7,12 @@ const oilModel = {
     const query = "SELECT * FROM oil WHERE id = $1;";
     // je stock tout dans un tableau
     const values = [id];
+    // console.log("values>>>>>>>", values)
 
     try {
       // exécution de la requête
       const result = await dbClient.query(query, values);
-      console.log("result>>>>>>>>>>>", result);
+      // console.log("result>>>>>>>>>>>", result);
       // renvoi la 1er ligne du resultat trouvé ('huile demandée)
       return result.rows[0];
     } catch (err) {

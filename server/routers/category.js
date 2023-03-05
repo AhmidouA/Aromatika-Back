@@ -13,7 +13,7 @@ const router = express.Router();
  */
 
 /**
- * GET /api/categories/{family}
+ * GET /categories/{family}
  * @summary Récupère toutes les catégories par famille
  * @tags Catégories
  * @param {string} family.path.required - Famille de la catégorie
@@ -26,7 +26,7 @@ router.get("/categories/:family", auth.checkToken, categoryController.getAllCate
 
 
 /**
- * POST /api/categories/{family}
+ * POST /categories/{family}
  * @summary Ajoute une catégorie
  * @tags Catégories
  * @param {string} family.path.required - Famille de la catégorie
@@ -40,39 +40,37 @@ router.post("/categories/:family", auth.checkToken, auth.isAdmin, categoryContro
 
 
 /**
- * GET /api/category/{id}
+ * GET /category/{id}
  * @summary Récupère une catégorie par son ID
  * @tags Catégories
  * @param {string} id.path - ID de la catégorie à récupérer
  * @return {object} 200 - Retourne la catégorie correspondante à l'ID donné
- * @return {object} 500 - Erreur lors de l'envoi d'une catégorie
- * @return {object} 500 - Erreur inattendue
+ * @return {object} 500 - Erreur serveur
  */
 // GET /category route - Pour avoir une categorie des huiles
 router.get("/category/:id", auth.checkToken, categoryController.getOneCategories);
 
 
 /**
- * PATCH /api/category/{id}
+ * PATCH /category/{id}
  * @summary Modifie une catégorie
  * @tags Catégories
  * @param {string} id.path.required - ID de la catégorie à modifier
  * @param {Catégorie} request.body.required - Catégorie modifiée
  * @return {object} 200 - Retourne la catégorie modifiée
  * @return {object} 500 - La catégorie correspondante à l'ID donné est introuvable
- * @return {object} 500 - Erreur inattendue
+ * @return {object} 500 - La catégorie existe déja
  */
 //PATCH /category - route pour modifier une categorie des huiles
 router.patch("/category/:id", auth.checkToken, auth.isAdmin, categoryController.updateCategory);
 
 
 /**
- * DELETE /api/category/{id}
+ * DELETE /category/{id}
  * @summary Supprime une catégorie
  * @tags Catégories
  * @param {string} id.path.required - ID de la catégorie à supprimer
  * @return {object} 204 - La catégorie a été supprimée avec succès
- * @return {object} 500 - Erreur lors de la modification de la catégorie
  * @return {object} 500 - Erreur inattendue
  */
 //DELETE /categories - route pour supprimer une categories des huiles

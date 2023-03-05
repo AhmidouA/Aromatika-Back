@@ -11,7 +11,7 @@ const router = express.Router();
 
 /**
  * Un utilisateurs 
- * @typedef {object} utilisateurs
+ * @typedef {object} Utilisateurs
  * @property {string} username - Nom de l'utilisateurs
  * @property {string} mail - email de l'utilisateurs
  * @property {string} password - le mot de passe de l'utilisateurs
@@ -20,7 +20,7 @@ const router = express.Router();
  */
 
 /**
- * GET /api/
+ * GET /
  * @summary Affiche la page d'accueil
  * @tags Utilisateurs
  * @return {html} 200 - Retourne la page d'accueil
@@ -31,7 +31,7 @@ router.get("/", userController.homePage);
 
 
 /**
- * GET /api/signup
+ * GET /signup
  * @summary Affiche la page d'inscription
  * @tags Utilisateurs
  * @return {html} 200 - Retourne la page d'inscription
@@ -42,19 +42,19 @@ router.get("/signup", userController.indexSignupPage);
 
 
 /**
- * POST /api/signup
+ * POST /signup
  * @summary Inscription d'un nouvel utilisateur
  * @tags Utilisateurs
- * @param {Utilisateur} request.body.required - Nouvel utilisateur
+ * @param {Utilisateurs} request.body.required - Nouvel utilisateur
  * @return {object} 200 - Retourne l'utilisateur créé
- * @return {object} 500 - Erreur inattendue
+ * @return {object} 500 - Le Pseudo ou l'email est déjà utilisé
  */
 // POST /signup - route pour completer le formulaire d'inscription
 router.post("/signup", userController.signup);
 
 
 /**
- * GET /api/login
+ * GET /login
  * @summary Affiche la page de connexion
  * @tags Utilisateurs
  * @return {html} 200 - Retourne la page de connexion
@@ -65,10 +65,10 @@ router.get("/login", userController.indexLoginPage);
 
 
 /**
- * POST /api/login
+ * POST /login
  * @summary Connexion d'un utilisateur existant
  * @tags Utilisateurs
- * @param {Utilisateur} request.body.required - Informations de connexion de l'utilisateur
+ * @param {Utilisateurs} request.body.required - Informations de connexion de l'utilisateur
  * @return {object} 200 - Retourne l'utilisateur connecté et le token d'authentification
  * @return {object} 500 - Utilisateur ou mot de passe incorrect
  * @return {object} 500 - Erreur inattendue
@@ -78,7 +78,7 @@ router.post("/login", userController.login);
 
 
 /**
- * GET /api/logout
+ * GET /logout
  * @summary Déconnexion de l'utilisateur
  * @tags Utilisateurs
  * @security TokenAuth
@@ -90,27 +90,26 @@ router.get("/logout", auth.checkToken, userController.logout);
 
 
 /**
- * GET /api/profile
+ * GET /profile
  * @summary Affiche la page de profil de l'utilisateur connecté
  * @tags Utilisateurs
  * @security TokenAuth
  * @return {html} 200 - Retourne la page de profil
  * @return {object} 500 - Utilisateur non trouvé
- * @return {object} 500 - Erreur inattendue
  */
 //GET /profile - route pour le profil de l'utilisateur avec un middleware token
 router.get("/profile", auth.checkToken, userController.profile);
 
 
 /**
- * POST /api/profile/favorites
+ * POST /profile/favorites
  * @summary Ajoute une huile aux favoris de l'utilisateur connecté
  * @tags Utilisateurs
  * @security BasicAuth
  * @param {string} request.body.id.required - ID de la recette à ajouter
- * @return {object} 200 - Retourne un message de succès
+ * @return {object} 200 - Favori ajouté
+ * @return {object} 500 - Utilisateur non trouvé
  * @return {object} 500 - Erreur lors de l'ajout du favori
- * @return {object} 500 - Erreur inattendue
  */
 // POST /profile/favorites - route pour ajouter un favoris
 router.post('/profile/favorites', auth.checkToken, userController.addFavorite);
@@ -124,7 +123,7 @@ router.post('/profile/favorites', auth.checkToken, userController.addFavorite);
  * @return {object} 200 - Favoris supprimé
  * @return {object} 500 - Utilisateur non trouvé.
  * @return {object} 500 - L'huile n'est pas dans les favoris de l'utilisateur
- * @return {object} 500 - Erreur serveur
+ * @return {object} 500 - Erreur lors de la suppression du favori
  */
 // DELETE /profile - route pour supprimer un favoris
 // Pour la méthode DELETE il est important d'inclure 
@@ -138,9 +137,8 @@ router.delete('/profile/favorites/:id', auth.checkToken, userController.deleteFa
  * @tags Profile
  * @param {string} id.path.required - ID de l'utilisateur
  * @param {Image} image.formData.required - Image à ajouter
- * @return {object} 200 - Image ajoutée
+ * @return {object} 200 - L'image a bien été téléchargé
  * @return {object} 500 - Erreur lors du téléchargement de l'image
- * @return {object} 500 - Erreur serveur
  */
 // POST /profile/image - route pour ajouter une photo 
 // Un seul ficher a la fois qui peux etre téléchargé 
