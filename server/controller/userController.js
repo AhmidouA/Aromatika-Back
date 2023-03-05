@@ -3,6 +3,10 @@ const { userModel, oilModel } = require("../models");
 const jwt = require("jsonwebtoken");
 // Module multer pour la gestion des fichiers uploadés (image)
 const multer = require("multer");
+// logger des erreurs client
+const logger = require('../service/logger')
+// la seul qui marche avec require  "chalk": "^4.1.2",
+const chalk = require('chalk');
 
 const userController = {
   // Module Home Page
@@ -19,18 +23,23 @@ const userController = {
   async signup(req, res) {
     // recupere les donnée du body
     const formData = req.body;
+    console.log(chalk.bgBlue("{ formData.username }>>>>>>", formData.username))
+    console.log(chalk.bgBlue("{ formData.mail }>>>>>>", formData.email))
 
     try {
       // Appel la bdd et insert les nouvelle donnée
       await userModel.insertUser(formData);
-      // redirige vers la page une fois que tout est bon
       res.status(201).json({ message: `utilisateur crée` });
+
     } catch (err) {
-      console.error(err);
-      // si y'a une erreur dans le formulaire envoi une erreur
-      res
-        .status(500)
-        .json({ message: `Le Pseudo ou l'email est déjà utilisé` });
+      console.error(chalk.bgRedBright(err));
+      res.status(500).json({ message: `Le Pseudo ou l'email est déjà utilisé` });
+
+      logger.customerLogger.log('error', { 
+        url: req.url, 
+        method: req.method, 
+        message: 'Le Pseudo ou l\'email est déjà utilisé'
+      })
     }
   },
 
@@ -43,9 +52,10 @@ const userController = {
   async login(req, res) {
     // récupere les données du formulaire (email et mot de passe)
     const { email, password } = req.body;
-
+    
     // Les donnée du formulaire
-    console.log("{ email, password }>>>>>>   ", { email, password });
+    console.log(chalk.bgBlue("{ email password }>>>>>>", email))
+    
 
     // generation du token grace a l'email d'identification et une durée de 30min pour le token
     // Le refresh du token dure 7jours pour éviter de demander a l'utilisateur de se connecter toutes les 30min
@@ -53,7 +63,7 @@ const userController = {
       expiresIn: "30m",
     });
 
-    console.log("TOKEN : >>>>>>", token);
+    console.log(chalk.bgBlack("{ TOKEN }>>>>>>", token))
 
     try {
       // Appel du datamapper pour récupérer l'utilisateur
@@ -61,6 +71,11 @@ const userController = {
 
       // Si l'utilisateur n'existe pas ou le mot de passe est incorrect, afficher une erreur
       if (!user) {
+        logger.customerLogger.log('error', { 
+          url: req.url, 
+          method: req.method, 
+          message: "utilisateur ou mot de passe incorrect"
+        })
         return res.status(500).json({ message: `utilisateur ou mot de passe incorrect` });
       }
 
@@ -74,14 +89,20 @@ const userController = {
 
       // stock les info de la session dans formattedUser
       req.session.user = formattedUser;
-      console.log("formattedUser>>>>>>>", formattedUser);
+      // console.log(chalk.bgGreen("{ formattedUser }>>>>>>", Object.values(formattedUser)))
 
       // Si l'utilisateur existe et le mot de passe est correct on le connecte et on renvoi le token
       res.json({ message: `connexion`, token });
       //res.redirect('/');
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: `Erreur serveur` });
+      console.error(chalk.bgRedBright(err));
+      res.status(500).json({ message: 'utilisateur non isncrit ' + formattedUser });
+
+      logger.customerLogger.log('error', { 
+        url: req.url, 
+        method: req.method, 
+        message: 'utilisateur non isncrit ' + formattedUser
+      })
     }
   },
 
@@ -101,11 +122,11 @@ const userController = {
 
     // Récupérer les favoris de l'user
     const userFavorites = await userModel.findFavoritesByUserId(userId);
-    // console.log("userFavorites>>>>>>>>", userFavorites)
+    // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites))
 
     // Récupérer l'user
     const user = await userModel.getUserById(userId);
-    // console.log("user>>>>>>>>", user)
+    console.log(chalk.bgGreen("{ user }>>>>>>", user.username))
     // Récupérer l'image de l'user a partir de l'user
     const picture = user.picture;
 
@@ -124,87 +145,118 @@ const userController = {
   // Module pour ajouter les huile au favoris
   async addFavorite(req, res) {
     const { user_id, oil_id } = req.body;
-    console.log("{ user_Id, oil_Id }>>>>>>>>", { user_id, oil_id });
+    console.log(chalk.bgGreen("{ formattedUser }>>>>>>", 'user_id ' + Object.values(user_id)))
+    console.log(chalk.bgGreen("{ formattedUser }>>>>>>", 'oil_id ' + Object.values(oil_id)))
 
     try {
       // Check si l'user est bien inscrit dans la bdd
       const user = await userModel.getUserById(user_id);
-      console.log("{ user }>>>>>>>>", user);
+      console.log(chalk.bgBlue("{ user }>>>>>>", user.mail))
+
       if (!user) {
-        return res.status(500).json({ error: `Utilisateur non trouvé.` });
+        logger.customerLogger.log('error', { 
+          url: req.url, 
+          method: req.method, 
+          message: 'Utilisateur non trouvé ' + user
+        })
+        return res.status(500).json({ error: `Utilisateur non trouvé` });
       }
 
       // Ajoute l'huile aux favoris de l'user
       const userFavorites = await userModel.addFavoritsUser(user_id, oil_id);
-      console.log("{ favorite }>>>>>>>>", userFavorites);
+      console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites))
 
       // // Vérifie si l'huile à ajouter est dans les favoris de l'utilisateur
       // si je mets se code l'user ne pourra pas remmetre l'huile dans ses favoris encore 1 fois
       // Aprés l'avoir delete 1 fois
       // if (userFavorites || userFavorites.length>0) {
       //   return res.status(400).json({Message: `L'huile n'est pas dans les favoris de l'utilisateur.`});
-      // }
+      // } =>>> Ce code marche mais pose trop de pb car l'initialisation des id ne se fait pas.
 
       res.status(200).json({ message: `Favori ajouté.`, userFavorites });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: `Erreur lors de l\'ajout du favori.` });
+
+    } catch (err) {
+      console.error(chalk.bgRedBright(err));
+      res.status(500).json({ error: 'Erreur lors de l\'ajout du favori' });
+
+      logger.customerLogger.log('error', { 
+        url: req.url, 
+        method: req.method, 
+        message: 'Erreur lors de l\'ajout du favori de l\'user_id ' + user_id + 
+                 ' et de l\'huile_id ' + oil_id
+      })
     }
   },
 
   // Module pour supprimer les huile des favoris
   async deleteFavorite(req, res) {
     const { user_id, oil_id } = req.body;
-    // console.log("{ { user_Id, oil_Id } }>>>>>>>>", { user_id, oil_id });
+    console.log(chalk.bgBlue("{ formattedUser }>>>>>>", 'user_id ' + Object.values(user_id)))
+    console.log(chalk.bgBlue("{ formattedUser }>>>>>>", 'oil_id ' + Object.values(oil_id)))
     try {
       // Check si l'user est bien inscrit dans la bdd
       const user = await userModel.getUserById(user_id);
-      console.log("{ user }>>>>>>>>", user);
-      if (!user) {
-        return res.status(500).json({ error: `Utilisateur non trouvé.` });
+      console.log(chalk.bgGreen("{ user }>>>>>>", user.mail));
+      // console.log(chalk.bgYellow("{ user_id }>>>>>>", user_id));
+      // console.log(chalk.bgYellow("{ user.id }>>>>>>", user.id));
+      if (parseInt(user_id) !== user.id ) {
+        logger.customerLogger.log('error', { 
+          url: req.url, 
+          method: req.method, 
+          message: 'Utilisateur non trouvé. ' + user.mail
+        });
+        return res.status(500).json({ error: `'L\'ID de l\'utilisateur dans la requête ne correspond pas à l\'ID de l\'utilisateur extrait du token. ' + user.mail` });
       }
 
       // Récupère les favoris de l'utilisateur
       const userFavorites = await userModel.findFavoritesByUserId(user_id);
-      // console.log("userFavorites>>>>>>>>", userFavorites)
+      // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", Object.values(userFavorites)));
 
       // Vérifie si l'huile à supprimer est dans les favoris de l'utilisateur
       if (!userFavorites || userFavorites.length === 0) {
-        return res
-          .status(500)
-          .json({
-            Message: `L'huile n'est pas dans les favoris de l'utilisateur.`,
-          });
+        logger.customerLogger.log('error', { 
+          url: req.url, 
+          method: req.method, 
+          message: 'L\'huile n\'est pas dans les favoris de l\'utilisateur ' + user.mail
+        })
+        return res.status(500).json({Message: 'L\'huile n\'est pas dans les favoris de l\'utilisateur '});
       }
-      // je récupére l'id de oil (oil_id) avant de la supprimer
-      // hasOilInFavorites est un tableau d'objet
-      // const hasOilInFavorites = userFavorites[0].oil_id;
-      // console.log("hasOilInFavorites>>>>>>>>", hasOilInFavorites)
 
       // Recuépere de l'id de l'huile
       const oil = await oilModel.getOneOilById(oil_id);
-      // console.log("oil>>>>>>>>", oil)
+      console.log(chalk.bgYellow("{ oil_id }>>>>>>", + oil_id));
       // Check pour voir si l'huile existe bien
       if (!oil) {
+        logger.customerLogger.log('error', { 
+          url: req.url, 
+          method: req.method, 
+          message: 'Huile non trouvée.` ' + oil
+        })
         return res.status(500).json({ error: `Huile non trouvée.` });
       }
 
       // Supprime l'huile aux favoris de l'user
       const favorite = await userModel.deleteFavoritsUser(user_id, oil_id);
-      console.log("{ favorite }>>>>>>>>", favorite);
+      console.log(chalk.bgBlue("{ huile favorite id }>>>>>>", oil_id));
+
       res.status(200).json({ message: "Favori supprimé.", favorite });
-    } catch (error) {
-      console.error(error);
-      res
-        .status(500)
-        .json({ error: `Erreur lors de la suppression du favori.` });
+
+    } catch (err) {
+      console.error(chalk.bgRedBright(err));
+      res.status(500).json({ error: `Erreur lors de la suppression du favori` });
+
+      logger.customerLogger.log('error', { 
+        url: req.url, 
+        method: req.method, 
+        message: 'Erreur lors de la suppression du favori ' + favorite
+      })
     }
   },
 
   // Module pour ajouter une photo au profile
   async addPicture(req, res) {
     const userId = req.params.id;
-    // console.log("userId", userId);
+    console.log(chalk.bgBlue("{ userId }>>>>>>", userId));
 
     // récupere le chemin de l'image uploadée
     const picture = req.file.path;
@@ -213,15 +265,19 @@ const userController = {
     try {
       // Appel de la méthode (datammaper)) d'user pour ajouter l'image à l'user
       const result = await userModel.addUserPicture(userId, picture);
-      console.log("result", result);
-      res
-        .status(200)
-        .json({ message: `L'image a bien été téléchargé.`, result });
+      console.log(chalk.bgGreen("{ result }>>>>>>", result));
+
+      res.status(200).json({ message: `L'image a bien été téléchargé.`, result });
+
     } catch (error) {
-      console.error(error);
-      res
-        .status(500)
-        .json({ error: `Erreur lors du téléchargement de l'image` });
+      console.error(chalk.bgRedBright(err));
+      res.status(500).json({ error: `Erreur lors du téléchargement de l'image` });
+
+      logger.customerLogger.log('error', { 
+        url: req.url, 
+        method: req.method, 
+        message: 'Erreur lors du téléchargement de l\'image'
+      })
     }
   },
 

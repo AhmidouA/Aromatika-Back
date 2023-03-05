@@ -54,3 +54,33 @@ Date:[2023-03-05 20:48:42] [ERROR] Methode:[PATCH] Routes:[/essential/23] Erreur
 Date:[2023-03-05 20:49:54] [ERROR] Methode:[PATCH] Routes:[/essential/23] Erreur lors de la modification de l'huile: 23
 Date:[2023-03-05 20:50:20] [ERROR] Methode:[PATCH] Routes:[/essential/23] Erreur lors de la modification de l'huile: 23
 Date:[2023-03-05 20:53:53] [ERROR] Methode:[DELETE] Routes:[/essential/19] Erreur lors de la suppression de l'huile avec l'id: 19
+Date:[2023-03-05 22:22:07] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou mot de passe incorrect
+Date:[2023-03-05 22:24:46] [ERROR] Methode:[POST] Routes:[/signup] Le Pseudo ou l'email est déjà utilisé
+Date:[2023-03-05 22:26:18] [ERROR] Methode:[POST] Routes:[/signup] Le Pseudo ou l'email est déjà utilisé
+Date:[2023-03-05 22:53:02] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori 
+Date:[2023-03-05 22:54:04] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori 
+Date:[2023-03-05 22:54:31] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori 
+Date:[2023-03-05 22:57:15] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1,0 et de l'huile id 1,2
+Date:[2023-03-05 22:58:42] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1,0 et de l'huile id 1,2
+Date:[2023-03-05 23:00:04] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 10 et de l'huile id 12
+Date:[2023-03-05 23:01:43] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 10 et de l'huile_id 12
+Date:[2023-03-05 23:02:55] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur 
+Date:[2023-03-05 23:03:02] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur 
+Date:[2023-03-05 23:21:47] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Utilisateur non trouvé. [object Object]
+Date:[2023-03-05 23:21:51] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Utilisateur non trouvé. [object Object]
+Date:[2023-03-05 23:22:16] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Utilisateur non trouvé. [object Object]
+Date:[2023-03-05 23:23:35] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Utilisateur non trouvé. Eric@oclock.com
+Date:[2023-03-05 23:24:39] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Utilisateur non trouvé. Eric@oclock.com
+Date:[2023-03-05 23:25:02] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Utilisateur non trouvé. Eric@oclock.com
+Date:[2023-03-05 23:26:01] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Utilisateur non trouvé. Eric@oclock.com
+Date:[2023-03-05 23:28:21] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur 
+Date:[2023-03-05 23:29:32] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-05 23:29:44] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur undefined
+Date:[2023-03-05 23:30:33] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-05 23:33:30] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-05 23:39:13] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-05 23:41:51] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Marion@oclock.com
+Date:[2023-03-05 23:42:34] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Marion@oclock.com
+Date:[2023-03-05 23:42:57] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Marion@oclock.com
+Date:[2023-03-05 23:45:56] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Marion@oclock.com
+Date:[2023-03-05 23:46:48] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Marion@oclock.com
