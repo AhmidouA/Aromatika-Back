@@ -29,7 +29,8 @@ const userController = {
     try {
       // Appel la bdd et insert les nouvelle donnée
       await userModel.insertUser(formData);
-      res.status(201).json({ message: `utilisateur crée` });
+      res.status(201).json({Message: 'Bienvenu ', 
+      name: formData.username });
 
     } catch (err) {
       console.error(chalk.bgRedBright(err));
@@ -92,8 +93,7 @@ const userController = {
       // console.log(chalk.bgGreen("{ formattedUser }>>>>>>", Object.values(formattedUser)))
 
       // Si l'utilisateur existe et le mot de passe est correct on le connecte et on renvoi le token
-      res.json({ message: `connexion`, token });
-      //res.redirect('/');
+      res.json({name: formattedUser.name ,token });
     } catch (err) {
       console.error(chalk.bgRedBright(err));
       res.status(500).json({ message: 'utilisateur non inscrit ' + formattedUser });
