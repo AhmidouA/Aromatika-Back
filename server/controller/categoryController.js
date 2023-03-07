@@ -26,11 +26,16 @@ const categoryController = {
       }
       res.status(200).json(categories);
     } catch (err) {
-      console.error(`Erreur lors de l'envoi de toutes les catégories: ${err.message}`);   
+      console.error(`Erreur lors de l'envoi de toutes les catégories: ${err.message}`); 
+      logger.customerLogger.log('error', { 
+        url: req.url, 
+        method: req.method, 
+        message: "Erreur lors de l'envoi des catégories "
+      })  
     }
   },
 
-  // Méthode pour donner une catégorie
+  // Méthode pour donner une catégorie avec ses huiles
   async getOneCategories(req, res) {
     const id = req.params.id;
     console.log(chalk.bgBlue("{ id }>>>>>>", id))
@@ -40,6 +45,10 @@ const categoryController = {
       const category = await categoryModel.getOneCategory(id);
       console.log(chalk.bgGreen("category>>>>>>", category));
 
+      // Appel de la méthode du modèle (dataMapper) pour donner toutes les huile d'une catégorie
+      const categoryWithOil = await categoryModel.getOneCategoryWithOil(id);
+      console.log(chalk.bgCyan("categoryWithOil>>>>>>", categoryWithOil))
+
       if (!category) {
         logger.customerLogger.log('error', { 
           url: req.url, 
@@ -48,7 +57,11 @@ const categoryController = {
         })
         res.status(500).json({ message: `La catégorie avec l'id ${id} n'a pas été trouvée.` });  
       }
-        res.status(200).json(category);
+        res.status(200).json({category_id: category.id,
+          category_name : category.name,
+        category_description: category.description,
+        category_picture: category.picture 
+        , categoryWithOil});
     } catch (err) {
         console.error(`Erreur lors de l'envoi d'une catégorie: ${err.message}`);
     }

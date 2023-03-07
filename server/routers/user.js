@@ -10,8 +10,8 @@ const router = express.Router();
 
 
 /**
- * Un utilisateurs 
- * @typedef {object} Utilisateurs
+ * Un User 
+ * @typedef {object} User
  * @property {string} username - Nom de l'utilisateurs
  * @property {string} mail - email de l'utilisateurs
  * @property {string} password - le mot de passe de l'utilisateurs
@@ -22,7 +22,8 @@ const router = express.Router();
 /**
  * GET /
  * @summary Affiche la page d'accueil
- * @tags Utilisateurs
+ * @security bearerAuth
+ * @tags User
  * @return {html} 200 - Retourne la page d'accueil
  * @return {object} 500 - Erreur inattendue
  */
@@ -33,7 +34,8 @@ router.get("/", userController.homePage);
 /**
  * GET /signup
  * @summary Affiche la page d'inscription
- * @tags Utilisateurs
+ * @security bearerAuth
+ * @tags User
  * @return {html} 200 - Retourne la page d'inscription
  * @return {object} 500 - Erreur inattendue
  */
@@ -43,9 +45,10 @@ router.get("/signup", userController.indexSignupPage);
 
 /**
  * POST /signup
- * @summary Inscription d'un nouvel utilisateur
- * @tags Utilisateurs
- * @param {Utilisateurs} request.body.required - Nouvel utilisateur
+ * @summary Inscription d'un nouvel user
+ * @security bearerAuth
+ * @tags User
+ * @param {User} request.body.required - Nouvel utilisateur
  * @return {object} 200 - Retourne l'utilisateur créé
  * @return {object} 500 - Le Pseudo ou l'email est déjà utilisé
  */
@@ -56,7 +59,8 @@ router.post("/signup", userController.signup);
 /**
  * GET /login
  * @summary Affiche la page de connexion
- * @tags Utilisateurs
+ * @security bearerAuth
+ * @tags user
  * @return {html} 200 - Retourne la page de connexion
  * @return {object} 500 - Erreur inattendue
  */
@@ -66,9 +70,10 @@ router.get("/login", userController.indexLoginPage);
 
 /**
  * POST /login
- * @summary Connexion d'un utilisateur existant
- * @tags Utilisateurs
- * @param {Utilisateurs} request.body.required - Informations de connexion de l'utilisateur
+ * @summary Connexion d'un User existant
+ * @security bearerAuth
+ * @tags User
+ * @param {User} request.body.required - Informations de connexion de l'utilisateur
  * @return {object} 200 - Retourne l'utilisateur connecté et le token d'authentification
  * @return {object} 500 - Utilisateur ou mot de passe incorrect
  * @return {object} 500 - Erreur inattendue
@@ -79,9 +84,9 @@ router.post("/login", userController.login);
 
 /**
  * GET /logout
- * @summary Déconnexion de l'utilisateur
- * @tags Utilisateurs
- * @security TokenAuth
+ * @summary Déconnexion de l'User
+ * @security bearerAuth
+ * @tags user
  * @return {object} 200 - Retourne un message de succès
  * @return {object} 500 - Erreur inattendue
  */
@@ -91,9 +96,9 @@ router.get("/logout", auth.checkToken, userController.logout);
 
 /**
  * GET /profile
- * @summary Affiche la page de profil de l'utilisateur connecté
- * @tags Utilisateurs
- * @security TokenAuth
+ * @summary Affiche la page de profil de User connecté
+ * @security bearerAuth
+ * @tags user
  * @return {html} 200 - Retourne la page de profil
  * @return {object} 500 - Utilisateur non trouvé
  */
@@ -103,9 +108,9 @@ router.get("/profile", auth.checkToken, userController.profile);
 
 /**
  * POST /profile/favorites
- * @summary Ajoute une huile aux favoris de l'utilisateur connecté
- * @tags Utilisateurs
- * @security BasicAuth
+ * @summary Ajoute une huile aux favoris de l'user connecté
+ * @security bearerAuth
+ * @tags user
  * @param {string} request.body.id.required - ID de la recette à ajouter
  * @return {object} 200 - Favori ajouté
  * @return {object} 500 - Utilisateur non trouvé
@@ -118,6 +123,7 @@ router.post('/profile/favorites', auth.checkToken, userController.addFavorite);
 /**
  * DELETE /profile/favorites/{id}
  * @summary Supprime une huile des favoris en fonction de l'ID de le l'huile
+ * @security bearerAuth
  * @tags Profile
  * @param {string} id.path.required - ID de la favorite à supprimer
  * @return {object} 200 - Favoris supprimé
@@ -133,7 +139,8 @@ router.delete('/profile/favorites/:id', auth.checkToken, userController.deleteFa
 
 /**
  * POST /profile/picture/{id}
- * @summary Ajouter une image de profil pour l'utilisateur connecté
+ * @summary Ajouter une image de profil pour l'user connecté
+ * @security bearerAuth
  * @tags Profile
  * @param {string} id.path.required - ID de l'utilisateur
  * @param {Image} image.formData.required - Image à ajouter

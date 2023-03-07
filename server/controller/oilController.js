@@ -33,8 +33,7 @@ const oilController = {
 
   // Methode pour créer une huile
   async createOil(req, res) {
-    const {
-      name,botanic_name,description,extraction,molecule,plant_family,scent,image} = req.body;
+    const {name,botanic_name,description,extraction,molecule,plant_family,scent,image} = req.body;
       console.log(chalk.bgBlue("{ req Body }>>>>>>", Object.values({name, botanic_name, description, extraction, molecule, 
       plant_family, scent, image })));
 
@@ -64,6 +63,7 @@ const oilController = {
       })
     }
   },
+  
   // Methode pour modifie une huile
   async updateOilById(req, res) {
     // récupére l'id de l'huile
@@ -98,6 +98,7 @@ const oilController = {
       })
     }
   },
+
   // Methode pour supprime une huile
   async deleteOilById(req, res) {
     // récupére l'id de l'huile

@@ -22,9 +22,9 @@ const options = {
       },
   },
   security: {
-      BasicAuth: {
+      bearerAuth: {
           type: 'http',
-          scheme: 'basic',
+          scheme: 'bearer',
       },
   },
   baseDir: __dirname,
@@ -84,7 +84,11 @@ app.use(userRouter, oilRouter, categoryRouter);
 // middleware 404
 app.use(error.notFound);
 
+
 // l'écoute du serveur
-app.listen(PORT, () => {
+// j'exporte pour mes test avec Jest
+const server = app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
 });
+
+module.exports = server;

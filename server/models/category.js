@@ -48,6 +48,31 @@ const categoryModel = {
     }
   },
 
+  async getOneCategoryWithOil(id) {
+    // Requête pour récupérer toutes les huiles d'une catégorie
+    const sqlQueryCatByOil = `
+    SELECT category.id, category.name, category.description,
+    oil.id, oil.name, oil.description, oil.picture
+    FROM category
+    JOIN oil_has_category ON category.id = oil_has_category.category_id
+    JOIN oil ON oil.id = oil_has_category.oil_id
+    WHERE category.id = $1
+    `;
+  
+    const values = [id];
+  
+    try {
+      const result = await dbClient.query(sqlQueryCatByOil, values);
+      // console.log("result>>>>>>>>>>>", result)
+      const resulCat = result.rows;
+      return resulCat;
+    } catch (err) {
+      throw new Error(
+        `Erreur lors de la récupération de la catégorie ${err.message}`
+      );
+    }
+  },
+
   // Méthode pour inserer une catégorie dans la base de données
   async insertCategory(category) {
     // Requête pour insérer une nouvelle catégorie dans la table category

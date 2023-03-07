@@ -84,3 +84,15 @@ Date:[2023-03-05 23:42:34] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1
 Date:[2023-03-05 23:42:57] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Marion@oclock.com
 Date:[2023-03-05 23:45:56] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Marion@oclock.com
 Date:[2023-03-05 23:46:48] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Marion@oclock.com
+Date:[2023-03-06 11:18:40] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Eric@oclock.com
+Date:[2023-03-06 11:18:45] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Eric@oclock.com
+Date:[2023-03-06 11:18:48] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Eric@oclock.com
+Date:[2023-03-06 11:32:30] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-06 11:32:33] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 2
+Date:[2023-03-06 11:32:36] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 3
+Date:[2023-03-06 11:33:37] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-06 11:56:14] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Erreur lors de la suppression du favori
+Date:[2023-03-07 10:21:25] [ERROR] Methode:[GET] Routes:[/essential/119] Huile avec l'id 119 n'a pas été trouvée
+Date:[2023-03-07 11:25:32] [ERROR] Methode:[GET] Routes:[/category/1] La catégorie avec l'id 1 n'a pas été trouvée.
+Date:[2023-03-07 11:50:04] [ERROR] Methode:[GET] Routes:[/category/1] La catégorie avec l'id 1 n'a pas été trouvée.
+Date:[2023-03-07 11:57:21] [ERROR] Methode:[GET] Routes:[/category/1] La catégorie avec l'id 1 n'a pas été trouvée.

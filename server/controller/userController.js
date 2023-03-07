@@ -96,7 +96,7 @@ const userController = {
       //res.redirect('/');
     } catch (err) {
       console.error(chalk.bgRedBright(err));
-      res.status(500).json({ message: 'utilisateur non isncrit ' + formattedUser });
+      res.status(500).json({ message: 'utilisateur non inscrit ' + formattedUser });
 
       logger.customerLogger.log('error', { 
         url: req.url, 
@@ -161,19 +161,12 @@ const userController = {
         })
         return res.status(500).json({ error: `Utilisateur non trouvé` });
       }
-
+      
       // Ajoute l'huile aux favoris de l'user
-      const userFavorites = await userModel.addFavoritsUser(user_id, oil_id);
-      console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites))
+      const updatedFavorites = await userModel.addFavoritsUser(user_id, oil_id);
+      console.log(chalk.bgBlue("{ userFavorites }>>>>>>", updatedFavorites))
 
-      // // Vérifie si l'huile à ajouter est dans les favoris de l'utilisateur
-      // si je mets se code l'user ne pourra pas remmetre l'huile dans ses favoris encore 1 fois
-      // Aprés l'avoir delete 1 fois
-      // if (userFavorites || userFavorites.length>0) {
-      //   return res.status(400).json({Message: `L'huile n'est pas dans les favoris de l'utilisateur.`});
-      // } =>>> Ce code marche mais pose trop de pb car l'initialisation des id ne se fait pas.
-
-      res.status(200).json({ message: `Favori ajouté.`, userFavorites });
+      res.status(200).json({ message: `Favori ajouté.`, updatedFavorites });
 
     } catch (err) {
       console.error(chalk.bgRedBright(err));
@@ -213,7 +206,7 @@ const userController = {
       // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", Object.values(userFavorites)));
 
       // Vérifie si l'huile à supprimer est dans les favoris de l'utilisateur
-      if (!userFavorites || userFavorites.length === 0) {
+      if (userFavorites.length === 0) {
         logger.customerLogger.log('error', { 
           url: req.url, 
           method: req.method, 
@@ -248,7 +241,7 @@ const userController = {
       logger.customerLogger.log('error', { 
         url: req.url, 
         method: req.method, 
-        message: 'Erreur lors de la suppression du favori ' + favorite
+        message: 'Erreur lors de la suppression du favori'
       })
     }
   },

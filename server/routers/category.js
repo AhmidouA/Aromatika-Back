@@ -7,15 +7,16 @@ const { auth } = require("../service");
 const router = express.Router();
 
 /**
- * Une catégorie 
- * @typedef {object} Catégorie
+ * Une Category 
+ * @typedef {object} Category
  * @property {string} name - Nom de la catégorie
  */
 
 /**
  * GET /categories/{family}
- * @summary Récupère toutes les catégories par famille
- * @tags Catégories
+ * @summary Récupère toutes les Category par famille
+ * @security bearerAuth
+ * @tags Category
  * @param {string} family.path.required - Famille de la catégorie
  * @return {object} 200 - Retourne un tableau contenant toutes les catégories pour la famille donnée
  * @return {object} 500 - Erreur inattendue
@@ -27,10 +28,11 @@ router.get("/categories/:family", auth.checkToken, categoryController.getAllCate
 
 /**
  * POST /categories/{family}
- * @summary Ajoute une catégorie
- * @tags Catégories
+ * @summary Ajoute une Category
+ * @security bearerAuth
+ * @tags Category
  * @param {string} family.path.required - Famille de la catégorie
- * @param {Catégorie} request.body.required - Catégorie à ajouter
+ * @param {Category} request.body.required - Catégorie à ajouter
  * @return {object} 200 - Retourne la catégorie créée
  * @return {object} 500 - Erreur serveur lors de la création de la catégorie
  * @return {object} 500 - Erreur inattendue
@@ -41,8 +43,9 @@ router.post("/categories/:family", auth.checkToken, auth.isAdmin, categoryContro
 
 /**
  * GET /category/{id}
- * @summary Récupère une catégorie par son ID
- * @tags Catégories
+ * @summary Récupère une Category par son ID
+ * @security bearerAuth
+ * @tags Category
  * @param {string} id.path - ID de la catégorie à récupérer
  * @return {object} 200 - Retourne la catégorie correspondante à l'ID donné
  * @return {object} 500 - Erreur serveur
@@ -53,10 +56,11 @@ router.get("/category/:id", auth.checkToken, categoryController.getOneCategories
 
 /**
  * PATCH /category/{id}
- * @summary Modifie une catégorie
- * @tags Catégories
+ * @summary Modifie une Category
+ * @security bearerAuth
+ * @tags Category
  * @param {string} id.path.required - ID de la catégorie à modifier
- * @param {Catégorie} request.body.required - Catégorie modifiée
+ * @param {Category} request.body.required - Catégorie modifiée
  * @return {object} 200 - Retourne la catégorie modifiée
  * @return {object} 500 - La catégorie correspondante à l'ID donné est introuvable
  * @return {object} 500 - La catégorie existe déja
@@ -67,8 +71,9 @@ router.patch("/category/:id", auth.checkToken, auth.isAdmin, categoryController.
 
 /**
  * DELETE /category/{id}
- * @summary Supprime une catégorie
- * @tags Catégories
+ * @summary Supprime une Category
+ * @security bearerAuth
+ * @tags Category
  * @param {string} id.path.required - ID de la catégorie à supprimer
  * @return {object} 204 - La catégorie a été supprimée avec succès
  * @return {object} 500 - Erreur inattendue
