@@ -100,7 +100,7 @@ const userController = {
 
       logger.customerLogger.log('error', { 
         url: req.url, 
-        method: req.method, 
+        method: req.method,
         message: 'utilisateur non isncrit ' + formattedUser
       })
     }

@@ -96,3 +96,7 @@ Date:[2023-03-07 10:21:25] [ERROR] Methode:[GET] Routes:[/essential/119] Huile a
 Date:[2023-03-07 11:25:32] [ERROR] Methode:[GET] Routes:[/category/1] La catégorie avec l'id 1 n'a pas été trouvée.
 Date:[2023-03-07 11:50:04] [ERROR] Methode:[GET] Routes:[/category/1] La catégorie avec l'id 1 n'a pas été trouvée.
 Date:[2023-03-07 11:57:21] [ERROR] Methode:[GET] Routes:[/category/1] La catégorie avec l'id 1 n'a pas été trouvée.
+Date:[2023-03-07 13:54:47] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou mot de passe incorrect
+Date:[2023-03-07 13:56:26] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou mot de passe incorrect
+Date:[2023-03-07 13:56:54] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou mot de passe incorrect Ahmed@oclock.com
+Date:[2023-03-07 14:12:24] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou mot de passe incorrect

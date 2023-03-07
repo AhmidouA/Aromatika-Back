@@ -84,11 +84,7 @@ app.use(userRouter, oilRouter, categoryRouter);
 // middleware 404
 app.use(error.notFound);
 
-
 // l'écoute du serveur
-// j'exporte pour mes test avec Jest
-const server = app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Listening on http://localhost:${PORT}`);
 });
-
-module.exports = server;
