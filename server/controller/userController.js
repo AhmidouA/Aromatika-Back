@@ -61,7 +61,7 @@ const userController = {
     // generation du token grace a l'email d'identification et une durée de 30min pour le token
     // Le refresh du token dure 7jours pour éviter de demander a l'utilisateur de se connecter toutes les 30min
     var token = jwt.sign({ email }, process.env.SECRET, {
-      expiresIn: "30m",
+      expiresIn: "120m",
     });
 
     console.log(chalk.bgBlack("{ TOKEN }>>>>>>", token))
