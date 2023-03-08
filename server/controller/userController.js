@@ -56,15 +56,7 @@ const userController = {
     
     // Les donnée du formulaire
     console.log(chalk.bgBlue("{ email password }>>>>>>", email))
-    
-
-    // generation du token grace a l'email d'identification et une durée de 30min pour le token
-    // Le refresh du token dure 7jours pour éviter de demander a l'utilisateur de se connecter toutes les 30min
-    var token = jwt.sign({ email }, process.env.SECRET, {
-      expiresIn: "120m",
-    });
-
-    console.log(chalk.bgBlack("{ TOKEN }>>>>>>", token))
+  
 
     try {
       // Appel du datamapper pour récupérer l'utilisateur
@@ -85,12 +77,21 @@ const userController = {
         id: user.id,
         name: user.username,
         createdAt: user.created_at,
-        role_id: user.role_id, // Récupérer l'id du rôle à partir de la clé étrangère dans la table utilisateur
+        role_id: user.role_id,
+        picture: user.picture // Récupérer l'id du rôle à partir de la clé étrangère dans la table utilisateur
       };
 
       // stock les info de la session dans formattedUser
       req.session.user = formattedUser;
       // console.log(chalk.bgGreen("{ formattedUser }>>>>>>", Object.values(formattedUser)))
+
+             // generation du token grace a l'email d'identification et une durée de 30min pour le token
+      // Le refresh du token dure 7jours pour éviter de demander a l'utilisateur de se connecter toutes les 30min
+      const token = jwt.sign({ email, user:formattedUser }, process.env.SECRET, {
+        expiresIn: "120m",
+        });
+
+      console.log(chalk.bgBlack("{ TOKEN }>>>>>>", token))
 
       // Si l'utilisateur existe et le mot de passe est correct on le connecte et on renvoi le token
       res.json({name: formattedUser.name ,token });
@@ -110,15 +111,16 @@ const userController = {
   async profile(req, res) {
     // Avoir les valeurs de l'objet du token depuis req.token
     const reqValeus = Object.values(req.token);
-    // console.log("reqValeus>>>>>>>>", reqValeus)
+    console.log("reqValeus>>>>>>>>", reqValeus[1].id)
 
     // La date de creation du compte (Demande du front pour afficher au profil)
     // générer grace a la session user dans login
-    const created_at = req.session.user.createdAt;
+    const created_at = reqValeus[1].createdAt;
     // console.log("createdAt>>>>>>>>", created_at)
-    const userName = req.session.user.name;
+    const userName = reqValeus[1].name;
     // console.log("userName>>>>>>>>", userName)
-    const userId = req.session.user.id;
+    const userId = reqValeus[1].id;
+    const userPicture = reqValeus[1].picture;
 
     // Récupérer les favoris de l'user
     const userFavorites = await userModel.findFavoritesByUserId(userId);
@@ -128,7 +130,7 @@ const userController = {
     const user = await userModel.getUserById(userId);
     console.log(chalk.bgGreen("{ user }>>>>>>", user.username))
     // Récupérer l'image de l'user a partir de l'user
-    const picture = user.picture;
+    // const picture = user.picture;
 
     // Prendre la 1er valeur de l'objet envoyer = le mail de l'utilisateur
     const reqMailValue = reqValeus[0];
@@ -139,7 +141,8 @@ const userController = {
       created_at: created_at,
       userName: userName,
       userFavorites: userFavorites,
-      picture: picture,
+      userPicture: userPicture
+      // picture: picture,
     });
   },
   // Module pour ajouter les huile au favoris
