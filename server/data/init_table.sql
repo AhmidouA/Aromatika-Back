@@ -28,7 +28,6 @@ CREATE TABLE
         id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
         name text NOT NULL UNIQUE,
         description text,
-        picture BYTEA,
         "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         "updated_at" TIMESTAMPTZ
     );
@@ -53,7 +52,6 @@ CREATE TABLE
         molecule text NOT NULL,
         plant_family text NOT NULL,
         scent text NOT NULL,
-        picture BYTEA,
         "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         "updated_at" TIMESTAMPTZ
     );
@@ -127,7 +125,6 @@ CREATE TABLE
         mail text NOT NULL UNIQUE,
         password text NOT NULL,
         role_id INTEGER REFERENCES role("id"),
-        picture BYTEA,
         "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         "updated_at" TIMESTAMPTZ
     );

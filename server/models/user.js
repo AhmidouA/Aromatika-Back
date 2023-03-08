@@ -132,13 +132,12 @@ const userModel = {
     }
   },
 
+  // module test Add picture/postgres (methode non utilisé)
   async addUserPicture(userId, picture) {
     const sqlQuery = `UPDATE "user" SET picture = $1 WHERE id = $2 RETURNING id, picture`;
     const values = [picture, userId];
-
     // console.log("sqlQuery", sqlQuery);
     // console.log("values", values);
-
     try {
       const result = await dbClient.query(sqlQuery, values);
       // console.log("result", result);
@@ -148,6 +147,7 @@ const userModel = {
       throw new Error("Erreur lors de l'importation de l'image.");
     }
   },
+  
   // methode récuperer un user
   async getUserById(userId) {
     const sqlQuery = 'SELECT * FROM "user" WHERE id = $1;;';

@@ -1,4 +1,6 @@
 const jwt = require("jsonwebtoken");
+const path = require("path");
+const multer = require("multer");
 
 const auth = {
   // verification du token
@@ -59,6 +61,8 @@ const auth = {
       return res.status(401).json({ message: "Token invalide" });
     }
   },
+
+
 };
 
 module.exports = auth;

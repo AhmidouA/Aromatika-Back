@@ -3,9 +3,11 @@ const express = require("express");
 const { userController } = require("../controller");
 // middleware authentification
 const { auth } = require("../service");
-const multer = require('multer');
-// destination stockage (bdd postgres)
-const public = multer({ dest: 'public/' });
+// const { upload } = require("../service");
+
+const multer = require("multer");
+const upload = multer({dest: 'server/public/upload/'});
+
 const router = express.Router();
 
 
@@ -150,7 +152,7 @@ router.delete('/profile/favorites/:id', auth.checkToken, userController.deleteFa
 // POST /profile/image - route pour ajouter une photo 
 // Un seul ficher a la fois qui peux etre téléchargé 
 // ('image') est le champs renseigner dans le form (champs) de l'uploade
-router.post('/profile/picture/:id', auth.checkToken, public.single('image'), userController.addPicture);
+router.post('/profile/picture/:id', auth.checkToken, upload.single('image'), userController.addPicture);
 
 
 module.exports = router;
