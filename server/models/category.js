@@ -52,7 +52,7 @@ const categoryModel = {
     // Requête pour récupérer toutes les huiles d'une catégorie
     const sqlQueryCatByOil = `
     SELECT category.id, category.name, category.description,
-    oil.id, oil.name, oil.description, oil.picture
+    oil.id, oil.name, oil.description
     FROM category
     JOIN oil_has_category ON category.id = oil_has_category.category_id
     JOIN oil ON oil.id = oil_has_category.oil_id
