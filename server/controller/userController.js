@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const logger = require("../service/logger");
 // la seul qui marche avec require  "chalk": "^4.1.2",
 const chalk = require("chalk");
+const upload = require('../service/multer');
 const fs = require('fs');
 
 
@@ -155,27 +156,32 @@ const userController = {
     // générer grace a la session user dans login
     // Prendre la 1er valeur de l'objet envoyer = le mail de l'utilisateur
     const userMail = reqValeus[0];
-    // console.log("userMail>>>>>>>>", userMail)
+    console.log(chalk.bgCyan("userMail>>>>>>>>", userMail))
     const created_at = reqValeus[1].createdAt;
-    // console.log("createdAt>>>>>>>>", created_at)
+    console.log(chalk.bgCyan("created_at>>>>>>>>", created_at))
     const userName = reqValeus[1].name;
-    // console.log("userName>>>>>>>>", userName)
+    console.log(chalk.bgCyan("userName>>>>>>>>", userName))
     const userId = reqValeus[1].id;
-    // console.log("userId>>>>>>>>", userId)
+    console.log(chalk.bgCyan("userId>>>>>>>>", userName))
+    // const userImage = reqValeus[1].image;
+    // console.log(chalk.bgCyan("userImage>>>>>>>>", userImage))
 
     // Récupérer les favoris de l'user
     const userFavorites = await userModel.findFavoritesByUserId(userId);
     // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites[0].oil_id));
 
     // Récupérer l'user (solution de secours)
-    // const user = await userModel.getUserById(userId);
+    const user = await userModel.getUserById(userId);
+    const userImage = user.image
     // console.log(chalk.bgGreen("{ user }>>>>>>", Object.values((user))))
+    // console.log(chalk.bgCyan("userImage>>>>>>>>", userImage))
 
     res.status(200).json({
       Message: "Vous etes bien authentifié avec l'email " + userMail,
       created_at: created_at,
       userName: userName,
       userFavorites: userFavorites,
+      userImage: userImage
   
     });
   },
@@ -258,11 +264,7 @@ const userController = {
           message:
             "L'huile n'est pas dans les favoris de l'utilisateur " + user.mail,
         });
-        return res
-          .status(500)
-          .json({
-            Message: "L'huile n'est pas dans les favoris de l'utilisateur ",
-          });
+        return res.status(500).json({Message: "L'huile n'est pas dans les favoris de l'utilisateur ",});
       }
 
       // Recuépere de l'id de l'huile
@@ -285,9 +287,7 @@ const userController = {
       res.status(200).json({ message: "Favori supprimé.", favorite });
     } catch (err) {
       console.error(chalk.bgRedBright(err));
-      res
-        .status(500)
-        .json({ error: `Erreur lors de la suppression du favori` });
+      res.status(500).json({ error: `Erreur lors de la suppression du favori` });
 
       logger.customerLogger.log("error", {
         url: req.url,

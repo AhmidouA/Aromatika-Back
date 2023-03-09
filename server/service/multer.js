@@ -9,7 +9,8 @@ const storage = multer.diskStorage({
     cb(null, 'server/public/upload/');
   },
   // Définir le nom du fichier en utilisant la date actuelle et l'extension du fichier d'origine
-  originalname: function (req, file, cb) {
+  filename: function (req, file, cb) {
+    // cb(null, file.originalname);
     cb(null, Date.now() + path.extname(file.originalname));
   }
 });

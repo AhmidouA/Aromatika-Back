@@ -125,6 +125,7 @@ CREATE TABLE
         mail text NOT NULL UNIQUE,
         password text NOT NULL,
         role_id INTEGER REFERENCES role("id"),
+        image text,
         "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         "updated_at" TIMESTAMPTZ
     );
