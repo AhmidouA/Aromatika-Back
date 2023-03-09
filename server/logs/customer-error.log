@@ -100,3 +100,8 @@ Date:[2023-03-07 13:54:47] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou
 Date:[2023-03-07 13:56:26] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou mot de passe incorrect
 Date:[2023-03-07 13:56:54] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou mot de passe incorrect Ahmed@oclock.com
 Date:[2023-03-07 14:12:24] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou mot de passe incorrect
+Date:[2023-03-09 13:17:26] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-03-09 14:29:15] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-03-09 14:29:59] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-03-09 14:30:26] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-03-09 14:42:54] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image

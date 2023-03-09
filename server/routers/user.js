@@ -3,10 +3,11 @@ const express = require("express");
 const { userController } = require("../controller");
 // middleware authentification
 const { auth } = require("../service");
-// const { upload } = require("../service");
+const upload  = require("../service/multer");
 
-const multer = require("multer");
-const upload = multer({dest: 'server/public/upload/'});
+// gestion d'image
+// const multer = require("multer");
+// const upload = multer({dest: 'server/public/upload/'});
 
 const router = express.Router();
 
@@ -153,6 +154,10 @@ router.delete('/profile/favorites/:id', auth.checkToken, userController.deleteFa
 // Un seul ficher a la fois qui peux etre téléchargé 
 // ('image') est le champs renseigner dans le form (champs) de l'uploade
 router.post('/profile/picture/:id', auth.checkToken, upload.single('image'), userController.addPicture);
+
+
+
+router.get('/profile/:file', auth.checkToken, userController.streamPicture);
 
 
 module.exports = router;

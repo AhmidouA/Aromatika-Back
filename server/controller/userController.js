@@ -1,12 +1,12 @@
 const { userModel, oilModel } = require("../models");
 // Module JWT pour les Token
 const jwt = require("jsonwebtoken");
-// Module multer pour la gestion des fichiers uploadés (image)
-const multer = require("multer");
 // logger des erreurs client
 const logger = require("../service/logger");
 // la seul qui marche avec require  "chalk": "^4.1.2",
 const chalk = require("chalk");
+const fs = require('fs');
+
 
 const userController = {
   // Module Home Page
@@ -120,19 +120,16 @@ const userController = {
       console.log(chalk.bgBlue("{ userId }>>>>>>", userId));
   
       // récupere le chemin de l'image uploadée
-      const picture = req.file;
-      console.log(chalk.bgCyan("{ picture }>>>>>>", picture));
-  
-      const pictureName = picture.originalname
-      console.log(chalk.bgBlue("{ pictureName }>>>>>>", pictureName));
-      
-      const picturePath = picture.path
-      console.log(chalk.bgCyan("{ picturePath }>>>>>>", picturePath));
+      const file = req.file.filename;
+      console.log(chalk.bgCyan("{ picture }>>>>>>", file));
   
       try {
-        res.status(200).json({ message: `L'image a bien été téléchargé.`, pictureName, picturePath});
+
+        const user = await userModel.addUserPicture(userId, file);
+        console.log(chalk.bgGreen("{ user }>>>>>>", Object.values((user))))
+        res.status(200).json({ message: `L'image a bien été téléchargé.`, file});
       } catch (error) {
-        console.error(chalk.bgRedBright(err));
+        console.error(chalk.bgRedBright(error));
         res.status(500).json({ error: `Erreur lors du téléchargement de l'image` });
   
         logger.customerLogger.log("error", {
@@ -142,6 +139,11 @@ const userController = {
         });
       }
     },
+    // Module stream Image
+    streamPicture (req, res) {
+      const file = req.params.file;
+	    fs.createReadStream(`server/public/upload/${file}`).pipe(res);
+  },
 
   // Module profile
   async profile(req, res) {
@@ -160,27 +162,21 @@ const userController = {
     // console.log("userName>>>>>>>>", userName)
     const userId = reqValeus[1].id;
     // console.log("userId>>>>>>>>", userId)
-  
 
     // Récupérer les favoris de l'user
     const userFavorites = await userModel.findFavoritesByUserId(userId);
-    console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites));
-
-    // const userPicture = user.picture;
-    // console.log(chalk.bgCyan("{ userPicture }>>>>>>", userPicture));
+    // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites[0].oil_id));
 
     // Récupérer l'user (solution de secours)
     // const user = await userModel.getUserById(userId);
-    // console.log(chalk.bgGreen("{ user }>>>>>>", Object.values((user.username))))
-    // Récupérer l'image de l'user a partir de l'user
-    // const picture = user.picture;
+    // console.log(chalk.bgGreen("{ user }>>>>>>", Object.values((user))))
 
     res.status(200).json({
       Message: "Vous etes bien authentifié avec l'email " + userMail,
       created_at: created_at,
       userName: userName,
       userFavorites: userFavorites,
-      picturePath: req.body.picturePath
+  
     });
   },
   // Module pour ajouter les huile au favoris

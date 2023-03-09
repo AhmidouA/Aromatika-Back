@@ -133,9 +133,9 @@ const userModel = {
   },
 
   // module test Add picture/postgres (methode non utilisé)
-  async addUserPicture(userId, picture) {
-    const sqlQuery = `UPDATE "user" SET picture = $1 WHERE id = $2 RETURNING id, picture`;
-    const values = [picture, userId];
+  async addUserPicture(userId, image) {
+    const sqlQuery = `UPDATE "user" SET image = $1 WHERE id = $2 RETURNING id, image`;
+    const values = [image, userId];
     // console.log("sqlQuery", sqlQuery);
     // console.log("values", values);
     try {
