@@ -190,13 +190,13 @@ const userController = {
   // Module pour ajouter les huile au favoris
   async addFavorite(req, res) {
     const { user_id, oil_id } = req.body;
-    // console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + Object.values(user_id)));
-    // console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + Object.values(oil_id)));
+    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + Object.values(user_id)));
+    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + Object.values(oil_id)));
 
     try {
       // recupére l'user
       const user = await userModel.getUserById(user_id);
-      // console.log(chalk.bgBlue("{ user }>>>>>>", user.mail));
+      console.log(chalk.bgBlue("{ user }>>>>>>", user.mail));
 
       // check si c'est bien i'id est bien celui veut add
       if (parseInt(user_id) !== user.id) {
@@ -226,7 +226,7 @@ const userController = {
       console.log(
         chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.length)
       );
-      // console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.oil_id));
+      console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.oil_id));
       // Vérifie si l'huile à ajouté est déja dans les favoris de l'utilisateur
 
       if (oil_id in userFavorites) {
@@ -308,20 +308,18 @@ const userController = {
       const userFavorites = await userModel.findFavoritesByUserId(user_id);
       // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", Object.values(userFavorites)));
 
-      // Vérifie si l'huile à supprimer est dans les favoris de l'utilisateur
-      if (userFavorites.length === 0) {
+      if (oil_id in userFavorites) {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
           message:
-            "L'huile n'est pas dans les favoris de l'utilisateur " + user.mail,
+            "L'huile est déja dans les favoris de l'utilisateur " + user.mail,
         });
         return res
           .status(500)
           .json({
             Message:
-              "L'huile n'est pas dans les favoris de l'utilisateur " +
-              user.mail,
+              "L'huile est déja dans les favoris de l'utilisateur " + user.mail,
           });
       }
 
