@@ -121,22 +121,9 @@ const userController = {
 
     // récupere le chemin de l'image uploadée
     const file = req.file.filename;
-    // console.log(chalk.bgCyan("{ picture }>>>>>>", file));
+    console.log(chalk.bgCyan("{ picture }>>>>>>", file));
 
     try {
-      // recupére l'user
-      const userCheek = await userModel.getUserById(userId);
-      console.log(chalk.bgCyan("{ userCheek.id }>>>>>>", userCheek.id));
-
-       // check si c'est bien i'id est bien celui veut add => code ne marche pas a re essayer 
-      //  if (parseInt(userId) !== userCheek.id) {
-      //   logger.customerLogger.log("error", {
-      //     url: req.url,
-      //     method: req.method,
-      //     message: "Utilisateur non trouvé " + user.mail,
-      //   });
-      //   return res.status(500).json({ error: `Utilisateur non trouvé` + user });
-      // }
 
       const user = await userModel.addUserPicture(userId, file);
       console.log(chalk.bgGreen("{ user }>>>>>>", Object.values(user)));
@@ -263,7 +250,7 @@ const userController = {
 
       res
         .status(200)
-        .json({ message: `Favori ajouté.`, updatedFavorites, userFavorites });
+        .json({ message: `Favori ajouté.`, updatedFavorites });
     } catch (err) {
       console.error(chalk.bgRedBright(err));
       res.status(500).json({ error: "Erreur lors de l'ajout du favori" });
@@ -368,3 +355,29 @@ const userController = {
 };
 
 module.exports = userController;
+
+
+
+/*
+
+try {
+      // recupére l'user
+      const userCheek = await userModel.getUserById(userId);
+      console.log(chalk.bgCyan("{ picture }>>>>>>", userCheek));
+
+      const user = await userModel.addUserPicture(userId, file);
+      console.log(chalk.bg("{ user }>>>>>>", user));
+
+      // check si c'est bien i'id est bien celui veut add
+      if (parseInt(user) !== userCheek.id) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: "Utilisateur non trouvé " + object.values(user),
+        });
+        return res.status(500).json({ error: `Utilisateur non trouvé` + user });
+      }
+      console.log(chalk.bgGreen("{ user }>>>>>>", Object.values(user)));
+      res.status(200).json({ message: `L'image a bien été téléchargé.`, file });
+
+*/

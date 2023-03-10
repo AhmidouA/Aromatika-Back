@@ -83,7 +83,7 @@ app.use((req, res, next) => {
 app.use(userRouter, oilRouter, categoryRouter);
 
 // middleware 404
-// app.use(error.notFound);
+app.use(error.notFound);
 
 // l'écoute du serveur
 app.listen(PORT, () => {

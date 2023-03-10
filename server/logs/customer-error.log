@@ -250,3 +250,19 @@ Date:[2023-03-10 14:05:20] [ERROR] Methode:[POST] Routes:[/profile/picture/2] Er
 Date:[2023-03-10 14:05:24] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
 Date:[2023-03-10 14:06:26] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
 Date:[2023-03-10 14:14:57] [ERROR] Methode:[POST] Routes:[/profile/picture/3] Erreur lors du téléchargement de l'image
+Date:[2023-03-10 14:35:44] [ERROR] Methode:[POST] Routes:[/profile/picture/3] Erreur lors du téléchargement de l'image
+Date:[2023-03-10 14:39:54] [ERROR] Methode:[POST] Routes:[/profile/picture/2] Utilisateur non trouvé Eric@oclock.com
+Date:[2023-03-10 14:39:58] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Utilisateur non trouvé Ahmed@oclock.com
+Date:[2023-03-10 14:40:24] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Utilisateur non trouvé Ahmed@oclock.com
+Date:[2023-03-10 14:40:43] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Utilisateur non trouvé Ahmed@oclock.com
+Date:[2023-03-10 15:59:55] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-03-10 16:05:02] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Utilisateur non trouvé undefined
+Date:[2023-03-10 16:05:38] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-03-10 16:05:46] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-03-10 16:07:32] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-03-10 16:16:05] [ERROR] Methode:[POST] Routes:[/profile/favorites] Huile non trouvée.` undefined
+Date:[2023-03-10 16:30:34] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 16:30:47] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 16:30:55] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 16:30:57] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 16:31:18] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
