@@ -267,3 +267,5 @@ Date:[2023-03-10 16:30:55] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'
 Date:[2023-03-10 16:30:57] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
 Date:[2023-03-10 16:31:18] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
 Date:[2023-03-10 16:37:36] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 16:47:21] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 16:47:24] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
