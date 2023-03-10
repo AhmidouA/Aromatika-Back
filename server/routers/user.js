@@ -154,7 +154,7 @@ router.delete('/profile/favorites/:id', auth.checkToken, userController.deleteFa
 // POST /profile/image - route pour ajouter une photo 
 // Un seul ficher a la fois qui peux etre téléchargé 
 // ('image') est le champs renseigner dans le form (champs) de l'uploade
-router.post('/profile/picture/:id', auth.checkToken, upload.single('image'), userController.addPicture);
+router.post('/profile/picture/:id', upload.single('image'), userController.addPicture);
 
 router.get('/profile/picture/:file', userController.streamPicture);
 

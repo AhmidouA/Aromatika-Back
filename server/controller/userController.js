@@ -121,21 +121,22 @@ const userController = {
 
     // récupere le chemin de l'image uploadée
     const file = req.file.filename;
-    console.log(chalk.bgCyan("{ picture }>>>>>>", file));
+    // console.log(chalk.bgCyan("{ picture }>>>>>>", file));
 
     try {
       // recupére l'user
-      const userCheek = await userModel.addUserPicture(userId);
+      const userCheek = await userModel.getUserById(userId);
+      console.log(chalk.bgCyan("{ userCheek.id }>>>>>>", userCheek.id));
 
-       // check si c'est bien i'id est bien celui veut add
-       if (parseInt(userId) !== userCheek.id) {
-        logger.customerLogger.log("error", {
-          url: req.url,
-          method: req.method,
-          message: "Utilisateur non trouvé " + user.mail,
-        });
-        return res.status(500).json({ error: `Utilisateur non trouvé` + user });
-      }
+       // check si c'est bien i'id est bien celui veut add => code ne marche pas a re essayer 
+      //  if (parseInt(userId) !== userCheek.id) {
+      //   logger.customerLogger.log("error", {
+      //     url: req.url,
+      //     method: req.method,
+      //     message: "Utilisateur non trouvé " + user.mail,
+      //   });
+      //   return res.status(500).json({ error: `Utilisateur non trouvé` + user });
+      // }
 
       const user = await userModel.addUserPicture(userId, file);
       console.log(chalk.bgGreen("{ user }>>>>>>", Object.values(user)));
