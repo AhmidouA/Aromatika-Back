@@ -156,7 +156,7 @@ router.delete('/profile/favorites/:id', auth.checkToken, userController.deleteFa
 // ('image') est le champs renseigner dans le form (champs) de l'uploade
 router.post('/profile/picture/:id', auth.checkToken, upload.single('image'), userController.addPicture);
 
-router.get('/profile/picture/:file', auth.checkToken, userController.streamPicture);
+router.get('/profile/picture/:file', userController.streamPicture);
 
 
 module.exports = router;

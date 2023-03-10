@@ -124,6 +124,19 @@ const userController = {
     console.log(chalk.bgCyan("{ picture }>>>>>>", file));
 
     try {
+      // recupére l'user
+      const userCheek = await userModel.addUserPicture(userId);
+
+       // check si c'est bien i'id est bien celui veut add
+       if (parseInt(userId) !== userCheek.id) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: "Utilisateur non trouvé " + user.mail,
+        });
+        return res.status(500).json({ error: `Utilisateur non trouvé` + user });
+      }
+
       const user = await userModel.addUserPicture(userId, file);
       console.log(chalk.bgGreen("{ user }>>>>>>", Object.values(user)));
       res.status(200).json({ message: `L'image a bien été téléchargé.`, file });
@@ -183,6 +196,7 @@ const userController = {
       userName: userName,
       userFavorites: userFavorites,
       userImage: userImage,
+      userId: userId
     });
   },
   // Module pour ajouter les huile au favoris
@@ -192,7 +206,7 @@ const userController = {
     // console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + Object.values(oil_id)));
 
     try {
-      // Check si l'user est bien inscrit dans la bdd
+      // recupére l'user
       const user = await userModel.getUserById(user_id);
       // console.log(chalk.bgBlue("{ user }>>>>>>", user.mail));
 
@@ -269,21 +283,18 @@ const userController = {
   async deleteFavorite(req, res) {
     const { user_id, oil_id } = req.body;
     console.log(
-      chalk.bgBlue(
-        "{ formattedUser }>>>>>>",
-        "user_id " + Object.values(user_id)
-      )
-    );
+      chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + Object.values(user_id)));
     console.log(
-      chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + Object.values(oil_id))
-    );
+      chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + Object.values(oil_id)));
 
     try {
-      // Check si l'user est bien inscrit dans la bdd
+      // recupére l'user
       const user = await userModel.getUserById(user_id);
       console.log(chalk.bgGreen("{ user }>>>>>>", user.mail));
       // console.log(chalk.bgYellow("{ user_id }>>>>>>", user_id));
       // console.log(chalk.bgYellow("{ user.id }>>>>>>", user.id));
+
+      // Check si l'user est bien inscrit dans la bdd
       if (parseInt(user_id) !== user.id) {
         logger.customerLogger.log("error", {
           url: req.url,
