@@ -1,44 +1,48 @@
 const { categoryModel } = require("../models");
 // logger des erreurs client
-const logger = require('../service/logger')
+const logger = require("../service/logger");
 // la seul qui marche avec require  "chalk": "^4.1.2",
-const chalk = require('chalk');
+const chalk = require("chalk");
 
 const categoryController = {
   // Méthode pour avoir toutes les catégorie
   async getAllCategories(req, res) {
     // on récuepre le nom de famille des catégories en params
     const family = req.params.family;
-    console.log(chalk.bgBlue("{ family }>>>>>>", family))
+    console.log(chalk.bgBlue("{ family }>>>>>>", family));
 
     try {
       // // Appel de la méthode du modèle (dataMapper) pour donner toutes les catégorie
       const categories = await categoryModel.GetCategories(family);
-      console.log(chalk.bgGreen("{ categories }>>>>>>", categories))
+      console.log(chalk.bgGreen("{ categories }>>>>>>", categories));
 
       if (!categories) {
-        logger.customerLogger.log('error', { 
-          url: req.url, 
-          method: req.method, 
-          message: "Erreur lors de l'envoi des catégories "
-        })
-        res.status(500).json({ message: "Erreur lors de l'envoi des catégories" }); 
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: "Erreur lors de l'envoi des catégories ",
+        });
+        res
+          .status(500)
+          .json({ message: "Erreur lors de l'envoi des catégories" });
       }
       res.status(200).json(categories);
     } catch (err) {
-      console.error(`Erreur lors de l'envoi de toutes les catégories: ${err.message}`); 
-      logger.customerLogger.log('error', { 
-        url: req.url, 
-        method: req.method, 
-        message: "Erreur lors de l'envoi des catégories "
-      })  
+      console.error(
+        `Erreur lors de l'envoi de toutes les catégories: ${err.message}`
+      );
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: "Erreur lors de l'envoi des catégories ",
+      });
     }
   },
 
   // Méthode pour donner une catégorie avec ses huiles
   async getOneCategories(req, res) {
     const id = req.params.id;
-    console.log(chalk.bgBlue("{ id }>>>>>>", id))
+    console.log(chalk.bgBlue("{ id }>>>>>>", id));
 
     try {
       // Appel de la méthode du modèle (dataMapper) pour donner une catégorie
@@ -47,29 +51,37 @@ const categoryController = {
 
       // Appel de la méthode du modèle (dataMapper) pour donner toutes les huile d'une catégorie
       const categoryWithOil = await categoryModel.getOneCategoryWithOil(id);
-      console.log(chalk.bgCyan("categoryWithOil>>>>>>", categoryWithOil))
+      console.log(chalk.bgCyan("categoryWithOil>>>>>>", categoryWithOil));
 
       if (!category) {
-        logger.customerLogger.log('error', { 
-          url: req.url, 
-          method: req.method, 
-          message: `La catégorie avec l'id ${id} n'a pas été trouvée.`
-        })
-        res.status(500).json({ message: `La catégorie avec l'id ${id} n'a pas été trouvée.` });  
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: `La catégorie avec l'id ${id} n'a pas été trouvée.`,
+        });
+        res
+          .status(500)
+          .json({
+            message: `La catégorie avec l'id ${id} n'a pas été trouvée.`,
+          });
       }
-        res.status(200).json({category_id: category.id,
-        category_name : category.name,
-        category_description: category.description,
-        categoryWithOil});
+      res
+        .status(200)
+        .json({
+          category_id: category.id,
+          category_name: category.name,
+          category_description: category.description,
+          categoryWithOil,
+        });
     } catch (err) {
-        console.error(`Erreur lors de l'envoi d'une catégorie: ${err.message}`);
+      console.error(`Erreur lors de l'envoi d'une catégorie: ${err.message}`);
     }
   },
 
   // Méthode pour ajouter une catégorie
   async addCategory(req, res) {
     const name = req.body;
-    console.log(chalk.bgBlue("{ name }>>>>>>", Object.values(name)))
+    console.log(chalk.bgBlue("{ name }>>>>>>", Object.values(name)));
 
     try {
       // Appel de la méthode du modèle (dataMapper) pour inserer une catégorie
@@ -77,13 +89,19 @@ const categoryController = {
       console.log(chalk.bgGreen("category>>>>>>", category));
       res.status(200).json(category.rows[0]);
     } catch (err) {
-      console.error(`Erreur lors de la création de la catégorie: ${err.message}`);
-      res.status(500).json({ error: "Erreur serveur lors de la création de la catégorie" });
-      logger.customerLogger.log('error', { 
-        url: req.url, 
-        method: req.method, 
-        message: 'Erreur serveur lors de la création de la catégorie ' + Object.values(name) 
-      })
+      console.error(
+        `Erreur lors de la création de la catégorie: ${err.message}`
+      );
+      res
+        .status(500)
+        .json({ error: "Erreur serveur lors de la création de la catégorie" });
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message:
+          "Erreur serveur lors de la création de la catégorie " +
+          Object.values(name),
+      });
     }
   },
 
@@ -92,7 +110,7 @@ const categoryController = {
     const name = req.body;
     const categoryId = req.params.id;
     console.log(chalk.bgYellow("categoryId>>>>>>", categoryId));
-    console.log(chalk.bgBlue("{ name }>>>>>>", Object.values(name)))
+    console.log(chalk.bgBlue("{ name }>>>>>>", Object.values(name)));
 
     try {
       // Appel de la méthode du modèle (dataMapper) pour mettre à jour la catégorie
@@ -102,24 +120,40 @@ const categoryController = {
       // vérifie qui il trouve au moins une catégorie
       if (result.rowCount > 0) {
         res.status(200).json({
-          message: `La catégorie ${name.name} a bien été mise à jour avec succès`,});
+          message: `La catégorie ${name.name} a bien été mise à jour avec succès`,
+        });
       } else {
-        res.status(500).json({ message: 'La catégorie ' + Object.values(name) + ' est introuvable et son id est le: ' + categoryId });
-        logger.customerLogger.log('error', { 
-          url: req.url, 
-          method: req.method, 
-          message: 'La catégorie ' + Object.values(name) + ' est introuvable et son id est le: ' + categoryId
-        })
+        res
+          .status(500)
+          .json({
+            message:
+              "La catégorie " +
+              Object.values(name) +
+              " est introuvable et son id est le: " +
+              categoryId,
+          });
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message:
+            "La catégorie " +
+            Object.values(name) +
+            " est introuvable et son id est le: " +
+            categoryId,
+        });
       }
     } catch (err) {
-      console.error(`Erreur lors de la modification de la catégorie: ${err.message}`);
-      res.status(500).json({ message: `La catégorie ${name.name} existe déja` });
-      logger.customerLogger.log('error', { 
-        url: req.url, 
-        method: req.method, 
-        message: 'La catégorie ' + name.name + ' existe déja'
-      })
-      
+      console.error(
+        `Erreur lors de la modification de la catégorie: ${err.message}`
+      );
+      res
+        .status(500)
+        .json({ message: `La catégorie ${name.name} existe déja` });
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: "La catégorie " + name.name + " existe déja",
+      });
     }
   },
 
@@ -137,15 +171,29 @@ const categoryController = {
 
       // Supprimer la catégorie
       const result = await categoryModel.deleteOneCategory(categoryId);
-      res.status(200).json({Message: `la catégorie ${categoryName} a bien été supprimée `,});
+      res
+        .status(200)
+        .json({
+          Message: `la catégorie ${categoryName} a bien été supprimée `,
+        });
     } catch (err) {
-      console.error(`Erreur lors de la suppression de la catégorie: ${err.message}`);
-      res.status(500).json({ message: 'Erreur lors de la suppression de la catégorie avec l\'id: ' + categoryId });
-      logger.customerLogger.log('error', { 
-        url: req.url, 
-        method: req.method, 
-        message: 'Erreur lors de la suppression de la catégorie avec l\'id: ' + categoryId
-      })
+      console.error(
+        `Erreur lors de la suppression de la catégorie: ${err.message}`
+      );
+      res
+        .status(500)
+        .json({
+          message:
+            "Erreur lors de la suppression de la catégorie avec l'id: " +
+            categoryId,
+        });
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message:
+          "Erreur lors de la suppression de la catégorie avec l'id: " +
+          categoryId,
+      });
     }
   },
 };
