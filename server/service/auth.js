@@ -1,6 +1,10 @@
 const jwt = require("jsonwebtoken");
 const path = require("path");
 const multer = require("multer");
+// la seul qui marche avec require  "chalk": "^4.1.2",
+const chalk = require("chalk");
+// logger des erreurs client
+const logger = require("../service/logger");
 
 const auth = {
   // verification du token
@@ -12,11 +16,11 @@ const auth = {
       // vérifier le token générer et le stocker dans la request
       //Middleware pour garder la session active
       req.token = jwt.verify(token, process.env.SECRET);
-
-      console.log("token validé de: ", Object.values(req.token));
+      console.log(chalk.bgMagenta("token validé de: ", Object.values(req.token)));
 
       next();
-    } catch {
+    } catch (err) {
+      console.log(chalk.bgRedBright(err));
       res.status(401).json({ Message: "Token d'authentification invalide" });
     }
   },

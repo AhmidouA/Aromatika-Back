@@ -150,19 +150,19 @@ const userController = {
   async profile(req, res) {
     // Avoir les valeurs de l'objet du token depuis req.token
     const reqValeus = Object.values(req.token);
-    console.log(chalk.bgCyan("{ reqValeus }>>>>>>", reqValeus[1].id));
+    // console.log(chalk.bgCyan("{ reqValeus }>>>>>>", reqValeus[1].id));
 
     // La date de creation du compte (Demande du front pour afficher au profil)
     // générer grace a la session user dans login
     // Prendre la 1er valeur de l'objet envoyer = le mail de l'utilisateur
     const userMail = reqValeus[0];
-    console.log(chalk.bgCyan("userMail>>>>>>>>", userMail))
+    // console.log(chalk.bgCyan("userMail>>>>>>>>", userMail))
     const created_at = reqValeus[1].createdAt;
-    console.log(chalk.bgCyan("created_at>>>>>>>>", created_at))
+    // console.log(chalk.bgCyan("created_at>>>>>>>>", created_at))
     const userName = reqValeus[1].name;
-    console.log(chalk.bgCyan("userName>>>>>>>>", userName))
+    // console.log(chalk.bgCyan("userName>>>>>>>>", userName))
     const userId = reqValeus[1].id;
-    console.log(chalk.bgCyan("userId>>>>>>>>", userName))
+    // console.log(chalk.bgCyan("userId>>>>>>>>", userName))
     // const userImage = reqValeus[1].image;
     // console.log(chalk.bgCyan("userImage>>>>>>>>", userImage))
 
@@ -177,7 +177,8 @@ const userController = {
     // console.log(chalk.bgCyan("userImage>>>>>>>>", userImage))
 
     res.status(200).json({
-      Message: "Vous etes bien authentifié avec l'email " + userMail,
+      Message: "Vous etes bien authentifié avec l'email ",
+      userMail: userMail,
       created_at: created_at,
       userName: userName,
       userFavorites: userFavorites,
@@ -196,18 +197,45 @@ const userController = {
       const user = await userModel.getUserById(user_id);
       console.log(chalk.bgBlue("{ user }>>>>>>", user.mail));
 
-      if (!user) {
+      if (parseInt(user_id) !== user.id) {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Utilisateur non trouvé " + user,
+          message: "Utilisateur non trouvé " + user.mail,
         });
-        return res.status(500).json({ error: `Utilisateur non trouvé` });
+        return res.status(500).json({ error: `Utilisateur non trouvé` +  user});
       }
 
-      // Ajoute l'huile aux favoris de l'user
-      const updatedFavorites = await userModel.addFavoritsUser(user_id, oil_id);
-      console.log(chalk.bgBlue("{ userFavorites }>>>>>>", updatedFavorites));
+      // Recuépere de l'id de l'huile
+      const oil = await oilModel.getOneOilById(oil_id);
+      console.log(chalk.bgYellow("{ oil_id }>>>>>>", +oil_id));
+      // Check pour voir si l'huile existe bien
+      if (!oil) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: "Huile non trouvée.` " + oil,
+        });
+        return res.status(500).json({ error: `Huile non trouvée.` });
+      }
+
+       // Regarde les favoris de l'user dans la fonction findByuser du models
+      const userFavorites = await userModel.findFavoritesByUserId(user_id);
+      console.log(chalk.bgWhite("{ userFavorites.oil_id }>>>>>>", userFavorites));
+      // Vérifie si l'huile à ajouté est déja dans les favoris de l'utilisateur
+        if (oil_id in userFavorites) {
+          logger.customerLogger.log("error", {
+            url: req.url,
+            method: req.method,
+            message:
+              "L'huile est déja dans les favoris de l'utilisateur " + user.mail,
+          });
+          return res.status(500).json({Message: "L'huile est déja dans les favoris de l'utilisateur " + user.mail});
+        }
+
+            // Ajoute l'huile aux favoris de l'user
+            const updatedFavorites = await userModel.addFavoritsUser(user_id, oil_id);
+            console.log(chalk.bgBlue("{ updatedFavorites }>>>>>>", updatedFavorites));
 
       res.status(200).json({ message: `Favori ajouté.`, updatedFavorites });
     } catch (err) {
@@ -224,15 +252,10 @@ const userController = {
   // Module pour supprimer les huile des favoris
   async deleteFavorite(req, res) {
     const { user_id, oil_id } = req.body;
-    console.log(
-      chalk.bgBlue(
-        "{ formattedUser }>>>>>>",
-        "user_id " + Object.values(user_id)
-      )
-    );
-    console.log(
-      chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + Object.values(oil_id))
-    );
+    console.log(chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + Object.values(user_id)));
+    console.log(chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + Object.values(oil_id)));
+
+    
     try {
       // Check si l'user est bien inscrit dans la bdd
       const user = await userModel.getUserById(user_id);
@@ -245,11 +268,6 @@ const userController = {
           method: req.method,
           message: "Utilisateur non trouvé. " + user.mail,
         });
-        return res
-          .status(500)
-          .json({
-            error: `'L\'ID de l\'utilisateur dans la requête ne correspond pas à l\'ID de l\'utilisateur extrait du token. ' + user.mail`,
-          });
       }
 
       // Récupère les favoris de l'utilisateur

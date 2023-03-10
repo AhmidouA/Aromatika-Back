@@ -105,3 +105,98 @@ Date:[2023-03-09 14:29:15] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Er
 Date:[2023-03-09 14:29:59] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
 Date:[2023-03-09 14:30:26] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
 Date:[2023-03-09 14:42:54] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-03-10 10:14:11] [ERROR] Methode:[GET] Routes:[/profile] Tentative d'ajout de favori avec un token invalide pour l'utilisateur 1
+Date:[2023-03-10 10:14:29] [ERROR] Methode:[GET] Routes:[/profile] Tentative d'ajout de favori avec un token invalide pour l'utilisateur 1
+Date:[2023-03-10 10:14:42] [ERROR] Methode:[GET] Routes:[/profile] Tentative d'ajout de favori avec un token invalide pour l'utilisateur 1
+Date:[2023-03-10 10:15:23] [ERROR] Methode:[GET] Routes:[/profile] Tentative d'ajout de favori avec un token invalide pour l'utilisateur 1
+Date:[2023-03-10 10:15:32] [ERROR] Methode:[GET] Routes:[/profile] Tentative d'ajout de favori avec un token invalide pour l'utilisateur 1
+Date:[2023-03-10 10:37:25] [ERROR] Methode:[GET] Routes:[/profile] Tentative d'ajout de favori avec un token invalide pour l'utilisateur 1
+Date:[2023-03-10 10:40:34] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id undefined et de l'huile_id 3
+Date:[2023-03-10 10:41:25] [ERROR] Methode:[POST] Routes:[/profile/favorites] Utilisateur non trouvé undefined
+Date:[2023-03-10 10:41:47] [ERROR] Methode:[POST] Routes:[/profile/favorites] Utilisateur non trouvé undefined
+Date:[2023-03-10 10:42:02] [ERROR] Methode:[POST] Routes:[/profile/favorites] Utilisateur non trouvé undefined
+Date:[2023-03-10 10:42:39] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id undefined et de l'huile_id 3
+Date:[2023-03-10 10:43:11] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id undefined et de l'huile_id 3
+Date:[2023-03-10 10:44:32] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id [object Object] et de l'huile_id 3
+Date:[2023-03-10 10:44:58] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id [object Object] et de l'huile_id 3
+Date:[2023-03-10 10:45:22] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id [object Object] et de l'huile_id 3
+Date:[2023-03-10 10:49:41] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 10:50:13] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Erreur lors de la suppression du favori
+Date:[2023-03-10 10:50:21] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 10:50:24] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Erreur lors de la suppression du favori
+Date:[2023-03-10 10:51:23] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-10 10:52:05] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-10 10:52:21] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-10 10:54:05] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-10 10:54:42] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-10 10:55:35] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-10 10:55:48] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-10 10:56:17] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-10 10:56:34] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-10 10:56:41] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-10 10:59:38] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 10:59:43] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:00:20] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:00:23] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:02:31] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 2
+Date:[2023-03-10 11:05:44] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Erreur lors de la suppression du favori
+Date:[2023-03-10 11:22:15] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 2
+Date:[2023-03-10 11:22:19] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 1
+Date:[2023-03-10 11:22:22] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 3
+Date:[2023-03-10 11:22:26] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 4
+Date:[2023-03-10 11:24:09] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 1
+Date:[2023-03-10 11:25:37] [ERROR] Methode:[POST] Routes:[/profile/favorites] Huile non trouvée.` undefined
+Date:[2023-03-10 11:27:09] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:27:35] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:27:38] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:27:41] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:27:45] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:28:14] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:28:33] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:29:04] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 2
+Date:[2023-03-10 11:30:09] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 2
+Date:[2023-03-10 11:33:56] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 3
+Date:[2023-03-10 11:33:59] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 1
+Date:[2023-03-10 11:34:02] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 6
+Date:[2023-03-10 11:34:58] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 2
+Date:[2023-03-10 11:46:50] [ERROR] Methode:[POST] Routes:[/profile/favorites] Huile non trouvée.` [object Object]
+Date:[2023-03-10 11:46:54] [ERROR] Methode:[POST] Routes:[/profile/favorites] Huile non trouvée.` [object Object]
+Date:[2023-03-10 11:46:57] [ERROR] Methode:[POST] Routes:[/profile/favorites] Huile non trouvée.` [object Object]
+Date:[2023-03-10 11:53:02] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:53:07] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:53:09] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:53:12] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:53:51] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:54:36] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 1
+Date:[2023-03-10 11:54:47] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 1
+Date:[2023-03-10 11:55:31] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 1
+Date:[2023-03-10 11:55:43] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 1
+Date:[2023-03-10 11:55:57] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 1
+Date:[2023-03-10 11:57:45] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 3
+Date:[2023-03-10 11:57:55] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:58:08] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 11:58:20] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 4
+Date:[2023-03-10 11:58:24] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:01:47] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:01:53] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:02:02] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:02:07] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:04:18] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Huile non trouvée.` undefined
+Date:[2023-03-10 12:05:28] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:05:42] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:05:55] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:05:59] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:07:16] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:07:19] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:07:22] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:07:26] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:07:30] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:07:33] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:08:37] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:08:44] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:08:55] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:08:58] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans les favoris de l'utilisateur Ahmed@oclock.com
+Date:[2023-03-10 12:09:03] [ERROR] Methode:[POST] Routes:[/profile/favorites] Huile non trouvée.` undefined
+Date:[2023-03-10 12:09:10] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 18
+Date:[2023-03-10 12:09:13] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 1
+Date:[2023-03-10 12:09:17] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 2

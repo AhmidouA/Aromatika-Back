@@ -1,6 +1,8 @@
 const { dbClient } = require("../service");
 const emailValidator = require("email-validator");
 const bcrypt = require("bcrypt");
+// la seul qui marche avec require  "chalk": "^4.1.2",
+const chalk = require("chalk");
 
 const userModel = {
   // methode inserer un nouvelle user.
