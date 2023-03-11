@@ -190,8 +190,8 @@ const userController = {
   // Module pour ajouter les huile au favoris
   async addFavorite(req, res) {
     const { user_id, oil_id } = req.body;
-    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + user_id));
-    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + oil_id));
+    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + Object.values(user_id)));
+    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + Object.values(oil_id)));
 
     try {
       // recupére l'user
@@ -223,24 +223,22 @@ const userController = {
 
       // Regarde les favoris de l'user dans la fonction findByuser du models
       const userFavorites = await userModel.findFavoritesByUserId(user_id);
-      console.log(
-        chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.length)
-      );
+      console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.length));
       console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.oil_id));
-      // Vérifie si l'huile à ajouté est déja dans les favoris de l'utilisateur
 
+      // Vérifie si l'huile à ajouté est déja dans les favoris de l'utilisateur
       if (oil_id in userFavorites) {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
           message:
-            "L'huile est déja dans les favoris de l'utilisateur " + user.mail,
+            "L'huile est dans les favoris de l'utilisateur " + user.username,
         });
         return res
           .status(500)
           .json({
             Message:
-              "L'huile est déja dans les favoris de l'utilisateur " + user.mail,
+              "L'huile est dans les favoris de l'utilisateur " + user.username,
           });
       }
 
@@ -278,7 +276,7 @@ const userController = {
     try {
       // recupére l'user
       const user = await userModel.getUserById(user_id);
-      console.log(chalk.bgGreen("{ user }>>>>>>", user.mail));
+      console.log(chalk.bgGreen("{ user }>>>>>>", user));
       // console.log(chalk.bgYellow("{ user_id }>>>>>>", user_id));
       // console.log(chalk.bgYellow("{ user.id }>>>>>>", user.id));
 
@@ -287,7 +285,7 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Utilisateur non trouvé. " + user.mail,
+          message: "Utilisateur non trouvé. " + user.username,
         });
       }
 
@@ -307,19 +305,21 @@ const userController = {
       // Récupère les favoris de l'utilisateur
       const userFavorites = await userModel.findFavoritesByUserId(user_id);
       // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", Object.values(userFavorites)));
+      console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites.oil_id));
 
-      if (oil_id in userFavorites) {
+      // verifie si je posséde au moins une huile dans les fav
+      if (userFavorites.length === 0) {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
           message:
-            "L'huile est déja dans les favoris de l'utilisateur " + user.mail,
+            "L'huile n'est pas dans les favoris de " + user.username,
         });
         return res
           .status(500)
           .json({
             Message:
-              "L'huile est déja dans les favoris de l'utilisateur " + user.mail,
+            "L'huile n'est pas dans les favoris de " + user.username,
           });
       }
 
@@ -353,29 +353,3 @@ const userController = {
 };
 
 module.exports = userController;
-
-
-
-/*
-
-try {
-      // recupére l'user
-      const userCheek = await userModel.getUserById(userId);
-      console.log(chalk.bgCyan("{ picture }>>>>>>", userCheek));
-
-      const user = await userModel.addUserPicture(userId, file);
-      console.log(chalk.bg("{ user }>>>>>>", user));
-
-      // check si c'est bien i'id est bien celui veut add
-      if (parseInt(user) !== userCheek.id) {
-        logger.customerLogger.log("error", {
-          url: req.url,
-          method: req.method,
-          message: "Utilisateur non trouvé " + object.values(user),
-        });
-        return res.status(500).json({ error: `Utilisateur non trouvé` + user });
-      }
-      console.log(chalk.bgGreen("{ user }>>>>>>", Object.values(user)));
-      res.status(200).json({ message: `L'image a bien été téléchargé.`, file });
-
-*/
