@@ -68,7 +68,7 @@ router.post("/signup", userController.signup);
  * @return {html} 200 - Retourne la page de connexion
  * @return {object} 500 - Erreur inattendue
  */
-//GET /login - route pour récupere la page formulaire de connexion
+//GET /login - route pour récupere la page de connexion
 router.get("/login", userController.indexLoginPage);
 
 
@@ -118,7 +118,7 @@ router.get("/profile", auth.checkToken, userController.profile);
  * @return {html} 200 - Retourne la page du changement de mot de passe
  * @return {object} 500 - Erreur inattendue
  */
-//GET /profile/password/{id} - route pour récupere la page formulaire de connexion
+//GET /profile/password/{id} - route pour récupere la page modification du mot de passe
 router.get("/profile/password/:id", userController.indexUpdatePasswordPage);
 
 
@@ -136,7 +136,7 @@ router.get("/profile/password/:id", userController.indexUpdatePasswordPage);
  * @return {object} 500 - le nouveaux mots de passe ne correspondent pas
  * @return {object} 500 - Erreur lors de la modification du mot de passe
  */
-//PATCH /profile/password/{id} - route pour le profil de l'utilisateur avec un middleware token
+//PATCH /profile/password/{id} - route pour completer le formulaire modification du mot de passe
 router.patch("/profile/password/:id", auth.checkToken, userController.updatePassword);
 
 
