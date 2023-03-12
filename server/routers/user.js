@@ -111,6 +111,18 @@ router.get("/profile", auth.checkToken, userController.profile);
 
 
 /**
+ * GET /profile/password/{id}
+ * @summary Affiche la page changement de mot de passe
+ * @security bearerAuth
+ * @tags User
+ * @return {html} 200 - Retourne la page du changement de mot de passe
+ * @return {object} 500 - Erreur inattendue
+ */
+//GET /profile/password/{id} - route pour récupere la page formulaire de connexion
+router.get("/profile/password/:id", userController.indexUpdatePasswordPage);
+
+
+/**
  * PATCH /profile/password/{id}
  * @summary Met à jour le mot de passe de l'utilisateur connecté
  * @security bearerAuth
@@ -124,7 +136,7 @@ router.get("/profile", auth.checkToken, userController.profile);
  * @return {object} 500 - le nouveaux mots de passe ne correspondent pas
  * @return {object} 500 - Erreur lors de la modification du mot de passe
  */
-//PATCH /profile - route pour le profil de l'utilisateur avec un middleware token
+//PATCH /profile/password/{id} - route pour le profil de l'utilisateur avec un middleware token
 router.patch("/profile/password/:id", auth.checkToken, userController.updatePassword);
 
 
@@ -153,7 +165,7 @@ router.post('/profile/favorites', auth.checkToken, userController.addFavorite);
  * @return {object} 500 - L'huile n'est pas dans les favoris de l'utilisateur
  * @return {object} 500 - Erreur lors de la suppression du favori
  */
-// DELETE /profile - route pour supprimer une huile de ses favoris
+// DELETE /profile/favorites/{id} - route pour supprimer une huile de ses favoris
 // Pour la méthode DELETE il est important d'inclure 
 // l'ID car nous voulons supprimer une ressource existante dans la base de données qui a un ID.
 router.delete('/profile/favorites/:id', auth.checkToken, userController.deleteFavorite);

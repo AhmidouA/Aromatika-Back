@@ -17,7 +17,7 @@ const userController = {
   },
 
 
-  // Module signUp Page (get)
+  // Module signUp Page
   indexSignupPage(req, res) {
     res.json({ message: `Inscription` });
   },
@@ -49,7 +49,7 @@ const userController = {
   },
 
 
-  // Module Login Page (get)
+  // Module Login Page (GET)
   indexLoginPage(req, res) {
     res.json({ message: `connexion` });
   },
@@ -120,6 +120,12 @@ const userController = {
   },
 
   
+   // Module pour modifier le mot de passe (GET)
+   indexUpdatePasswordPage(req, res) {
+    res.json({ message: `Changer le mot de passe` });
+  },
+
+
   // Module pour modifier le mot de passe.
   async updatePassword (req, res) {
     const { oldPassword, password, confirmPassword } = req.body;
