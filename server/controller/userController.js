@@ -3,6 +3,8 @@ const { userModel, oilModel } = require("../models");
 const jwt = require("jsonwebtoken");
 // logger des erreurs client
 const logger = require("../service/logger");
+// hacher le mot de passe
+const bcrypt = require("bcrypt");
 // la seul qui marche avec require  "chalk": "^4.1.2",
 const chalk = require("chalk");
 const upload = require("../service/multer");
@@ -117,6 +119,94 @@ const userController = {
     }
   },
 
+  
+  // Module pour modifier le mot de passe.
+  async updatePassword (req, res) {
+    const { oldPassword, password, confirmPassword } = req.body;
+    console.log(chalk.bgBlue("{ oldPassword, password, confirmPassword }>>>>>>", { oldPassword, password, confirmPassword }));
+    const userId = req.params.id
+    console.log(chalk.bgBlack("{ userId }>>>>>>", userId));
+
+     // Vérifier que toutes les données (not null) sont présentes
+    if (!oldPassword ||!password ||!confirmPassword) {
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: "Tous les champs n'ont pas été remplis",
+      });
+      return res.status(500).json({ message: "Tous les champs doivent être remplis" });
+    }
+
+    try {
+      const user = await userModel.getUserById(userId)
+      console.log(chalk.bgCyan("{ user }>>>>>>", Object.values(user)));
+
+         // Si l'utilisateur n'existe pas ou le mot de passe est incorrect, afficher une erreur
+      if (!user) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: "utilisateur incorrect",
+        });
+        return res
+          .status(500)
+          .json({ message: `utilisateur incorrect` });
+      }
+
+        // check si l'id de la personne connecté et celle qui veut add sont les meme.
+        if (req.token.user.id !== parseInt(user.id)) {
+          logger.customerLogger.log("error", {
+            url: req.url,
+            method: req.method,
+            message: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez d'ajouter avec utilisateur ${user.username}`,
+          });
+          return res.status(500).json({ error: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez d'ajouter avec utilisateur ${user.username}`,  });
+        }
+
+      const passwordMatch = await bcrypt.compare(oldPassword, user.password);
+      if (!passwordMatch) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: "Mot de passe incorrect" ,
+        });
+        return res
+          .status(500)
+          .json({ message: "Mot de passe incorrect" });
+      }
+
+      // Vérifier que le nouveau mot de passe correspond à la confirmation
+      if (password !== confirmPassword) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: "Le nouveaux mots de passe ne correspondent pas.",
+        });
+        return res
+          .status(500)
+          .json({ message: "Le nouveaux mots de passe ne correspondent pas." });
+      }
+
+       // Hasher le nouveau mot de passe
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // mettre a jour le nouveau mot de passe 
+      await userModel.updateUserPassword(userId, hashedPassword)
+      res.json({ message: "Le mot de passe a été modifié avec succès." });
+
+    } catch (error) {
+      console.error(chalk.bgRedBright(error));
+      res
+        .status(500)
+        .json({ error: "Erreur lors de la modification du mot de passe de " + user.name });
+
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: "Erreur lors de la modification du mot de passe " + user.name,
+      });
+    }
+  },
 
   // Module pour ajouter une photo au profile
   async addPicture(req, res) {

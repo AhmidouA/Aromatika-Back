@@ -111,6 +111,24 @@ router.get("/profile", auth.checkToken, userController.profile);
 
 
 /**
+ * PATCH /profile/password/{id}
+ * @summary Met à jour le mot de passe de l'utilisateur connecté
+ * @security bearerAuth
+ * @tags User
+ * @param {string} id.path.required - ID de l'utilisateur
+ * @param {object} request.password.body.required - Nouveau mot de passe de l'utilisateur
+ * @return {object} 200 - Succès de la mise à jour du mot de passe
+ * @return {object} 500 - Tous les champs n'ont pas été remplis
+ * @return {object} 500 - Utilisateur non incorrect
+ * @return {object} 500 - Mot de passe incorrect
+ * @return {object} 500 - le nouveaux mots de passe ne correspondent pas
+ * @return {object} 500 - Erreur lors de la modification du mot de passe
+ */
+//PATCH /profile - route pour le profil de l'utilisateur avec un middleware token
+router.patch("/profile/password/:id", auth.checkToken, userController.updatePassword);
+
+
+/**
  * POST /profile/favorites
  * @summary Ajoute une huile aux favoris de l'User connecté
  * @security bearerAuth

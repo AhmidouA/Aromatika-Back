@@ -438,3 +438,8 @@ Date:[2023-03-12 17:54:54] [ERROR] Methode:[DELETE] Routes:[/profile/aromatheque
 Date:[2023-03-12 17:56:06] [ERROR] Methode:[DELETE] Routes:[/profile/aromatheque/1] L'huile n'est pas dans l'Aromatheque de Ahmed
 Date:[2023-03-12 17:56:13] [ERROR] Methode:[DELETE] Routes:[/profile/aromatheque/1] L'huile n'est pas dans l'Aromatheque de Ahmed
 Date:[2023-03-12 17:56:49] [ERROR] Methode:[DELETE] Routes:[/profile/aromatheque/1] L'huile n'est pas dans l'Aromatheque de Ahmed
+Date:[2023-03-12 23:24:52] [ERROR] Methode:[PATCH] Routes:[/profile/password/1] Mot de passe incorrect
+Date:[2023-03-12 23:30:01] [ERROR] Methode:[PATCH] Routes:[/profile/password/3] Vous etes connecté avec l' utilisateur Eric et vous essayez d'ajouter avec utilisateur Marie
+Date:[2023-03-12 23:30:24] [ERROR] Methode:[PATCH] Routes:[/profile/password/3] Vous etes connecté avec l' utilisateur Eric et vous essayez d'ajouter avec utilisateur Marie
+Date:[2023-03-12 23:30:31] [ERROR] Methode:[PATCH] Routes:[/profile/password/2] Mot de passe incorrect
+Date:[2023-03-12 23:30:40] [ERROR] Methode:[PATCH] Routes:[/profile/password/2] Mot de passe incorrect
