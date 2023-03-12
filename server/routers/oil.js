@@ -23,7 +23,7 @@ const router = express.Router();
  * GET /essential/{id}
  * @summary Récupère une Oil essentielle par son ID
  * @security bearerAuth
- * @tags essential Oil
+ * @tags Essential Oil
  * @param {integer} id.path.required - ID de l'huile essentielle à récupérer
  * @return {object} 200 - Retourne l'huile essentielle correspondante à l'ID donné
  * @return {object} 500 - Erreur lors de l'envoi d'une huile essentielle
@@ -37,7 +37,7 @@ router.get("/essential/:id", auth.checkToken, oilController.getOilById);
  * @summary Ajoute une nouvelle huile essentielle
  * @security bearerAuth
  * @security adminAuth
- * @tags essential Oil
+ * @tags Essential Oil
  * @param {Huile} request.body.required - Les informations de l'huile essentielle à ajouter
  * @return {object} 200 - Retourne l'huile essentielle ajoutée
  * @return {object} 500 - Erreur lors de l'ajout de l'huile essentielle
@@ -50,7 +50,7 @@ router.post("/essential", auth.checkToken, auth.isAdmin, oilController.createOil
  * PATCH /essential/{id}
  * @summary Met à jour d'une essential Oil par son ID
  * @security bearerAuth
- * @tags essential Oil
+ * @tags Essential Oil
  * @param {integer} id.path.required - ID de l'huile essentielle à mettre à jour
  * @param {Huile} request.body.required - Les informations à mettre à jour pour l'huile essentielle
  * @return {object} 200 - Retourne l'huile essentielle mise à jour
@@ -64,7 +64,7 @@ router.patch("/essential/:id", auth.checkToken, auth.isAdmin, oilController.upda
  * DELETE /essential/{id}
  * @summary Supprime une essential Oil par son ID
  * @security bearerAuth
- * @tags essential Oil
+ * @tags Essential Oil
  * @param {integer} id.path.required - ID de l'huile essentielle à supprimer
  * @return {object} 200 - Retourne un message de succès
  * @return {object} 500 - Erreur lors de la suppression d'une huile essentielle

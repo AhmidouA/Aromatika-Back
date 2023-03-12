@@ -84,6 +84,23 @@ const userModel = {
     }
   },
 
+  // methode récuperer un user
+  async getUserById(userId) {
+    const sqlQuery = 'SELECT * FROM "user" WHERE id = $1;;';
+    const values = [userId];
+    // console.log("sqlQuery", sqlQuery);
+    // console.log("values>>>>>>>>>>", values);
+
+    try {
+      const result = await dbClient.query(sqlQuery, values);
+      // console.log("result>>>>>>>>>>", result)
+      return result.rows[0];
+    } catch (error) {
+      console.error(error);
+      throw new Error("Erreur lors de la récupération de l'utilisateur.");
+    }
+  },
+
   // methode trouver les favoris d'un user.
   async findFavoritesByUserId(id) {
     const sqlQuery =
@@ -134,6 +151,56 @@ const userModel = {
     }
   },
 
+  // methode trouver les favoris d'un user.
+  async findAromathequeByUserId(id) {
+    const sqlQuery =
+      "SELECT * FROM oil_has_user WHERE user_id = $1 AND aromatheque = true;";
+    const values = [id];
+    // console.log("sqlQuery", sqlQuery);
+    // console.log("values>>>>>>>>>>", values);
+    try {
+      const result = await dbClient.query(sqlQuery, values);
+      // console.log("result DataMapper>>>>>>>>>>", result);
+      return result.rows;
+    } catch (error) {
+      console.error(error);
+      throw new Error("introvable.");
+    }
+  },
+
+  // methode ajouter des huile aux favoris d'un user.
+  async addAromathequeUser(userId, oilId) {
+    const sqlQuery =
+      "INSERT INTO oil_has_user(user_id, oil_id, aromatheque) VALUES($1, $2, $3) RETURNING *;";
+    const values = [userId, oilId, true];
+    // console.log("sqlQuery", sqlQuery);
+    // console.log("values>>>>>>>>>>", values);
+    try {
+      const result = await dbClient.query(sqlQuery, values);
+      return result.rows[0];
+    } catch (error) {
+      console.error(error);
+      throw new Error("Erreur lors de l'ajout du favori.");
+    }
+  },
+
+  // methode supprimer des huile aux favoris d'un user.
+  async deleteAromathequeUser(userId, oilId) {
+    const sqlQuery =
+      "DELETE FROM oil_has_user WHERE user_id = $1 AND oil_id = $2 AND aromatheque = true RETURNING *;";
+    const values = [userId, oilId];
+    // console.log("sqlQuery", sqlQuery);
+    // console.log("values>>>>>>>>>>", values);
+    try {
+      const result = await dbClient.query(sqlQuery, values);
+      // console.log("result>>>>>>>>>>", result)
+      return result.rows[0];
+    } catch (error) {
+      console.error(error);
+      throw new Error("Erreur lors de la suppression du favori.");
+    }
+  },
+
   // module test Add picture/postgres (methode non utilisé)
   async addUserPicture(userId, image) {
     const sqlQuery = `UPDATE "user" SET image = $1 WHERE id = $2 RETURNING id, image`;
@@ -147,23 +214,6 @@ const userModel = {
     } catch (error) {
       console.error(error);
       throw new Error("Erreur lors de l'importation de l'image.");
-    }
-  },
-  
-  // methode récuperer un user
-  async getUserById(userId) {
-    const sqlQuery = 'SELECT * FROM "user" WHERE id = $1;;';
-    const values = [userId];
-    // console.log("sqlQuery", sqlQuery);
-    // console.log("values>>>>>>>>>>", values);
-
-    try {
-      const result = await dbClient.query(sqlQuery, values);
-      // console.log("result>>>>>>>>>>", result)
-      return result.rows[0];
-    } catch (error) {
-      console.error(error);
-      throw new Error("Erreur lors de la récupération de l'utilisateur.");
     }
   },
 };

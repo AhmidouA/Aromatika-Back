@@ -14,10 +14,12 @@ const userController = {
     res.json({ message: `Bienvenu sur Aromatokä` });
   },
 
+
   // Module signUp Page (get)
   indexSignupPage(req, res) {
     res.json({ message: `Inscription` });
   },
+
 
   // Module signUp page pour l'inscription (formulaire)
   async signup(req, res) {
@@ -44,10 +46,12 @@ const userController = {
     }
   },
 
+
   // Module Login Page (get)
   indexLoginPage(req, res) {
     res.json({ message: `connexion` });
   },
+
 
   // Module Login page pour la connexion (formulaire)
   async login(req, res) {
@@ -113,6 +117,7 @@ const userController = {
     }
   },
 
+
   // Module pour ajouter une photo au profile
   async addPicture(req, res) {
     const userId = req.params.id;
@@ -146,6 +151,7 @@ const userController = {
     fs.createReadStream(`server/public/upload/${file}`).pipe(res);
   },
 
+
   // Module profile
   async profile(req, res) {
     // Avoir les valeurs de l'objet du token depuis req.token
@@ -170,6 +176,10 @@ const userController = {
     const userFavorites = await userModel.findFavoritesByUserId(userId);
     // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites[0].oil_id));
 
+    // Récupérer l'aromatheque de l'user
+    const userAromatheques = await userModel.findAromathequeByUserId(userId);
+    // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites[0].oil_id));
+
     // Récupérer l'user (solution de secours)
     const user = await userModel.getUserById(userId);
     const userImage = user.image;
@@ -182,6 +192,7 @@ const userController = {
       created_at: created_at,
       userName: userName,
       userFavorites: userFavorites,
+      userAromatheques:userAromatheques,
       userImage: userImage,
       userId: userId
     });
@@ -232,13 +243,13 @@ const userController = {
           url: req.url,
           method: req.method,
           message:
-            "L'huile est dans les favoris de l'utilisateur " + user.username,
+          "L'huile est déja dans vos favoris " + user.username,
         });
         return res
           .status(500)
           .json({
             Message:
-              "L'huile est dans les favoris de l'utilisateur " + user.username,
+              "L'huile est déja dans vos favoris " + user.username,
           });
       }
 
@@ -264,6 +275,7 @@ const userController = {
       });
     }
   },
+
 
   // Module pour supprimer les huile des favoris
   async deleteFavorite(req, res) {
@@ -306,7 +318,7 @@ const userController = {
       // Récupère les favoris de l'utilisateur
       const userFavorites = await userModel.findFavoritesByUserId(user_id);
       // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", Object.values(userFavorites)));
-      console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites.oil_id));
+      console.log(chalk.bgBlue("{ userFavorites.oil_id }>>>>>>", userFavorites[0].oil_id));
 
       // verifie si je posséde au moins une huile dans les fav
       if (userFavorites.length === 0) {
@@ -342,6 +354,166 @@ const userController = {
       });
     }
   },
+
+
+  // Module pour ajouter les huile a son aromatheque
+  async addAromatheque(req, res) {
+    const { user_id, oil_id } = req.body;
+    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + Object.values(user_id)));
+    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + Object.values(oil_id)));
+
+    try {
+
+      // recupére l'user
+      const user = await userModel.getUserById(user_id);
+      console.log(chalk.bgBlue("{ user }>>>>>>", user.mail));
+
+      // check si l'id de la personne connecté et celle qui veut add sont les meme.
+      if (req.token.user.id !== parseInt(user_id)) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez d'ajouter avec utilisateur ${user.username}`,
+        });
+        return res.status(500).json({ error: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez d'ajouter avec utilisateur ${user.username}`,  });
+      }
+
+      // Recuépere de l'id de l'huile
+      const oil = await oilModel.getOneOilById(oil_id);
+      console.log(chalk.bgYellow("{ oil_id }>>>>>>", +oil_id));
+      // Check pour voir si l'huile existe bien
+      if (!oil) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: "Huile non trouvée avec l'id " + oil_id,
+        });
+        return res.status(500).json({ error: "Huile non trouvée avec l'id " + oil_id });
+      }
+
+      // Regarde l'aromatheque de l'user dans la fonction findByUser du models
+      const userAromatheque = await userModel.findAromathequeByUserId(user_id);
+      console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userAromatheque.length));
+      // console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.oil_id));
+
+      // Vérifie si l'huile à ajouté est déja dans l'aromatheque de l'utilisateur
+      if (oil_id in userAromatheque) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message:
+          "L'huile est déja dans votre Aromatheque " + user.username,
+        });
+        return res
+          .status(500)
+          .json({
+            Message:
+              "L'huile est déja dans votre Aromatheque " + user.username,
+          });
+      }
+
+      // Ajoute l'huile a l'aromatheque de l'user
+      const updatedAromatheque = await userModel.addAromathequeUser(user_id, oil_id);
+      console.log(chalk.bgBlue("{ updatedAromatheque }>>>>>>", updatedAromatheque));
+
+      res
+        .status(200)
+        .json({ message: `Aromatheque ajouté.`, updatedAromatheque });
+    } catch (err) {
+      console.error(chalk.bgRedBright(err));
+      res.status(500).json({ error: "Erreur lors de l'ajout de l'aromatheque" });
+
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message:
+          "Erreur lors de l'ajout de l'aromatheque de l'user_id " +
+          user_id +
+          " et de l'huile_id " +
+          oil_id,
+      });
+    }
+  },
+
+
+// Module pour supprimer une huile de l'aromatheque
+async deleteAromatheque(req, res) {
+  const { user_id, oil_id } = req.body;
+  console.log(
+    chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + Object.values(user_id)));
+  console.log(
+    chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + Object.values(oil_id)));
+
+  try {
+    // recupére l'user
+    const user = await userModel.getUserById(user_id);
+    console.log(chalk.bgGreen("{ user }>>>>>>", user));
+    // console.log(chalk.bgYellow("{ user_id }>>>>>>", user_id));
+    // console.log(chalk.bgYellow("{ user.id }>>>>>>", user.id));
+
+    // check si l'id de la personne connecté et celle qui veut supprimer sont les meme.
+    if (req.token.user.id !== parseInt(user_id)) {
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez de supprimer avec utilisateur ${user.username}`,
+      });
+      return res.status(500).json({ error: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez de supprimer avec utilisateur ${user.username}`,  });
+    }
+
+    // Recuépere de l'id de l'huile
+    const oil = await oilModel.getOneOilById(oil_id);
+    console.log(chalk.bgYellow("{ oil_id }>>>>>>", +oil_id));
+    // Check pour voir si l'huile existe bien
+    if (!oil) {
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: "Huile non trouvée.` " + oil,
+      });
+      return res.status(500).json({ error: `Huile non trouvée.` });
+    }
+
+    // Récupère l'aromatheque de l'utilisateur
+    const userAromatheque = await userModel.findAromathequeByUserId(user_id);
+    // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", Object.values(userFavorites)));
+    // console.log(chalk.bgBlue("{ userFavorites.oil_id }>>>>>>", userAromatheque[0].oil_id));
+
+    // verifie si je posséde au moins une huile dans l'aromatheque
+    if (userAromatheque.length === 0) {
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message:
+          "L'huile n'est pas dans l'Aromatheque de " + user.username,
+      });
+      return res
+        .status(500)
+        .json({
+          Message:
+          "L'huile n'est pas dans l'Aromatheque de " + user.username,
+        });
+    }
+
+    // Supprime l'huile de aromatheque de l'user
+    const aromatheque = await userModel.deleteAromathequeUser(user_id, oil_id);
+    console.log(chalk.bgBlue("{ huile favorite id }>>>>>>", oil_id));
+
+    res.status(200).json({ message: "aromatheque supprimé.", aromatheque });
+  } catch (err) {
+    console.error(chalk.bgRedBright(err));
+    res
+      .status(500)
+      .json({ error: `Erreur lors de la suppression de l'aromatheque` });
+
+    logger.customerLogger.log("error", {
+      url: req.url,
+      method: req.method,
+      message: "Erreur lors de la suppression de l'aromatheque",
+    });
+  }
+},
+
 
   // Module pour se deconnecter
   logout(req, res) {
