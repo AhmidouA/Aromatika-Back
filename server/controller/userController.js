@@ -371,9 +371,9 @@ const userController = {
   async deleteFavorite(req, res) {
     const { user_id, oil_id } = req.body;
     console.log(
-      chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + Object.values(user_id)));
+      chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + user_id));
     console.log(
-      chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + Object.values(oil_id)));
+      chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + oil_id));
 
     try {
       // recupére l'user
@@ -449,8 +449,8 @@ const userController = {
   // Module pour ajouter les huile a son aromatheque
   async addAromatheque(req, res) {
     const { user_id, oil_id } = req.body;
-    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + Object.values(user_id)));
-    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + Object.values(oil_id)));
+    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + user_id));
+    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + oil_id));
 
     try {
 
@@ -530,9 +530,9 @@ const userController = {
 async deleteAromatheque(req, res) {
   const { user_id, oil_id } = req.body;
   console.log(
-    chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + Object.values(user_id)));
+    chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + user_id));
   console.log(
-    chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + Object.values(oil_id)));
+    chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + oil_id));
 
   try {
     // recupére l'user

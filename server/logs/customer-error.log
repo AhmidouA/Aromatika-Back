@@ -443,3 +443,4 @@ Date:[2023-03-12 23:30:01] [ERROR] Methode:[PATCH] Routes:[/profile/password/3] 
 Date:[2023-03-12 23:30:24] [ERROR] Methode:[PATCH] Routes:[/profile/password/3] Vous etes connecté avec l' utilisateur Eric et vous essayez d'ajouter avec utilisateur Marie
 Date:[2023-03-12 23:30:31] [ERROR] Methode:[PATCH] Routes:[/profile/password/2] Mot de passe incorrect
 Date:[2023-03-12 23:30:40] [ERROR] Methode:[PATCH] Routes:[/profile/password/2] Mot de passe incorrect
+Date:[2023-03-12 23:53:59] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur Marie et vous essayez d'ajouter avec utilisateur Ahmed
