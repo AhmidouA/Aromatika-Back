@@ -88,18 +88,17 @@ const userController = {
       // generation du token grace a l'email d'identification et une durée de 120min pour le token
       // j'envoi aussi les info de la session grace au payload que j'envoi dans la session user
 
-      const token = jwt.sign(
-        { email, user: formattedUser },
-        process.env.SECRET,
+      const token = jwt.sign({ email, user: formattedUser, user_id:formattedUser.id },process.env.SECRET,
         {
           expiresIn: "120m",
         }
       );
 
       console.log(chalk.bgBlack("{ TOKEN }>>>>>>", token));
+      console.log(chalk.bgGrey("{ formattedUser.id }>>>>>>", formattedUser.id));
 
       // Si l'utilisateur existe et le mot de passe est correct on le connecte et on renvoi le token
-      res.json({ name: formattedUser.name, token });
+      res.json({ name: formattedUser.name, user_id:formattedUser.id,  token });
     } catch (err) {
       console.error(chalk.bgRedBright(err));
       res
@@ -194,18 +193,19 @@ const userController = {
     console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + Object.values(oil_id)));
 
     try {
+
       // recupére l'user
       const user = await userModel.getUserById(user_id);
       console.log(chalk.bgBlue("{ user }>>>>>>", user.mail));
 
-      // check si c'est bien i'id est bien celui veut add
-      if (parseInt(user_id) !== user.id) {
+      // check si l'id de la personne connecté et celle qui veut add sont les meme.
+      if (req.token.user.id !== parseInt(user_id)) {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Utilisateur non trouvé " + user.mail,
+          message: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez d'ajouter avec utilisateur ${user.username}`,
         });
-        return res.status(500).json({ error: `Utilisateur non trouvé` + user });
+        return res.status(500).json({ error: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez d'ajouter avec utilisateur ${user.username}`,  });
       }
 
       // Recuépere de l'id de l'huile
@@ -216,15 +216,15 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Huile non trouvée.` " + oil,
+          message: "Huile non trouvée avec l'id " + oil_id,
         });
-        return res.status(500).json({ error: `Huile non trouvée.` });
+        return res.status(500).json({ error: "Huile non trouvée avec l'id " + oil_id });
       }
 
       // Regarde les favoris de l'user dans la fonction findByuser du models
       const userFavorites = await userModel.findFavoritesByUserId(user_id);
       console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.length));
-      console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.oil_id));
+      // console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.oil_id));
 
       // Vérifie si l'huile à ajouté est déja dans les favoris de l'utilisateur
       if (oil_id in userFavorites) {
@@ -280,13 +280,14 @@ const userController = {
       // console.log(chalk.bgYellow("{ user_id }>>>>>>", user_id));
       // console.log(chalk.bgYellow("{ user.id }>>>>>>", user.id));
 
-      // Check si l'user est bien inscrit dans la bdd
-      if (parseInt(user_id) !== user.id) {
+      // check si l'id de la personne connecté et celle qui veut supprimer sont les meme.
+      if (req.token.user.id !== parseInt(user_id)) {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Utilisateur non trouvé. " + user.username,
+          message: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez de supprimer avec utilisateur ${user.username}`,
         });
+        return res.status(500).json({ error: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez de supprimer avec utilisateur ${user.username}`,  });
       }
 
       // Recuépere de l'id de l'huile
@@ -353,3 +354,4 @@ const userController = {
 };
 
 module.exports = userController;
+

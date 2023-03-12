@@ -356,3 +356,59 @@ Date:[2023-03-11 01:44:06] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1
 Date:[2023-03-11 01:54:08] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de Ahmed
 Date:[2023-03-11 01:54:31] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de Ahmed
 Date:[2023-03-11 01:54:42] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de Ahmed
+Date:[2023-03-11 20:47:23] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-11 20:47:28] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Eric
+Date:[2023-03-11 20:47:38] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id  et de l'huile_id 1
+Date:[2023-03-11 20:49:09] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Eric
+Date:[2023-03-12 15:17:09] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 3
+Date:[2023-03-12 15:17:39] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 3
+Date:[2023-03-12 15:19:24] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:26:34] [ERROR] Methode:[POST] Routes:[/profile/favorites] Utilisateur non trouvé Eric@oclock.com
+Date:[2023-03-12 15:26:49] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:27:01] [ERROR] Methode:[POST] Routes:[/profile/favorites] Utilisateur non trouvé Eric@oclock.com
+Date:[2023-03-12 15:28:00] [ERROR] Methode:[POST] Routes:[/profile/favorites] Utilisateur non trouvé undefined
+Date:[2023-03-12 15:28:16] [ERROR] Methode:[POST] Routes:[/profile/favorites] Utilisateur non trouvé  undefined
+Date:[2023-03-12 15:28:40] [ERROR] Methode:[POST] Routes:[/profile/favorites] Utilisateur non trouvé  undefined
+Date:[2023-03-12 15:28:56] [ERROR] Methode:[POST] Routes:[/profile/favorites] Utilisateur non trouvé  1
+Date:[2023-03-12 15:29:04] [ERROR] Methode:[POST] Routes:[/profile/favorites] Utilisateur non trouvé  undefined
+Date:[2023-03-12 15:29:10] [ERROR] Methode:[POST] Routes:[/profile/favorites] Utilisateur non trouvé  Ahmed@oclock.com
+Date:[2023-03-12 15:29:28] [ERROR] Methode:[POST] Routes:[/profile/favorites] Utilisateur non trouvé  2
+Date:[2023-03-12 15:31:39] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur 1 et vous essayez d'ajouter avec utilisateur 2
+Date:[2023-03-12 15:33:14] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur 1 et vous essayez d'ajouter avec utilisateur 2
+Date:[2023-03-12 15:33:17] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:37:46] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 7
+Date:[2023-03-12 15:37:57] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 7
+Date:[2023-03-12 15:38:05] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur undefined et vous essayez d'ajouter avec utilisateur 2
+Date:[2023-03-12 15:38:15] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur undefined et vous essayez d'ajouter avec utilisateur 2
+Date:[2023-03-12 15:38:39] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur undefined et vous essayez d'ajouter avec utilisateur 2
+Date:[2023-03-12 15:38:46] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur undefined et vous essayez d'ajouter avec utilisateur 2
+Date:[2023-03-12 15:39:10] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur 1 et vous essayez d'ajouter avec utilisateur 2
+Date:[2023-03-12 15:39:46] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur 1 et vous essayez d'ajouter avec utilisateur 2
+Date:[2023-03-12 15:39:57] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:40:14] [ERROR] Methode:[POST] Routes:[/profile/favorites] Huile non trouvée. undefined
+Date:[2023-03-12 15:40:33] [ERROR] Methode:[POST] Routes:[/profile/favorites] Huile non trouvée. 200
+Date:[2023-03-12 15:40:51] [ERROR] Methode:[POST] Routes:[/profile/favorites] Huile non trouvée avec l'id 200
+Date:[2023-03-12 15:42:25] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur Eric et vous essayez d'ajouter avec utilisateur 2
+Date:[2023-03-12 15:42:55] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur 1 et vous essayez d'ajouter avec utilisateur 2
+Date:[2023-03-12 15:43:11] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur undefined et vous essayez d'ajouter avec utilisateur Eric
+Date:[2023-03-12 15:43:22] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur undefined et vous essayez d'ajouter avec utilisateur Eric
+Date:[2023-03-12 15:43:29] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur undefined et vous essayez d'ajouter avec utilisateur Eric
+Date:[2023-03-12 15:44:47] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur Ahmed et vous essayez d'ajouter avec utilisateur Eric
+Date:[2023-03-12 15:44:54] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur Ahmed et vous essayez d'ajouter avec utilisateur Eric
+Date:[2023-03-12 15:45:19] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur Ahmed et vous essayez d'ajouter avec utilisateur Eric
+Date:[2023-03-12 15:52:40] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Erreur lors de la suppression du favori
+Date:[2023-03-12 15:53:43] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 1
+Date:[2023-03-12 15:54:44] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:54:49] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:55:36] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:55:53] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:56:00] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:56:04] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur Ahmed et vous essayez d'ajouter avec utilisateur Eric
+Date:[2023-03-12 15:56:18] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:56:43] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:56:54] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:57:27] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de Ahmed
+Date:[2023-03-12 15:57:39] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est dans les favoris de l'utilisateur Ahmed
+Date:[2023-03-12 15:58:40] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de Ahmed
+Date:[2023-03-12 15:58:44] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] Vous etes connecté avec l' utilisateur Ahmed et vous essayez de supprimer avec utilisateur Eric
+Date:[2023-03-12 16:00:35] [ERROR] Methode:[DELETE] Routes:[/profile/favorites/1] L'huile n'est pas dans les favoris de Ahmed

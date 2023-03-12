@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const path = require("path");
-const multer = require("multer");
+// const path = require("path");
+// const multer = require("multer");
 // la seul qui marche avec require  "chalk": "^4.1.2",
 const chalk = require("chalk");
 // logger des erreurs client
@@ -17,7 +17,7 @@ const auth = {
       //Middleware pour garder la session active
       req.token = jwt.verify(token, process.env.SECRET);
       console.log(chalk.bgMagenta("token validé de: ", Object.values(req.token)));
-
+      
       next();
     } catch (err) {
       console.log(chalk.bgRedBright(err));

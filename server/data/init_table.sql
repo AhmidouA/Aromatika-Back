@@ -52,6 +52,7 @@ CREATE TABLE
         molecule text NOT NULL,
         plant_family text NOT NULL,
         scent text NOT NULL,
+        image text,
         "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW(),
         "updated_at" TIMESTAMPTZ
     );
