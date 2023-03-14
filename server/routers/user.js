@@ -178,7 +178,6 @@ router.get("/profile/reset-password/:id/:token", userController.resetPasswordInd
 
 
 /**
-
 POST /profile/reset-password/{id}/{token}
 @summary Réinitialise le mot de passe de l'User identifié par :id et :token
 @tags User
