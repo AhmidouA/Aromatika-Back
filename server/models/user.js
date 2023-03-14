@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 // la seul qui marche avec require  "chalk": "^4.1.2",
 const chalk = require("chalk");
 
+
 const userModel = {
   // methode inserer un nouvelle user.
   async insertUser(formData) {
@@ -52,10 +53,11 @@ const userModel = {
     }
   },
 
+
   // methode se connecter
-  async loginUser(mail, password) {
+  async loginUser(userMail, password) {
     const sqlQuery = `SELECT * FROM "user" WHERE mail=$1`;
-    const values = [mail];
+    const values = [userMail];
     // console.log("sqlQuery", sqlQuery)
     // console.log("values>>>>>>>>>>", values)
 
@@ -84,6 +86,7 @@ const userModel = {
     }
   },
 
+
   // methode modifier le mot de passe d'un user
   async updateUserPassword (userId, password) {
     const sqlQuery = `UPDATE "user" SET password=$1 WHERE id=$2;`;
@@ -101,9 +104,10 @@ const userModel = {
     }
   },
 
+
   // methode récuperer un user
   async getUserById(userId) {
-    const sqlQuery = 'SELECT * FROM "user" WHERE id = $1;;';
+    const sqlQuery = 'SELECT * FROM "user" WHERE id = $1;';
     const values = [userId];
     // console.log("sqlQuery", sqlQuery);
     // console.log("values>>>>>>>>>>", values);
@@ -117,6 +121,26 @@ const userModel = {
       throw new Error("Erreur lors de la récupération de l'utilisateur.");
     }
   },
+
+
+  // methode récuperer un user par email
+  async getUserByMail(userMail) {
+    const sqlQuery = `SELECT * FROM "user" WHERE mail = $1;`;
+    const values = [userMail]
+
+    console.log("sqlQuery", sqlQuery);
+    console.log("values", values);
+
+    try {
+      const result = await dbClient.query(sqlQuery, values);
+      console.log("result>>>>>>>>>>", result.rows[0])
+      return result.rows[0];
+    } catch (error) {
+      console.error(error);
+      throw new Error("Erreur lors de la récupération de l'utilisateur.");
+    }
+  },
+
 
   // methode trouver les favoris d'un user.
   async findFavoritesByUserId(id) {
@@ -135,6 +159,7 @@ const userModel = {
     }
   },
 
+
   // methode ajouter des huile aux favoris d'un user.
   async addFavoritsUser(userId, oilId) {
     const sqlQuery =
@@ -150,6 +175,7 @@ const userModel = {
       throw new Error("Erreur lors de l'ajout du favori.");
     }
   },
+
 
   // methode supprimer des huile aux favoris d'un user.
   async deleteFavoritsUser(userId, oilId) {
@@ -168,6 +194,7 @@ const userModel = {
     }
   },
 
+
   // methode trouver les favoris d'un user.
   async findAromathequeByUserId(id) {
     const sqlQuery =
@@ -185,6 +212,7 @@ const userModel = {
     }
   },
 
+
   // methode ajouter des huile aux favoris d'un user.
   async addAromathequeUser(userId, oilId) {
     const sqlQuery =
@@ -200,6 +228,7 @@ const userModel = {
       throw new Error("Erreur lors de l'ajout du favori.");
     }
   },
+
 
   // methode supprimer des huile aux favoris d'un user.
   async deleteAromathequeUser(userId, oilId) {
@@ -217,6 +246,7 @@ const userModel = {
       throw new Error("Erreur lors de la suppression du favori.");
     }
   },
+
 
   // module test Add picture/postgres (methode non utilisé)
   async addUserPicture(userId, image) {

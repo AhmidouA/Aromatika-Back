@@ -444,3 +444,98 @@ Date:[2023-03-12 23:30:24] [ERROR] Methode:[PATCH] Routes:[/profile/password/3] 
 Date:[2023-03-12 23:30:31] [ERROR] Methode:[PATCH] Routes:[/profile/password/2] Mot de passe incorrect
 Date:[2023-03-12 23:30:40] [ERROR] Methode:[PATCH] Routes:[/profile/password/2] Mot de passe incorrect
 Date:[2023-03-12 23:53:59] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur Marie et vous essayez d'ajouter avec utilisateur Ahmed
+Date:[2023-03-13 14:15:07] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur Ahmed et vous essayez d'ajouter avec utilisateur Marie
+Date:[2023-03-13 14:16:19] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur Ahmed et vous essayez d'ajouter avec utilisateur Marie
+Date:[2023-03-13 14:16:23] [ERROR] Methode:[POST] Routes:[/profile/favorites] Huile non trouvée avec l'id 200
+Date:[2023-03-13 14:16:43] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-03-14 12:01:20] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:01:38] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:01:44] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:01:57] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:02:03] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:02:19] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:03:03] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:03:20] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:04:31] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:18:25] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:26:47] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:27:22] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:28:00] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:28:39] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:31:05] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:31:18] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:31:35] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:31:54] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:34:20] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:37:09] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:37:45] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:38:54] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:42:01] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:42:03] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:43:54] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:44:58] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:46:10] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:46:29] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:49:01] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:53:46] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:54:36] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:54:58] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:56:13] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 12:56:21] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 13:00:19] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 13:00:31] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 13:02:01] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 13:06:58] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 13:07:14] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 13:07:43] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 13:08:01] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 13:08:20] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 14:15:31] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 14:27:59] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 14:30:10] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 14:30:21] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 14:30:54] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 14:31:41] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 14:32:32] [ERROR] Methode:[POST] Routes:[/profile/forgot] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 14:34:12] [ERROR] Methode:[POST] Routes:[/profile/forgot] Le compte n'existe pas lola@oclock.com
+Date:[2023-03-14 14:41:56] [ERROR] Methode:[POST] Routes:[/profile/forgot] Le compte n'existe pas lola@oclock.com
+Date:[2023-03-14 15:08:12] [ERROR] Methode:[POST] Routes:[/profile/forgot] Le compte n'existe pas lola@oclock.com
+Date:[2023-03-14 15:26:16] [ERROR] Methode:[POST] Routes:[/profile/forgot] Le compte n'existe pas lola@oclock.com
+Date:[2023-03-14 16:12:55] [ERROR] Methode:[GET] Routes:[/profile/reset-password/5/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA2NDE3LCJleHAiOjE2Nzg4MDcwMTd9.r19sktd5VKJjd_S30FBvPoqtITwd-8iWQcfXbhwuYS8] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:13:59] [ERROR] Methode:[GET] Routes:[/profile/reset-password/5/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA2NDE3LCJleHAiOjE2Nzg4MDcwMTd9.r19sktd5VKJjd_S30FBvPoqtITwd-8iWQcfXbhwuYS8] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:14:51] [ERROR] Methode:[GET] Routes:[/profile/reset-password/5/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA2NDE3LCJleHAiOjE2Nzg4MDcwMTd9.r19sktd5VKJjd_S30FBvPoqtITwd-8iWQcfXbhwuYS8] utilisateur incorrect
+Date:[2023-03-14 16:20:59] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA2NDE3LCJleHAiOjE2Nzg4MDcwMTd9.r19sktd5VKJjd_S30FBvPoqtITwd-8iWQcfXbhwuYS8] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:21:02] [ERROR] Methode:[GET] Routes:[/profile/reset-password/1/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA2NDE3LCJleHAiOjE2Nzg4MDcwMTd9.r19sktd5VKJjd_S30FBvPoqtITwd-8iWQcfXbhwuYS8] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:21:04] [ERROR] Methode:[GET] Routes:[/profile/reset-password/3/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA2NDE3LCJleHAiOjE2Nzg4MDcwMTd9.r19sktd5VKJjd_S30FBvPoqtITwd-8iWQcfXbhwuYS8] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:23:14] [ERROR] Methode:[GET] Routes:[/profile/reset-password/3/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3Mzg3LCJleHAiOjE2Nzg4MDc5ODd9.5Yfkf29jUcDIGAnBX2u9WKkU4x8wIOWhkAdj4QJR5TQ] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:23:18] [ERROR] Methode:[GET] Routes:[/profile/reset-password/1/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3Mzg3LCJleHAiOjE2Nzg4MDc5ODd9.5Yfkf29jUcDIGAnBX2u9WKkU4x8wIOWhkAdj4QJR5TQ] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:23:20] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3Mzg3LCJleHAiOjE2Nzg4MDc5ODd9.5Yfkf29jUcDIGAnBX2u9WKkU4x8wIOWhkAdj4QJR5TQ] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:24:11] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3Mzg3LCJleHAiOjE2Nzg4MDc5ODd9.5Yfkf29jUcDIGAnBX2u9WKkU4x8wIOWhkAdj4QJR5TQ] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:24:41] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3Mzg3LCJleHAiOjE2Nzg4MDc5ODd9.5Yfkf29jUcDIGAnBX2u9WKkU4x8wIOWhkAdj4QJR5TQ] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:26:19] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3Mzg3LCJleHAiOjE2Nzg4MDc5ODd9.5Yfkf29jUcDIGAnBX2u9WKkU4x8wIOWhkAdj4QJR5TQ] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:26:22] [ERROR] Methode:[GET] Routes:[/profile/reset-password/1/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3Mzg3LCJleHAiOjE2Nzg4MDc5ODd9.5Yfkf29jUcDIGAnBX2u9WKkU4x8wIOWhkAdj4QJR5TQ] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:26:25] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3Mzg3LCJleHAiOjE2Nzg4MDc5ODd9.5Yfkf29jUcDIGAnBX2u9WKkU4x8wIOWhkAdj4QJR5TQ] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:26:38] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:26:49] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:27:27] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:27:41] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:28:40] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:29:01] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:29:18] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:31:14] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:31:40] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:32:05] [ERROR] Methode:[GET] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:32:53] [ERROR] Methode:[GET] Routes:[/profile/reset-password/4/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:36:05] [ERROR] Methode:[GET] Routes:[/profile/reset-password/1/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:36:27] [ERROR] Methode:[GET] Routes:[/profile/reset-password/1/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA3NTkwLCJleHAiOjE2Nzg4MDgxOTB9.gNQiVGKSecFkB5HGF8m2uJ_W-KJon2gsh9E0kJtg8TE] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 16:42:47] [ERROR] Methode:[GET] Routes:[/profile/reset-password/1/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA4MzExLCJleHAiOjE2Nzg4MDg5MTF9.L75d4SyyHycH2hVpvExARuMbSXIJ3GlrJcQIFJBFk9o] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 17:21:11] [ERROR] Methode:[GET] Routes:[/profile/reset-password/1/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA4MzExLCJleHAiOjE2Nzg4MDg5MTF9.L75d4SyyHycH2hVpvExARuMbSXIJ3GlrJcQIFJBFk9o] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 17:23:02] [ERROR] Methode:[GET] Routes:[/profile/reset-password/1/eyJhbGciOiJIUzI1NiIsInR5cCI6IkXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODEwOTE2LCJleHAiOjE2Nzg4MTE1MTZ9.943UymjJQ_767cFmnAPzlJ0OA1JW14ZirMVRo4tTHHs] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 17:38:01] [ERROR] Methode:[POST] Routes:[/profile/reset-password/3/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODA2NDE3LCJleHAiOjE2Nzg4MDcwMTd9.r19sktd5VKJjd_S30FBvPoqtITwd-8iWQcfXbhwuYS8] Erreur lors de la modification du mot de passe 
+Date:[2023-03-14 17:41:41] [ERROR] Methode:[POST] Routes:[/profile/reset-password/2/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkVyaWNAb2Nsb2NrLmNvbSIsInVzZXJJZCI6MiwiaWF0IjoxNjc4ODExODkwLCJleHAiOjE2Nzg4MTI0OTB9.a_qYBYK9DTDjAwQM6nMAkvqTOEaLF77RP5FSs7ER3Vg] Tous les champs n'ont pas été remplis
+Date:[2023-03-14 18:46:49] [ERROR] Methode:[POST] Routes:[/profile/forgot-password] Erreur lors de la récuperation du mot de passe 
+Date:[2023-03-14 18:47:46] [ERROR] Methode:[POST] Routes:[/profile/forgot-password] Erreur lors de la récuperation du mot de passe 
+Date:[2023-03-14 18:53:39] [ERROR] Methode:[POST] Routes:[/profile/forgot-password] Erreur lors de la récuperation du mot de passe 
+Date:[2023-03-14 19:14:51] [ERROR] Methode:[POST] Routes:[/profile/forgot-password] Le compte n'existe pas renemarie657@gmail.com
+Date:[2023-03-14 20:36:07] [ERROR] Methode:[POST] Routes:[/profile/reset-password/3/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlbmVtYXJpZTY1N0BnbWFpbC5jb20iLCJ1c2VySWQiOjMsImlhdCI6MTY3ODgyMjU1MCwiZXhwIjoxNjc4ODIzMTUwfQ.71eGwaNGkOFi-ib-kaE1ayJCbbOmcSaPMm6fxSS3sn4] Le nouveaux mots de passe ne correspondent pas.
+Date:[2023-03-14 21:07:40] [ERROR] Methode:[GET] Routes:[/profile/reset-password/3/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlbmVtYXJpZTY1N0BnbWFpbC5jb20iLCJ1c2VySWQiOjMsImlhdCI6MTY3ODgyNDQzOSwiZXhwIjoxNjc4ODI1MDM5fQ.2WIutMfLMwL8IsAL6VTAynZfk-C74guIo9SlPwjBf8U%22] Erreur lors de la modification du mot de passe 
