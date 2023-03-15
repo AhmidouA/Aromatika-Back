@@ -107,10 +107,10 @@ const categoryController = {
 
   // Méthode pour mettre à jour une catégorie
   async updateCategory(req, res) {
-    const name = req.body;
+    const name = req.body.name;
     const categoryId = req.params.id;
     console.log(chalk.bgYellow("categoryId>>>>>>", categoryId));
-    console.log(chalk.bgBlue("{ name }>>>>>>", Object.values(name)));
+    console.log(chalk.bgBlue("{ name }>>>>>>", name));
 
     try {
       // Appel de la méthode du modèle (dataMapper) pour mettre à jour la catégorie
@@ -119,29 +119,15 @@ const categoryController = {
 
       // vérifie qui il trouve au moins une catégorie
       if (result.rowCount > 0) {
-        res.status(200).json({
-          message: `La catégorie ${name.name} a bien été mise à jour avec succès`,
-        });
+        res.status(200).json({message: `La catégorie ${name.name} a bien été mise à jour avec succès`});
       } else {
-        res
-          .status(500)
-          .json({
-            message:
-              "La catégorie " +
-              Object.values(name) +
-              " est introuvable et son id est le: " +
-              categoryId,
-          });
+        res.status(500).json({message:"La catégorie " + name + " est introuvable et son id est le: " + categoryId});
+        
         logger.customerLogger.log("error", {
-          url: req.url,
-          method: req.method,
-          message:
-            "La catégorie " +
-            Object.values(name) +
-            " est introuvable et son id est le: " +
-            categoryId,
-        });
-      }
+              url: req.url,
+              method: req.method,
+              message:"La catégorie " + name + " est introuvable et son id est le: " + categoryId});
+        }
     } catch (err) {
       console.error(
         `Erreur lors de la modification de la catégorie: ${err.message}`

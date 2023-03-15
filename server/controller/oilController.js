@@ -34,6 +34,7 @@ const oilController = {
     }
   },
 
+
   // Methode pour créer une huile
   async createOil(req, res) {
     const {name,botanic_name,description,extraction,molecule,plant_family,scent,image} = req.body;
@@ -97,27 +98,20 @@ const oilController = {
         method: req.method,
         message: "Tous les champs doivent être remplis",
       });
-      return res
-        .status(400)
-        .json({ message: "Tous les champs doivent être remplis" });
-    }
+      return res.status(400).json({ message: "Tous les champs doivent être remplis" });}
 
     try {
+
       // Appel de la méthode du modèle (dataMapper) pour modifier unee huile
       const updatedOil = await oilModel.updateOneOil(id, req.body);
       console.log(chalk.green(updatedOil));
-      res.status(200).json(updatedOil);
+      res.status(200).json({Message: "L'huile a bien été modfié " + updatedOil});
     } catch (err) {
       console.error(
         chalk.bgRedBright(
-          `Erreur lors de la modification de l'huile: ${err.message}` +
-            "l'id " +
-            id
-        )
-      );
-      res
-        .status(500)
-        .json({ message: "Erreur lors de la modification de l'huile: " + id });
+          `Erreur lors de la modification de l'huile: ${err.message}` + "l'id " + id));
+
+      res.status(500).json({ message: "Erreur lors de la modification de l'huile: " + id });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,

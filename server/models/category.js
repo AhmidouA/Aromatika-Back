@@ -131,11 +131,11 @@ const categoryModel = {
 
   // Méthode pour mettre à jour une catégorie dans la base de données
   // les paramettre Id est tjr avant car nous utilisons l'ID pour identifier la catégorie que nous voulons mettre à jour
-  async updateOneCategory(id, categoryName) {
+  async updateOneCategory(id, familyName) {
     // Requête pour modifier une catégorie dans la table category
     const sqlQuery = `UPDATE category SET name = $1 WHERE id = $2;`;
     // Tableau des valeurs à insérer
-    const values = [categoryName.name, id];
+    const values = [familyName, id];
     console.log("values>>>>>>>>>>>", values);
 
     try {

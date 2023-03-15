@@ -539,3 +539,52 @@ Date:[2023-03-14 18:53:39] [ERROR] Methode:[POST] Routes:[/profile/forgot-passwo
 Date:[2023-03-14 19:14:51] [ERROR] Methode:[POST] Routes:[/profile/forgot-password] Le compte n'existe pas renemarie657@gmail.com
 Date:[2023-03-14 20:36:07] [ERROR] Methode:[POST] Routes:[/profile/reset-password/3/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlbmVtYXJpZTY1N0BnbWFpbC5jb20iLCJ1c2VySWQiOjMsImlhdCI6MTY3ODgyMjU1MCwiZXhwIjoxNjc4ODIzMTUwfQ.71eGwaNGkOFi-ib-kaE1ayJCbbOmcSaPMm6fxSS3sn4] Le nouveaux mots de passe ne correspondent pas.
 Date:[2023-03-14 21:07:40] [ERROR] Methode:[GET] Routes:[/profile/reset-password/3/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJlbmVtYXJpZTY1N0BnbWFpbC5jb20iLCJ1c2VySWQiOjMsImlhdCI6MTY3ODgyNDQzOSwiZXhwIjoxNjc4ODI1MDM5fQ.2WIutMfLMwL8IsAL6VTAynZfk-C74guIo9SlPwjBf8U%22] Erreur lors de la modification du mot de passe 
+Date:[2023-03-15 14:41:43] [ERROR] Methode:[GET] Routes:[/family/3] La famille avec l'id 3 n'a pas été trouvée
+Date:[2023-03-15 14:42:12] [ERROR] Methode:[GET] Routes:[/family/3] La famille avec l'id 3 n'a pas été trouvée
+Date:[2023-03-15 15:02:22] [ERROR] Methode:[POST] Routes:[/family] Le nom de la famille existe déja
+Date:[2023-03-15 15:05:49] [ERROR] Methode:[POST] Routes:[/family] Le nom de la famille existe déja
+Date:[2023-03-15 15:14:04] [ERROR] Methode:[POST] Routes:[/family] Le nom de la famille existe déja
+Date:[2023-03-15 15:19:54] [ERROR] Methode:[POST] Routes:[/family] Le nom de la famille existe déja
+Date:[2023-03-15 15:24:36] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou mot de passe incorrect
+Date:[2023-03-15 15:24:40] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou mot de passe incorrect
+Date:[2023-03-15 15:24:43] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou mot de passe incorrect
+Date:[2023-03-15 15:24:47] [ERROR] Methode:[POST] Routes:[/login] utilisateur ou mot de passe incorrect
+Date:[2023-03-15 15:33:11] [ERROR] Methode:[POST] Routes:[/profile/forgot-password] Le compte n'existe pas renearie657@gmail.com
+Date:[2023-03-15 15:55:55] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille undefined existe déja
+Date:[2023-03-15 15:56:13] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille undefined existe déja
+Date:[2023-03-15 15:56:50] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille undefined existe déja
+Date:[2023-03-15 15:57:16] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille undefined existe déja
+Date:[2023-03-15 15:58:13] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille undefined existe déja
+Date:[2023-03-15 15:59:09] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille l,i,l,i est introuvable et son id est le: 6
+Date:[2023-03-15 16:00:07] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lili est introuvable et son id est le: 6
+Date:[2023-03-15 16:00:33] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lili est introuvable et son id est le: 6
+Date:[2023-03-15 16:02:54] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lili est introuvable et son id est le: 6
+Date:[2023-03-15 16:03:27] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lili est introuvable et son id est le: 6
+Date:[2023-03-15 16:05:04] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille undefined existe déja
+Date:[2023-03-15 16:06:01] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lili existe déja
+Date:[2023-03-15 16:07:36] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lili est introuvable et son id est le: 6
+Date:[2023-03-15 16:09:50] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lili est introuvable et son id est le: 6
+Date:[2023-03-15 16:10:09] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lili est introuvable et son id est le: 6
+Date:[2023-03-15 16:11:54] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lili est introuvable et son id est le: 6
+Date:[2023-03-15 16:12:19] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lili est introuvable et son id est le: 6
+Date:[2023-03-15 16:12:25] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lili est introuvable et son id est le: 6
+Date:[2023-03-15 16:13:43] [ERROR] Methode:[POST] Routes:[/essential] Le nom ou le nom botanique existent déja
+Date:[2023-03-15 16:13:55] [ERROR] Methode:[POST] Routes:[/essential] Le nom ou le nom botanique existent déja
+Date:[2023-03-15 16:14:09] [ERROR] Methode:[POST] Routes:[/essential] Le nom ou le nom botanique existent déja
+Date:[2023-03-15 16:17:34] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lili existe déja
+Date:[2023-03-15 16:17:53] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lombre existe déja
+Date:[2023-03-15 16:18:50] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lombre existe déja
+Date:[2023-03-15 16:31:32] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lombre existe déja
+Date:[2023-03-15 16:34:22] [ERROR] Methode:[PATCH] Routes:[/family/6] La famille lombre existe déja
+Date:[2023-03-15 16:37:06] [ERROR] Methode:[PATCH] Routes:[/family/22] La famille lombra existe déja
+Date:[2023-03-15 16:37:16] [ERROR] Methode:[PATCH] Routes:[/family/22] La famille lombro existe déja
+Date:[2023-03-15 16:38:34] [ERROR] Methode:[PATCH] Routes:[/family/10] La famille Melo existe déja
+Date:[2023-03-15 17:08:48] [ERROR] Methode:[PATCH] Routes:[/family/10] La famille Melo existe déja
+Date:[2023-03-15 17:12:49] [ERROR] Methode:[PATCH] Routes:[/family/11] La famille Melo existe déja
+Date:[2023-03-15 17:12:55] [ERROR] Methode:[PATCH] Routes:[/family/11] La famille Mellooo existe déja
+Date:[2023-03-15 17:14:05] [ERROR] Methode:[PATCH] Routes:[/family/11] La famille Mellooo existe déja
+Date:[2023-03-15 17:16:17] [ERROR] Methode:[PATCH] Routes:[/family/10] La famille Mellooo existe déja
+Date:[2023-03-15 17:16:24] [ERROR] Methode:[PATCH] Routes:[/family/10] La famille Mellooolaoalala existe déja
+Date:[2023-03-15 17:17:57] [ERROR] Methode:[PATCH] Routes:[/family/10] La famille Mellooolaoalala existe déja
+Date:[2023-03-15 17:22:34] [ERROR] Methode:[PATCH] Routes:[/family/9] La famille Mellooolaoalala existe déja
+Date:[2023-03-15 17:25:50] [ERROR] Methode:[PATCH] Routes:[/family/9] La famille Mellooolaoalala existe déja

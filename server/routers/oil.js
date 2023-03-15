@@ -28,7 +28,7 @@ const router = express.Router();
  * @return {object} 200 - Retourne l'huile essentielle correspondante à l'ID donné
  * @return {object} 500 - Erreur lors de l'envoi d'une huile essentielle
  */
-//GET /essential route - Pour avoir une huiles
+//GET /essential/:id route - Pour avoir une huiles
 router.get("/essential/:id", auth.checkToken, oilController.getOilById);
 
 
@@ -56,7 +56,7 @@ router.post("/essential", auth.checkToken, auth.isAdmin, oilController.createOil
  * @return {object} 200 - Retourne l'huile essentielle mise à jour
  * @return {object} 500 - Erreur lors de la mise à jour de l'huile essentielle
  */
-//PATCH /essential - route pour modifier une huiles
+//PATCH /essential/:id - route pour modifier une huiles
 router.patch("/essential/:id", auth.checkToken, auth.isAdmin, oilController.updateOilById);
 
 
