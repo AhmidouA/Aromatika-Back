@@ -298,11 +298,11 @@ const userController = {
     } catch (error) {
       console.error(chalk.bgRedBright(error));
 
-      res.status(500).json({ error: `Erreur lors de la modification du mot de passe` });
+      res.status(500).json({ error: `Erreur lors de la récupération du mot de passe` });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: `Erreur lors de la modification du mot de passe `
+        message: `Erreur lors de la récupération du mot de passe `
       });
     }
   },
