@@ -1,9 +1,13 @@
 // import des modules Winston et path
 const { createLogger, transports, format } = require('winston');
+// module pour les chemin des ficher
 const path = require('path');
+
+
+
+
 // chemin vers le dossier logs
 const logsDir = path.join(__dirname, '../logs'); 
-
 
 // créer un logger pour enregistrer des journaux d'informations et d'erreurs
 const customerLogger = createLogger({

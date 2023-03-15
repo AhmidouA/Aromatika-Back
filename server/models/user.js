@@ -1,8 +1,11 @@
+// Client Query 
 const { dbClient } = require("../service");
+// validation de mail 
 const emailValidator = require("email-validator");
+// hacher le mot de passe
 const bcrypt = require("bcrypt");
-// la seul qui marche avec require  "chalk": "^4.1.2",
-const chalk = require("chalk");
+
+
 
 
 const userModel = {

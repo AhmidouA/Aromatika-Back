@@ -7,9 +7,6 @@ const { auth } = require("../service");
 // const multer = require("multer");
 const upload = require('../service/multer');
 
-// gestion d'image
-// const upload = multer({dest: 'server/public/upload/'});
-
 const router = express.Router();
 
 
@@ -143,7 +140,7 @@ router.patch("/profile/password/:id", auth.checkToken, userController.updatePass
 /**
 GET /profile/forgot-password
 @summary Affiche le formulaire pour réinitialiser le mot de passe
-@tags Authentification
+@tags User
 @return {object} 200 - Affiche le formulaire
 */
 //GET /profile/forgot-password - route pour avoir le formulaire mot de passe oublié
@@ -153,7 +150,7 @@ router.get("/profile/forgot-password", userController.forgotPasswordIndexPage);
 /**
 POST /profile/forgot-password
 @summary Envoie un email de réinitialisation du mot de passe
-@tags Authentification
+@tags User
 @param {string} request.body.email.required - Adresse email de l'utilisateur
 @return {object} 200 - Email de réinitialisation envoyé avec succès
 @return {object} 400 - Adresse email non fournie

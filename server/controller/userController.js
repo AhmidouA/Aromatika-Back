@@ -7,10 +7,15 @@ const logger = require("../service/logger");
 const bcrypt = require("bcrypt");
 // la seul qui marche avec require  "chalk": "^4.1.2",
 const chalk = require("chalk");
-const upload = require("../service/multer");
+// module file system (lire, ecrire..) un fichier (C'est pour multer)
 const fs = require("fs");
 // module nodemailer pour les envois des mail auto (reset password)
 const { mail } = require("../service");
+
+
+
+
+
 
 const userController = {
   // Module Home Page

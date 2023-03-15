@@ -1,5 +1,8 @@
 const { dbClient } = require("../service");
 
+
+
+
 const categoryModel = {
   // Méthode pour avoir toutes catégorie d'une famille de la base de données
   async GetCategories(familyName) {
