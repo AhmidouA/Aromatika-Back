@@ -7,9 +7,6 @@ const { auth } = require("../service");
 // const multer = require("multer");
 const upload = require('../service/multer');
 
-// gestion d'image
-// const upload = multer({dest: 'server/public/upload/'});
-
 const router = express.Router();
 
 
@@ -68,7 +65,7 @@ router.post("/signup", userController.signup);
  * @return {html} 200 - Retourne la page de connexion
  * @return {object} 500 - Erreur inattendue
  */
-//GET /login - route pour récupere la page formulaire de connexion
+//GET /login - route pour récupere la page de connexion
 router.get("/login", userController.indexLoginPage);
 
 
@@ -111,6 +108,18 @@ router.get("/profile", auth.checkToken, userController.profile);
 
 
 /**
+ * GET /profile/password/{id}
+ * @summary Affiche la page changement de mot de passe
+ * @security bearerAuth
+ * @tags User
+ * @return {html} 200 - Retourne la page du changement de mot de passe
+ * @return {object} 500 - Erreur inattendue
+ */
+//GET /profile/password/{id} - route pour récupere la page modification du mot de passe
+router.get("/profile/password/:id", userController.updatePasswordIndexPage);
+
+
+/**
  * PATCH /profile/password/{id}
  * @summary Met à jour le mot de passe de l'utilisateur connecté
  * @security bearerAuth
@@ -124,9 +133,64 @@ router.get("/profile", auth.checkToken, userController.profile);
  * @return {object} 500 - le nouveaux mots de passe ne correspondent pas
  * @return {object} 500 - Erreur lors de la modification du mot de passe
  */
-//PATCH /profile - route pour le profil de l'utilisateur avec un middleware token
+//PATCH /profile/password/{id} - route pour completer le formulaire modification du mot de passe
 router.patch("/profile/password/:id", auth.checkToken, userController.updatePassword);
 
+
+/**
+GET /profile/forgot-password
+@summary Affiche le formulaire pour réinitialiser le mot de passe
+@tags User
+@return {object} 200 - Affiche le formulaire
+*/
+//GET /profile/forgot-password - route pour avoir le formulaire mot de passe oublié
+router.get("/profile/forgot-password", userController.forgotPasswordIndexPage);
+
+
+/**
+POST /profile/forgot-password
+@summary Envoie un email de réinitialisation du mot de passe
+@tags User
+@param {string} request.body.email.required - Adresse email de l'utilisateur
+@return {object} 200 - Email de réinitialisation envoyé avec succès
+@return {object} 400 - Adresse email non fournie
+@return {object} 500 - Erreur lors de l'envoi de l'email de réinitialisation
+*/
+//POST /profile/forgot-password - route pour completer le formulaire mot de passe oublié
+router.post("/profile/forgot-password", userController.sendPasswordResetEmail);
+
+
+/**
+ * GET /profile/reset-password/{id}/{token}
+ * @summary Affiche le formulaire de réinitialisation de mot de passe pour l'User identifié par :id et :token
+ * @tags User
+ * @param {string} :id.path.required - ID de l'utilisateur
+ * @param {string} :token.path.required - Token de réinitialisation de mot de passe
+ * @return {html} 200 - Formulaire de réinitialisation de mot de passe
+ * @return {object} 500 - Utilisateur non trouvé ou token invalide
+ * @return {object} 500 - Erreur lors de la modification du mot de passe de
+ */
+//GET /profile/reset-password - route pour avoir le formulaire mot de passe oublié
+router.get("/profile/reset-password/:id/:token", userController.resetPasswordIndexPage)
+
+
+/**
+POST /profile/reset-password/{id}/{token}
+@summary Réinitialise le mot de passe de l'User identifié par :id et :token
+@tags User
+@param {string} :id.path.required - ID de l'utilisateur
+@param {string} :token.path.required - Token de réinitialisation de mot de passe
+@param {object} request.body.required - Les données de la requête
+@param {string} request.body.password.required - Le nouveau mot de passe
+@param {string} request.body.confirmPassword.required - La confirmation du nouveau mot de passe
+@return {object} 200 - Message de succès
+@return {object} 500 - Tous les champs doivent être remplis
+@return {object} 500 - Utilisateur non trouvé ou token invalide
+@return {object} 500 - Le nouveau mot de passe et la confirmation ne correspondent pas
+@return {object} 500 - Erreur lors de la modification du mot de passe de l'utilisateur
+*/
+//POST //profile/reset-password - route pour avoir le formulaire mot de passe oublié
+router.post("/profile/reset-password/:id/:token", userController.resetPassword)
 
 /**
  * POST /profile/favorites
@@ -153,7 +217,7 @@ router.post('/profile/favorites', auth.checkToken, userController.addFavorite);
  * @return {object} 500 - L'huile n'est pas dans les favoris de l'utilisateur
  * @return {object} 500 - Erreur lors de la suppression du favori
  */
-// DELETE /profile - route pour supprimer une huile de ses favoris
+// DELETE /profile/favorites/{id} - route pour supprimer une huile de ses favoris
 // Pour la méthode DELETE il est important d'inclure 
 // l'ID car nous voulons supprimer une ressource existante dans la base de données qui a un ID.
 router.delete('/profile/favorites/:id', auth.checkToken, userController.deleteFavorite);

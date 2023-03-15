@@ -1,5 +1,7 @@
 // Importer les modules nécessaires
+// module pour la gestion des images
 const multer = require('multer');
+// module pour les chemin des ficher
 const path = require('path');
 
 // Définir l'objet de stockage pour Multer

@@ -1,5 +1,7 @@
 const { dbClient } = require("../service");
 
+
+
 const oilModel = {
   // Methode pour avoir un huile par Id
   async getOneOilById(id) {

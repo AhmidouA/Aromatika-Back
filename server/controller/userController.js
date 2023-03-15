@@ -7,8 +7,15 @@ const logger = require("../service/logger");
 const bcrypt = require("bcrypt");
 // la seul qui marche avec require  "chalk": "^4.1.2",
 const chalk = require("chalk");
-const upload = require("../service/multer");
+// module file system (lire, ecrire..) un fichier (C'est pour multer)
 const fs = require("fs");
+// module nodemailer pour les envois des mail auto (reset password)
+const { mail } = require("../service");
+
+
+
+
+
 
 const userController = {
   // Module Home Page
@@ -17,7 +24,7 @@ const userController = {
   },
 
 
-  // Module signUp Page (get)
+  // Module signUp Page
   indexSignupPage(req, res) {
     res.json({ message: `Inscription` });
   },
@@ -49,7 +56,7 @@ const userController = {
   },
 
 
-  // Module Login Page (get)
+  // Module Login Page (GET)
   indexLoginPage(req, res) {
     res.json({ message: `connexion` });
   },
@@ -120,6 +127,18 @@ const userController = {
   },
 
   
+   // Module pour modifier le mot de passe (GET)
+   indexUpdatePasswordPage(req, res) {
+    res.json({ message: `Changer le mot de passe` });
+  },
+
+
+  // Module signUp Page
+  updatePasswordIndexPage(req, res) {
+    res.json({ message: `changement de mot de passe` });   
+  },
+
+
   // Module pour modifier le mot de passe.
   async updatePassword (req, res) {
     const { oldPassword, password, confirmPassword } = req.body;
@@ -208,6 +227,177 @@ const userController = {
     }
   },
 
+
+  // Module mot de passe oublié Page
+  forgotPasswordIndexPage(req, res) {
+    res.json({ message: `Recuperation du mot de passe` });   
+  },
+
+
+  // module mot de passe oublié
+  async sendPasswordResetEmail (req, res) {
+    console.log("req.body>>>>>", req.body)
+    const {email} = req.body
+    console.log(chalk.bgBlack("{ email }>>>>>>", email));
+
+    try {
+      const user = await userModel.getUserByMail(email)
+      console.log(chalk.bgGreen("{ user }>>>>>>", email));
+      // console.log(chalk.bgCyan("{ user.mail }>>>>>>", user.mail));
+
+      if (!user) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: "Le compte n\'existe pas " + email
+        });
+        return res.json('Le compte n\'existe pas')
+      }
+
+      // generation du token grace a l'email d'identification et une durée de 10min pour le token
+      const token = jwt.sign({ email: user.mail, userId: user.id },process.env.SECRET,
+        {
+          expiresIn: "10m",
+        }
+      );
+      // console.log(chalk.bgBlack("{ email: user.mail, userId: user.id }>>>>>>", Object.values({ email: user.mail, userId: user.id })));
+      console.log(chalk.bgBlack("{ TOKEN }>>>>>>", token));
+
+      await mail.sendPasswordResetEmail(user,token)
+      
+      res.json({Message : 'Le compte existe et le mail a été envoyé', token:token, })
+    } catch (error) {
+      console.error(chalk.bgRedBright(error));
+      res
+        .status(500)
+        .json({ error: "Erreur lors de la récuperation du compte " });
+
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: "Erreur lors de la récuperation du compte  "
+      });
+    }
+  },
+
+
+  // Module réinitialisation du mot de passe Page
+  async resetPasswordIndexPage (req, res) {
+    const {id, token} = req.params
+    // console.log(chalk.bgBlack("{ id }>>>>>>", id));
+    // console.log(chalk.bgBlack("{ token }>>>>>>", token));
+
+    try{
+      // appel l'user par son id depuis la bdd
+      const user = await userModel.getUserById(id)
+      console.log(chalk.bgBlack("{ user.id }>>>>>>", id));
+
+      // check si l'user existe
+      if (!user) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: "Le compte n\'existe pas " + email
+        });
+        return res.json('Le compte n\'existe pas')
+      }
+
+      // Avoir les valeurs de l'objet du token depuis req.token
+      const verify = jwt.verify(token, process.env.SECRET);
+      console.log(chalk.bgBlue("{ verify }>>>>>>", verify.email));
+
+      if (!verify) {
+        res.json({Message : 'Utilisateur non autorisé'});
+      }
+
+      res.json({Message: 'Utilisateur autorisé'})
+    } catch (error) {
+      console.error(chalk.bgRedBright(error));
+      res
+        .status(500)
+        .json({ error: "Erreur lors de la modification du mot de passe de " });
+
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: "Erreur lors de la modification du mot de passe "
+      });
+    }
+  },
+
+
+  // Module réinitialisation du mot de passe form
+  async resetPassword (req, res) {
+    const {id, token} = req.params
+    const {password, confirmPassword } = req.body;
+
+     // Vérifier que toutes les données (not null) sont présentes
+     if (!password ||!confirmPassword) {
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: "Tous les champs n'ont pas été remplis",
+      });
+      return res.status(500).json({ message: "Tous les champs doivent être remplis" });
+    }
+    try{
+
+      // appel l'user par son id depuis la bdd
+      const user = await userModel.getUserById(id)
+      console.log(chalk.bgBlue("{ user.id }>>>>>>", id));
+
+      // check si l'user existe
+      if (!user) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: "Le compte n\'existe pas " + email
+        });
+        return res.json('Le compte n\'existe pas')
+      }
+
+      // Avoir les valeurs de l'objet du token depuis req.token
+      const verify = jwt.verify(token, process.env.SECRET);
+      console.log(chalk.bgBlue("{ verify }>>>>>>", verify.email));
+
+      if (!verify) {
+        res.json({Message : 'Ce n\'est pas bon'});
+      }
+
+     
+      // Vérifier que le nouveau mot de passe correspond à la confirmation
+      if (password !== confirmPassword) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: "Le nouveaux mots de passe ne correspondent pas.",
+        });
+        return res
+          .status(500)
+          .json({ message: "Le nouveaux mots de passe ne correspondent pas." });
+      }
+
+      // Hasher le nouveau mot de passe
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // mettre a jour le nouveau mot de passe 
+      await userModel.updateUserPassword(id, hashedPassword)
+      res.json({ message: "Le mot de passe a été modifié avec succès." });
+    } catch (error) {
+      console.error(chalk.bgRedBright(error));
+      res
+        .status(500)
+        .json({ error: "Erreur lors de la modification du mot de passe de " });
+
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: "Erreur lors de la modification du mot de passe "
+      });
+    }
+  },
+
+
   // Module pour ajouter une photo au profile
   async addPicture(req, res) {
     const userId = req.params.id;
@@ -235,6 +425,8 @@ const userController = {
       });
     }
   },
+
+
   // Module stream Image
   streamPicture(req, res) {
     const file = req.params.file;
@@ -246,6 +438,7 @@ const userController = {
   async profile(req, res) {
     // Avoir les valeurs de l'objet du token depuis req.token
     const reqValeus = Object.values(req.token);
+    // console.log(chalk.bgCyan("{ reqValeus }>>>>>>", reqValeus));
     // console.log(chalk.bgCyan("{ reqValeus }>>>>>>", reqValeus[1].id));
 
     // La date de creation du compte (Demande du front pour afficher au profil)
@@ -287,6 +480,8 @@ const userController = {
       userId: userId
     });
   },
+
+
   // Module pour ajouter les huile au favoris
   async addFavorite(req, res) {
     const { user_id, oil_id } = req.body;
@@ -297,7 +492,7 @@ const userController = {
 
       // recupére l'user
       const user = await userModel.getUserById(user_id);
-      console.log(chalk.bgBlue("{ user }>>>>>>", user.mail));
+      // console.log(chalk.bgBlue("{ user }>>>>>>", user.mail));
 
       // check si l'id de la personne connecté et celle qui veut add sont les meme.
       if (req.token.user.id !== parseInt(user_id)) {

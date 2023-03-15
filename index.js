@@ -1,10 +1,9 @@
 const express = require("express");
 const app = express();
-const path = require("path");
 // module dotenv
 require("dotenv").config();
 // Les routers
-const { oilRouter, userRouter, categoryRouter } = require("./server/routers");
+const { oilRouter, userRouter, categoryRouter, familyRouter } = require("./server/routers");
 // midlleware error
 const error = require("./server/service/auth");
 
@@ -80,7 +79,7 @@ app.use((req, res, next) => {
 });
 
 // utilisation de nos routes
-app.use(userRouter, oilRouter, categoryRouter);
+app.use(userRouter, oilRouter, categoryRouter, familyRouter);
 
 // middleware 404
 app.use(error.notFound);
