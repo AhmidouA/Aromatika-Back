@@ -152,7 +152,7 @@ const oilController = {
         message: "Erreur lors de la suppression de l'huile avec l'id: " + oilId,
       });
     }
-  },
+  }
 };
 
 module.exports = oilController;

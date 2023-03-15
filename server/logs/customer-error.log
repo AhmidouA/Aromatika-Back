@@ -588,3 +588,5 @@ Date:[2023-03-15 17:16:24] [ERROR] Methode:[PATCH] Routes:[/family/10] La famill
 Date:[2023-03-15 17:17:57] [ERROR] Methode:[PATCH] Routes:[/family/10] La famille Mellooolaoalala existe déja
 Date:[2023-03-15 17:22:34] [ERROR] Methode:[PATCH] Routes:[/family/9] La famille Mellooolaoalala existe déja
 Date:[2023-03-15 17:25:50] [ERROR] Methode:[PATCH] Routes:[/family/9] La famille Mellooolaoalala existe déja
+Date:[2023-03-15 17:43:03] [ERROR] Methode:[DELETE] Routes:[/family/11] Erreur lors de la suppression de l'huile avec l'id: 11
+Date:[2023-03-15 17:44:05] [ERROR] Methode:[DELETE] Routes:[/family/12] Erreur lors de la suppression de l'huile avec l'id: 12

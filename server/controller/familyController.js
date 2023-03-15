@@ -19,15 +19,11 @@ const categoryController = {
           method: req.method,
           message: `Erreur lors de l'envoi des familles `,
         });
-        res
-          .status(500)
-          .json({ message: `Erreur lors de l'envoi des familles` });
+        res.status(500).json({ message: `Erreur lors de l'envoi des familles` });
       }
       res.status(200).json(families);
     } catch (err) {
-      console.error(
-        `Erreur lors de l'envoi de toutes les familles: ${err.message}`
-      );
+      console.error( `Erreur lors de l'envoi de toutes les familles: ${err.message}`);
     }
   },
 
@@ -140,6 +136,33 @@ const categoryController = {
       });
     }
   },
+
+  // module pour supprimer une famille
+  async deleteFamily (req, res) {
+   // récupére l'id de l'huile
+   const familyId = req.params.id;
+   console.log(chalk.bgBlack("{ familyId }>>>>>>", familyId));
+
+   try {
+     // Appel de la méthode du modèle (dataMapper) pour supprimer unee huile
+     const family = await familyModel.deleteOneFamily(familyId);
+     const familyName = family.name;
+     console.log(chalk.bgGreen("oilName>>>>>>", familyName));
+
+     res.status(201).json({ Message: `la famille ${familyName} a bien été supprimée ` });
+   } catch (err) {
+     console.error(
+       chalk.bgRedBright(`Erreur lors de la suppression de l'huile avec l'id: ${familyId}`));
+       
+     res.status(500).json({ message:`Erreur lors de la suppression de l'huile avec l'id: ${familyId}`});
+
+     logger.customerLogger.log("error", {
+       url: req.url,
+       method: req.method,
+       message: `Erreur lors de la suppression de l'huile avec l'id: ${familyId}`
+     });
+   }
+ }
 };
 
 module.exports = categoryController;

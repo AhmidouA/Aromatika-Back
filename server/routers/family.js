@@ -28,6 +28,10 @@ router.post("/family", auth.checkToken, auth.isAdmin, familyController.createFam
 router.patch("/family/:id", auth.checkToken, auth.isAdmin, familyController.updateFamily);
 
 
+//DELETE /family/:id - route pour modifier une famille des huiles
+router.delete("/family/:id", auth.checkToken, auth.isAdmin, familyController.deleteFamily);
+
+
 
 
 module.exports = router;
