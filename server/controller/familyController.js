@@ -27,6 +27,7 @@ const categoryController = {
     }
   },
 
+
   // module avoir une famille par Id
   async getFamilyById(req, res) {
     const familyId = req.params.id;
@@ -58,6 +59,7 @@ const categoryController = {
     }
   },
 
+
   // Module creation d'une famille
   async createFamily(req, res) {
     const familyName = req.body.name;
@@ -70,24 +72,18 @@ const categoryController = {
         method: req.method,
         message: `Vous devez renseigner le nom de la famille`,
       });
-      return res
-        .status(500)
-        .json({ message: `Vous devez renseigner le nom de la famille` });
+      return res.status(500).json({ message: `Vous devez renseigner le nom de la famille` });
     }
 
     try {
       // Appel de la méthode du modèle (dataMapper) pour inserer unee huile
       const family = await familyModel.insertFamily(familyName);
       // console.log(chalk.bgGreen(family));
+      res.status(200).json({ Message: `Vous avez crée la famille: ${familyName}`});
 
-      res
-        .status(200)
-        .json({ Message: `Vous avez crée la famille: ${familyName}`});
     } catch (err) {
       console.error(
-        chalk.bgRedBright(
-          `Erreur lors de la creation de la famille: ${err.message}`
-        )
+        chalk.bgRedBright(`Erreur lors de la creation de la famille: ${err.message}`)
       );
       res.status(500).json({ message: `Le nom de la famille existe déja` });
 
@@ -98,6 +94,7 @@ const categoryController = {
       });
     }
   },
+
 
   // Module pour update une famille
   async updateFamily(req, res) {
@@ -112,7 +109,7 @@ const categoryController = {
         method: req.method,
         message: `Tous les champs doivent être remplis`,
       });
-      return res.status(400).json({ message: `Tous les champs doivent être remplis` });}
+      return res.status(500).json({ message: `Tous les champs doivent être remplis` });}
 
     try {
       // Appel de la méthode du modèle (dataMapper) pour mettre à jour la catégorie
