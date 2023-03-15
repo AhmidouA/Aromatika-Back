@@ -17,20 +17,25 @@ const oilController = {
       // Si aucune huile n'a été trouvée, enregistrement de l'erreur dans les logs et
       //renvoi d'une réponse avec un message d'erreur
       if (!oil) {
-        res
-          .status(500)
-          .json({ message: `Huile avec l'id ${oilId} n'a pas été trouvée.` });
+        res.status(500).json({ message: `Huile avec l'id ${oilId} n'a pas été trouvée.` });
+
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Huile avec l'id " + oilId + " n'a pas été trouvée",
+          message: `Huile avec l'id ${oilId} n'a pas été trouvée`,
         });
       }
       res.status(200).json(oil);
     } catch (err) {
       console.error(
-        chalk.bgRedBright(`Erreur lors de l'envoi de l'huile: ${err.message}`)
-      );
+        chalk.bgRedBright(`Erreur lors de l'envoi de l'huile: ${err.message}`));
+
+        res.status(500).json({ message: `l'huile ${oilId} est introuvable` });
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: `l'huile ${oilId} est introuvable`
+        });
     }
   },
 
@@ -49,11 +54,11 @@ const oilController = {
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Tous les champs n'ont pas été remplis",
+        message: `Tous les champs n'ont pas été remplis`,
       });
       return res
         .status(400)
-        .json({ message: "Tous les champs doivent être remplis" });
+        .json({ message: `Tous les champs doivent être remplis` });
     }
 
     try {
@@ -69,11 +74,11 @@ const oilController = {
       );
       res
         .status(500)
-        .json({ message: "Le nom ou le nom botanique existent déja" });
+        .json({ message: `Le nom ou le nom botanique existent déja` });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Le nom ou le nom botanique existent déja",
+        message: `Le nom ou le nom botanique existent déja`,
       });
     }
   },
@@ -96,26 +101,26 @@ const oilController = {
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Tous les champs doivent être remplis",
+        message: `Tous les champs doivent être remplis`
       });
-      return res.status(400).json({ message: "Tous les champs doivent être remplis" });}
+      return res.status(400).json({ message: `Tous les champs doivent être remplis` });}
 
     try {
 
       // Appel de la méthode du modèle (dataMapper) pour modifier unee huile
       const updatedOil = await oilModel.updateOneOil(id, req.body);
       console.log(chalk.green(updatedOil));
-      res.status(200).json({Message: "L'huile a bien été modfié " + updatedOil});
+      res.status(200).json({Message: `L'huile a bien été modfié ${updatedOil}`});
     } catch (err) {
       console.error(
         chalk.bgRedBright(
-          `Erreur lors de la modification de l'huile: ${err.message}` + "l'id " + id));
+          `Erreur lors de la modification de l'huile: ${err.message} l'id ${id}`));
 
-      res.status(500).json({ message: "Erreur lors de la modification de l'huile: " + id });
+      res.status(500).json({ message: `Erreur lors de la modification de l'huile: ${id}`});
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Erreur lors de la modification de l'huile: " + id,
+        message: `Erreur lors de la modification de l'huile: ${id}`,
       });
     }
   },
@@ -131,25 +136,17 @@ const oilController = {
       const oil = await oilModel.deleteOneOil(oilId);
       const oilName = oil.name;
       console.log(chalk.bgGreen("oilName>>>>>>", oilName));
-      res
-        .status(201)
-        .json({ Message: `l' huile ${oilName} a bien été supprimée ` });
+
+      res.status(201).json({ Message: `l' huile ${oilName} a bien été supprimée ` });
     } catch (err) {
       console.error(
-        chalk.bgRedBright(
-          "Erreur lors de la suppression de l'huile avec l'id: " + oilId
-        )
-      );
-      res
-        .status(500)
-        .json({
-          message:
-            "Erreur lors de la suppression de l'huile avec l'id: " + oilId,
-        });
+        chalk.bgRedBright(`Erreur lors de la suppression de l'huile avec l'id: ${oilId}`));
+
+      res.status(500).json({message:`Erreur lors de la suppression de l'huile avec l'id: ${oilId}`});
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Erreur lors de la suppression de l'huile avec l'id: " + oilId,
+        message: `Erreur lors de la suppression de l'huile avec l'id: ${oilId}`,
       });
     }
   }

@@ -43,14 +43,12 @@ const userController = {
       res.status(201).json({ Message: "Bienvenu ", name: formData.username });
     } catch (err) {
       console.error(chalk.bgRedBright(err));
-      res
-        .status(500)
-        .json({ message: `Le Pseudo ou l'email est déjà utilisé` });
 
+      res.status(500).json({ message: `Le Pseudo ou l'email est déjà utilisé` });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Le Pseudo ou l'email est déjà utilisé",
+        message: `Le Pseudo ou l'email est déjà utilisé`,
       });
     }
   },
@@ -78,11 +76,9 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "utilisateur ou mot de passe incorrect",
+          message: `utilisateur ou mot de passe incorrect`,
         });
-        return res
-          .status(500)
-          .json({ message: `utilisateur ou mot de passe incorrect` });
+        return res.status(500).json({ message: `utilisateur ou mot de passe incorrect` });
       }
 
       // stocke la session de l'utilisateur. Elle permet de garder la session active de l'utilisateur par rapport a son role
@@ -114,14 +110,12 @@ const userController = {
       res.json({ name: formattedUser.name, user_id:formattedUser.id,  token });
     } catch (err) {
       console.error(chalk.bgRedBright(err));
-      res
-        .status(500)
-        .json({ message: "utilisateur non inscrit " + formattedUser });
 
+      res.status(500).json({ message: `utilisateur non inscrit`, formattedUser });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "utilisateur non isncrit " + formattedUser,
+        message: `utilisateur non isncrit`, formattedUser
       });
     }
   },
@@ -151,9 +145,9 @@ const userController = {
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Tous les champs n'ont pas été remplis",
+        message: `Tous les champs n'ont pas été remplis`,
       });
-      return res.status(500).json({ message: "Tous les champs doivent être remplis" });
+      return res.status(500).json({ message: `Tous les champs doivent être remplis` });
     }
 
     try {
@@ -165,11 +159,9 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "utilisateur incorrect",
+          message: `utilisateur incorrect`,
         });
-        return res
-          .status(500)
-          .json({ message: `utilisateur incorrect` });
+        return res.status(500).json({ message: `utilisateur incorrect` });
       }
 
         // check si l'id de la personne connecté et celle qui veut add sont les meme.
@@ -187,11 +179,9 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Mot de passe incorrect" ,
+          message: `Mot de passe incorrect` ,
         });
-        return res
-          .status(500)
-          .json({ message: "Mot de passe incorrect" });
+        return res.status(500).json({ message: `Mot de passe incorrect` });
       }
 
       // Vérifier que le nouveau mot de passe correspond à la confirmation
@@ -199,11 +189,9 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Le nouveaux mots de passe ne correspondent pas.",
+          message: `Le nouveaux mots de passe ne correspondent pas`,
         });
-        return res
-          .status(500)
-          .json({ message: "Le nouveaux mots de passe ne correspondent pas." });
+        return res.status(500).json({ message: `Le nouveaux mots de passe ne correspondent pas` });
       }
 
        // Hasher le nouveau mot de passe
@@ -211,18 +199,16 @@ const userController = {
 
       // mettre a jour le nouveau mot de passe 
       await userModel.updateUserPassword(userId, hashedPassword)
-      res.json({ message: "Le mot de passe a été modifié avec succès." });
+      res.json({ message: `Le mot de passe a été modifié avec succès` });
 
     } catch (error) {
       console.error(chalk.bgRedBright(error));
-      res
-        .status(500)
-        .json({ error: "Erreur lors de la modification du mot de passe de " + user.name });
 
+      res.status(500).json({ error: `Erreur lors de la modification du mot de passe de ${user.name} ` });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Erreur lors de la modification du mot de passe " + user.name,
+        message: `Erreur lors de la modification du mot de passe de ${user.name} `
       });
     }
   },
@@ -249,9 +235,9 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Le compte n\'existe pas " + email
+          message: `Le compte n'existe pas ${email}`
         });
-        return res.json('Le compte n\'existe pas')
+        return res.json(`Le compte n'existe pas ${email}`)
       }
 
       // generation du token grace a l'email d'identification et une durée de 10min pour le token
@@ -265,17 +251,15 @@ const userController = {
 
       await mail.sendPasswordResetEmail(user,token)
       
-      res.json({Message : 'Le compte existe et le mail a été envoyé', token:token, })
+      res.json({Message : `Le compte existe et le mail a été envoyé`, token:token })
     } catch (error) {
       console.error(chalk.bgRedBright(error));
-      res
-        .status(500)
-        .json({ error: "Erreur lors de la récuperation du compte " });
 
+      res.status(500).json({ error: `Erreur lors de la récuperation du compte` });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Erreur lors de la récuperation du compte  "
+        message: `Erreur lors de la récuperation du compte`
       });
     }
   },
@@ -297,9 +281,9 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Le compte n\'existe pas " + email
+          message: `Le compte n'existe pas`
         });
-        return res.json('Le compte n\'existe pas')
+        return res.json(`Le compte n'existe pas`)
       }
 
       // Avoir les valeurs de l'objet du token depuis req.token
@@ -307,20 +291,18 @@ const userController = {
       console.log(chalk.bgBlue("{ verify }>>>>>>", verify.email));
 
       if (!verify) {
-        res.json({Message : 'Utilisateur non autorisé'});
+        res.json({Message : `Utilisateur non autorisé`});
       }
 
-      res.json({Message: 'Utilisateur autorisé'})
+      res.json({Message: `Utilisateur autorisé`})
     } catch (error) {
       console.error(chalk.bgRedBright(error));
-      res
-        .status(500)
-        .json({ error: "Erreur lors de la modification du mot de passe de " });
 
+      res.status(500).json({ error: `Erreur lors de la modification du mot de passe` });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Erreur lors de la modification du mot de passe "
+        message: `Erreur lors de la modification du mot de passe `
       });
     }
   },
@@ -336,9 +318,9 @@ const userController = {
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Tous les champs n'ont pas été remplis",
+        message: `Tous les champs n'ont pas été remplis`,
       });
-      return res.status(500).json({ message: "Tous les champs doivent être remplis" });
+      return res.status(500).json({ message: `Tous les champs doivent être remplis` });
     }
     try{
 
@@ -351,9 +333,9 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Le compte n\'existe pas " + email
+          message: `Le compte n'existe pas`
         });
-        return res.json('Le compte n\'existe pas')
+        return res.json(`Le compte n'existe pas`)
       }
 
       // Avoir les valeurs de l'objet du token depuis req.token
@@ -361,7 +343,7 @@ const userController = {
       console.log(chalk.bgBlue("{ verify }>>>>>>", verify.email));
 
       if (!verify) {
-        res.json({Message : 'Ce n\'est pas bon'});
+        res.json({Message : `Ce n'est pas bon`});
       }
 
      
@@ -370,11 +352,9 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Le nouveaux mots de passe ne correspondent pas.",
+          message: `Le nouveaux mots de passe ne correspondent pas`,
         });
-        return res
-          .status(500)
-          .json({ message: "Le nouveaux mots de passe ne correspondent pas." });
+        return res.status(500).json({ message: `Le nouveaux mots de passe ne correspondent pas` });
       }
 
       // Hasher le nouveau mot de passe
@@ -382,17 +362,15 @@ const userController = {
 
       // mettre a jour le nouveau mot de passe 
       await userModel.updateUserPassword(id, hashedPassword)
-      res.json({ message: "Le mot de passe a été modifié avec succès." });
+      res.json({ message: `Le mot de passe a été modifié avec succès` });
     } catch (error) {
       console.error(chalk.bgRedBright(error));
-      res
-        .status(500)
-        .json({ error: "Erreur lors de la modification du mot de passe de " });
 
+      res.status(500).json({ error: `Erreur lors de la modification du mot de passe` });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Erreur lors de la modification du mot de passe "
+        message: `Erreur lors de la modification du mot de passe`
       });
     }
   },
@@ -411,17 +389,15 @@ const userController = {
 
       const user = await userModel.addUserPicture(userId, file);
       console.log(chalk.bgGreen("{ user }>>>>>>", Object.values(user)));
-      res.status(200).json({ message: `L'image a bien été téléchargé.`, file });
+      res.status(200).json({ message: `L'image a bien été téléchargé`, file });
     } catch (error) {
       console.error(chalk.bgRedBright(error));
-      res
-        .status(500)
-        .json({ error: `Erreur lors du téléchargement de l'image` });
 
+      res.status(500).json({ error: `Erreur lors du téléchargement de l'image` });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Erreur lors du téléchargement de l'image",
+        message: `Erreur lors du téléchargement de l'image`,
       });
     }
   },
@@ -470,7 +446,7 @@ const userController = {
     // console.log(chalk.bgCyan("userImage>>>>>>>>", userImage))
 
     res.status(200).json({
-      Message: "Vous etes bien authentifié avec l'email ",
+      Message: `Vous etes bien authentifié avec l'email `,
       userMail: userMail,
       created_at: created_at,
       userName: userName,
@@ -512,9 +488,9 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Huile non trouvée avec l'id " + oil_id,
+          message: `Huile non trouvée avec l'id  ${oil_id}`
         });
-        return res.status(500).json({ error: "Huile non trouvée avec l'id " + oil_id });
+        return res.status(500).json({ error: `Huile non trouvée avec l'id  ${oil_id}` });
       }
 
       // Regarde les favoris de l'user dans la fonction findByuser du models
@@ -527,36 +503,25 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message:
-          "L'huile est déja dans vos favoris " + user.username,
+          message:`L'huile est déja dans vos favoris ${user.username}`
         });
-        return res
-          .status(500)
-          .json({
-            Message:
-              "L'huile est déja dans vos favoris " + user.username,
-          });
+        return res.status(500).json({Message:  `L'huile est déja dans vos favoris ${user.username}`});
       }
 
       // Ajoute l'huile aux favoris de l'user
       const updatedFavorites = await userModel.addFavoritsUser(user_id, oil_id);
       console.log(chalk.bgBlue("{ updatedFavorites }>>>>>>", updatedFavorites));
 
-      res
-        .status(200)
-        .json({ message: `Favori ajouté.`, updatedFavorites });
+      res.status(200).json({ message: `Favori ajouté.`, updatedFavorites });
     } catch (err) {
       console.error(chalk.bgRedBright(err));
-      res.status(500).json({ error: "Erreur lors de l'ajout du favori" });
 
+      res.status(500).json({ error: "Erreur lors de l'ajout du favori" });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
         message:
-          "Erreur lors de l'ajout du favori de l'user_id " +
-          user_id +
-          " et de l'huile_id " +
-          oil_id,
+        `Erreur lors de l'ajout du favori de l'user_id ${user_id} et de l'huile_id ${oil_id}`
       });
     }
   },
@@ -595,7 +560,7 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Huile non trouvée.` " + oil,
+          message: `Huile non trouvée ${oil}`
         });
         return res.status(500).json({ error: `Huile non trouvée.` });
       }
@@ -611,31 +576,24 @@ const userController = {
           url: req.url,
           method: req.method,
           message:
-            "L'huile n'est pas dans les favoris de " + user.username,
+          `L'huile n'est pas dans les favoris de ${user.username}`
         });
-        return res
-          .status(500)
-          .json({
-            Message:
-            "L'huile n'est pas dans les favoris de " + user.username,
-          });
+        return res.status(500).json({ Message:`L'huile n'est pas dans les favoris de ${user.username}`});
       }
 
       // Supprime l'huile aux favoris de l'user
       const favorite = await userModel.deleteFavoritsUser(user_id, oil_id);
       console.log(chalk.bgBlue("{ huile favorite id }>>>>>>", oil_id));
 
-      res.status(200).json({ message: "Favori supprimé.", favorite });
+      res.status(200).json({ message: `Favori supprimé`, favorite });
     } catch (err) {
       console.error(chalk.bgRedBright(err));
-      res
-        .status(500)
-        .json({ error: `Erreur lors de la suppression du favori` });
+      res.status(500).json({ error: `Erreur lors de la suppression du favori` });
 
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Erreur lors de la suppression du favori",
+        message: `Erreur lors de la suppression du favori`,
       });
     }
   },
@@ -671,9 +629,9 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Huile non trouvée avec l'id " + oil_id,
+          message: `Huile non trouvée avec l'id ${oil_id}`
         });
-        return res.status(500).json({ error: "Huile non trouvée avec l'id " + oil_id });
+        return res.status(500).json({ error: `Huile non trouvée avec l'id ${oil_id}`});
       }
 
       // Regarde l'aromatheque de l'user dans la fonction findByUser du models
@@ -687,13 +645,10 @@ const userController = {
           url: req.url,
           method: req.method,
           message:
-          "L'huile est déja dans votre Aromatheque " + user.username,
+          `L'huile est déja dans votre Aromatheque ${user.username}`
         });
-        return res
-          .status(500)
-          .json({
-            Message:
-              "L'huile est déja dans votre Aromatheque " + user.username,
+        return res.status(500).json({
+            Message:`L'huile est déja dans votre Aromatheque ${user.username}`
           });
       }
 
@@ -712,10 +667,7 @@ const userController = {
         url: req.url,
         method: req.method,
         message:
-          "Erreur lors de l'ajout de l'aromatheque de l'user_id " +
-          user_id +
-          " et de l'huile_id " +
-          oil_id,
+        `Erreur lors de l'ajout de l'aromatheque de l'user_id ${user_id} et de l'huile_id ${oil_id}`
       });
     }
   },
@@ -748,15 +700,15 @@ async deleteAromatheque(req, res) {
 
     // Recuépere de l'id de l'huile
     const oil = await oilModel.getOneOilById(oil_id);
-    console.log(chalk.bgYellow("{ oil_id }>>>>>>", +oil_id));
+    console.log(chalk.bgYellow("{ oil_id }>>>>>>", oil_id));
     // Check pour voir si l'huile existe bien
     if (!oil) {
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Huile non trouvée.` " + oil,
+        message: `Huile non trouvée` + oil
       });
-      return res.status(500).json({ error: `Huile non trouvée.` });
+      return res.status(500).json({ error: `Huile non trouvée` });
     }
 
     // Récupère l'aromatheque de l'utilisateur
@@ -770,13 +722,13 @@ async deleteAromatheque(req, res) {
         url: req.url,
         method: req.method,
         message:
-          "L'huile n'est pas dans l'Aromatheque de " + user.username,
+        `L'huile n'est pas dans l'Aromatheque de ${user.username}`,
       });
       return res
         .status(500)
         .json({
           Message:
-          "L'huile n'est pas dans l'Aromatheque de " + user.username,
+          `L'huile n'est pas dans l'Aromatheque de ${user.username}`
         });
     }
 
@@ -784,7 +736,7 @@ async deleteAromatheque(req, res) {
     const aromatheque = await userModel.deleteAromathequeUser(user_id, oil_id);
     console.log(chalk.bgBlue("{ huile favorite id }>>>>>>", oil_id));
 
-    res.status(200).json({ message: "aromatheque supprimé.", aromatheque });
+    res.status(200).json({ message: `aromatheque supprimé`, aromatheque });
   } catch (err) {
     console.error(chalk.bgRedBright(err));
     res
@@ -806,7 +758,7 @@ async deleteAromatheque(req, res) {
     delete req.session.user;
     delete req.token;
 
-    res.json({ message: "déconnexion" });
+    res.json({ message: `déconnexion` });
   },
 };
 

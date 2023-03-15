@@ -20,21 +20,20 @@ const categoryController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: "Erreur lors de l'envoi des catégories ",
+          message: `Erreur lors de l'envoi de toutes les catégories`
         });
-        res
-          .status(500)
-          .json({ message: "Erreur lors de l'envoi des catégories" });
+        res.status(500).json({ message: "Erreur lors de l'envoi des catégories" });   
       }
+
       res.status(200).json(categories);
     } catch (err) {
-      console.error(
-        `Erreur lors de l'envoi de toutes les catégories: ${err.message}`
-      );
+      console.error(`Erreur lors de l'envoi de toutes les catégories: ${err.message}`);
+
+      res.status(500).json({ message: `Erreur lors de l'envoi de toutes les catégories` });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "Erreur lors de l'envoi des catégories ",
+        message: `Erreur lors de l'envoi de toutes les catégories`
       });
     }
   },
@@ -59,15 +58,10 @@ const categoryController = {
           method: req.method,
           message: `La catégorie avec l'id ${id} n'a pas été trouvée.`,
         });
-        res
-          .status(500)
-          .json({
-            message: `La catégorie avec l'id ${id} n'a pas été trouvée.`,
-          });
+        res.status(500).json({message: `La catégorie avec l'id ${id} n'a pas été trouvée.`,});
       }
-      res
-        .status(200)
-        .json({
+
+      res.status(200).json({
           category_id: category.id,
           category_name: category.name,
           category_description: category.description,
@@ -75,6 +69,13 @@ const categoryController = {
         });
     } catch (err) {
       console.error(`Erreur lors de l'envoi d'une catégorie: ${err.message}`);
+
+      res.status(500).json({ message: `la catégorie ${id} est introuvable` });
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: `la catégorie ${id} est introuvable`
+      });
     }
   },
 
@@ -89,19 +90,13 @@ const categoryController = {
       console.log(chalk.bgGreen("category>>>>>>", category));
       res.status(200).json(category.rows[0]);
     } catch (err) {
-      console.error(
-        `Erreur lors de la création de la catégorie: ${err.message}`
-      );
-      res
-        .status(500)
-        .json({ error: "Erreur serveur lors de la création de la catégorie" });
+      console.error(`Erreur lors de la création de la catégorie: ${err.message}`);
+
+      res.status(500).json({ error: `Erreur lors de la création de la catégorie` });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message:
-          "Erreur serveur lors de la création de la catégorie " +
-          Object.values(name),
-      });
+        message:`Erreur lors de la création de la catégorie ${name}`});
     }
   },
 
@@ -129,16 +124,13 @@ const categoryController = {
               message:"La catégorie " + name + " est introuvable et son id est le: " + categoryId});
         }
     } catch (err) {
-      console.error(
-        `Erreur lors de la modification de la catégorie: ${err.message}`
-      );
-      res
-        .status(500)
-        .json({ message: `La catégorie ${name.name} existe déja` });
+      console.error(`Erreur lors de la modification de la catégorie: ${err.message}`);
+      res.status(500).json({ message: `La catégorie ${name.name} existe déja` });
+
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message: "La catégorie " + name.name + " existe déja",
+        message: `La catégorie ${name.name} existe déja`
       });
     }
   },
@@ -157,28 +149,16 @@ const categoryController = {
 
       // Supprimer la catégorie
       const result = await categoryModel.deleteOneCategory(categoryId);
-      res
-        .status(200)
-        .json({
-          Message: `la catégorie ${categoryName} a bien été supprimée `,
-        });
+      res .status(200).json({ Message: `la catégorie ${categoryName} a bien été supprimée `});
+
     } catch (err) {
-      console.error(
-        `Erreur lors de la suppression de la catégorie: ${err.message}`
-      );
-      res
-        .status(500)
-        .json({
-          message:
-            "Erreur lors de la suppression de la catégorie avec l'id: " +
-            categoryId,
-        });
+      console.error(`Erreur lors de la suppression de la catégorie: ${err.message}`);
+
+      res.status(500).json({message:`Erreur lors de la suppression de la catégorie: avec l'id: ${categoryId}`});
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
-        message:
-          "Erreur lors de la suppression de la catégorie avec l'id: " +
-          categoryId,
+        message:`Erreur lors de la suppression de la catégorie: avec l'id: ${categoryId}`
       });
     }
   },

@@ -24,6 +24,13 @@ const categoryController = {
       res.status(200).json(families);
     } catch (err) {
       console.error( `Erreur lors de l'envoi de toutes les familles: ${err.message}`);
+
+      res.status(500).json({ message: `Les famille sont introuvable` });
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: `Les famille sont introuvable`
+      });
     }
   },
 
@@ -41,7 +48,7 @@ const categoryController = {
       //renvoi d'une réponse avec un message d'erreur
       if (!family) {
         res.status(500).json({
-          message: `La famille avec l'id ${familyId} n'a pas été trouvée.`,
+          message: `La famille avec l'id ${familyId} n'a pas été trouvée`,
         });
         logger.customerLogger.log("error", {
           url: req.url,
@@ -52,10 +59,14 @@ const categoryController = {
       res.status(200).json({ Message: "La famille: " + family.name });
     } catch (err) {
       console.error(
-        chalk.bgRedBright(
-          `Erreur lors de l'envoi de la famille: ${err.message}`
-        )
-      );
+        chalk.bgRedBright(`Erreur lors de l'envoi de la famille: ${err.message}`));
+
+        res.status(500).json({ message: `la famille ${familyId} est introuvable` });
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: `la famille ${familyId} est introuvable `
+        });
     }
   },
 
