@@ -5,7 +5,6 @@ FROM node:16-alpine3.16
 WORKDIR /app
 
 # copie des fichiers de l'application dans l'image
-# le premier . c'est parce que nous somme déja dans le dossier source: maestro@MBP-de-Maestro Grandma's Cooking % 
 COPY . .
 
 # Copie le fichier package.json et package-lock.json dans le conteneur
