@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const path = require('path');
 // module dotenv
 require("dotenv").config();
 // Les routers
@@ -39,7 +40,10 @@ expressJSDocSwagger(app)(options);
 /**** Configuration express  ****/
 /********************************/
 
-
+// middleware favicon
+const favicon = require('serve-favicon');
+// Définir le chemin d'accès l'image favicon.ico
+app.use(favicon(path.join("./server/public/upload/favicon.ico")));
 
 // les cors pour l'appel a l'Api
 const cors = require("cors");
