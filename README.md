@@ -1,36 +1,64 @@
-## Available Scripts
+#Aromatikä
+Aromatikä est une application pour gérer les huiles essentielles. Cette application utilise PostgreSQL pour stocker les données. Elle est construite avec Node.js, Express, pg et d'autre dépendances 
 
-In the project directory, you can run:
 
-### `npm start`
+## Installation
+1- Cloner le dépôt git
+```bash
+git clone https://github.com/ton-nicolas-92/aromatika.git
+```
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+2- Installer les dépendances
+```bash
+cd aromatika
+npm install
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+3- Créer un fichier .env pour les variables d'environnement
+```bash
+cp .env.example .env
+```
 
-### `npm test`
+4- Modifier les valeurs des variables d'environnement dans le fichier .env avec les valeurs appropriées
+```bash
+PORT=
+PGUSER=
+PGDATABASE=
+PGPASSWORD=
+PGHOST=
+REFRESH_SECRET=
+EMAIL_USERNAME=
+EMAIL_PASSWORD= 
+SECRET=
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](#running-tests) for more information.
+5- Créer une base de données PostgreSQL pour l'application.
 
-### `npm run build`
+6- Lancer l'application
+```bash
+npm start
+// ou 
+node index.js
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Utilisation
+Une fois l'application lancée, ouvrez votre navigateur web et accédez à http://localhost:3000 pour accéder à l'application.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Fonctionnalités
+L'application permet de:
 
-See the section about [deployment](#deployment) for more information.
+Consulter la liste des huiles essentielles
+Consulter la liste des catégories
+Consulter la liste des familles
+Ajouter/modifier/supprimer des huiles essentielles
+Ajouter/modifier/supprimer des catégories
+Ajouter/modifier/supprimer des familles
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it. 
+## Contribuer
+Forker le dépôt
+Créer une nouvelle branche (git checkout -b feature/feature-name)
+Faire les modifications nécessaires
+Faire un commit (git commit -am 'Add some feature')
+Pousser les modifications (git push origin feature/feature-name)
+Créer une Pull Request
+Licence
