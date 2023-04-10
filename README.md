@@ -61,5 +61,3 @@ Faire un commit (git commit -am 'Add some feature')
 Pousser les modifications (git push origin feature/feature-name)
 Créer une Pull Request
 Licence
-
-###
