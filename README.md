@@ -1,7 +1,6 @@
 #Aromatikä
 Aromatikä est une application pour gérer les huiles essentielles. Cette application utilise PostgreSQL pour stocker les données. Elle est construite avec Node.js, Express, pg et d'autre dépendances 
 
-
 ## Installation
 1- Cloner le dépôt git
 ```bash
@@ -62,3 +61,5 @@ Faire un commit (git commit -am 'Add some feature')
 Pousser les modifications (git push origin feature/feature-name)
 Créer une Pull Request
 Licence
+
+###
