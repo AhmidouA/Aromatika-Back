@@ -1,4 +1,4 @@
-#Aromatikä
+# Aromatikä
 Aromatikä est une application pour gérer les huiles essentielles. Cette application utilise PostgreSQL pour stocker les données. Elle est construite avec Node.js, Express, pg et d'autre dépendances 
 
 ## Installation
