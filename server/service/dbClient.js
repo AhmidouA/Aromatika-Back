@@ -4,7 +4,7 @@ const Pool = new Client({
 });
 // console.log(client);
 Pool.connect((err) => {
-  if(err) throw new err
+  if(err) throw err
     console.log("Connect to PostgreSQL Successfully")
 });
 
