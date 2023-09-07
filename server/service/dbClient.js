@@ -1,5 +1,5 @@
 const { Pool } = require('pg');
-const Pool = new Client({
+const Pool = new Pool({
   connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 });
 // console.log(client);
