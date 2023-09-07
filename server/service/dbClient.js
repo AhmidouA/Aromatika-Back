@@ -4,5 +4,10 @@ const pool = new Pool({
   })
 // console.log(client);
 
+pool.connect((err) => {
+  if(err) throw new err
+    console.log("Connect to PostgreSQL Successfully")
+});
+
 
 module.exports = pool;
