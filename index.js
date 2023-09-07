@@ -1,5 +1,13 @@
 const express = require("express");
+
 const app = express();
+
+// Importez le module express-session pour gérer les sessions.
+const session = require('cookie-session');
+// Importez le module connect-redis, qui permet de stocker les sessions dans Redis.
+
+
+
 const path = require('path');
 // module dotenv
 require("dotenv").config();
@@ -64,8 +72,8 @@ app.use((err, req, res, next) => {
 // Le port du serveur
 const PORT = process.env.PORT ?? 3000;
 
-// middleware Session
-const session = require("express-session");
+//  middleware pour la gestion des sessions
+
 app.use(
   session({
     saveUninitialized: true,
