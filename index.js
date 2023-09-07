@@ -62,7 +62,7 @@ app.use((err, req, res, next) => {
 });
 
 // Le port du serveur
-// const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT ?? 3000;
 
 // middleware Session
 const session = require("express-session");
@@ -89,6 +89,6 @@ app.use(userRouter, oilRouter, categoryRouter, familyRouter);
 app.use(error.notFound);
 
 // l'écoute du serveur
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
   console.log(`Listening on aromatika-back-git-main-ahmidoua.vercel.app:${process.env.PORT}`);
 });
