@@ -90,5 +90,5 @@ app.use(error.notFound);
 
 // l'écoute du serveur
 app.listen(process.env.PORT, () => {
-  console.log(`Listening on http://localhost:${process.env.PORT}`);
+  console.log(`Listening on aromatika-back-git-main-ahmidoua.vercel.app:${process.env.PORT}`);
 });
