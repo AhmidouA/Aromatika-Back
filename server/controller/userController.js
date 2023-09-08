@@ -34,8 +34,8 @@ const userController = {
   async signup(req, res) {
     // recupere les donnée du body
     const formData = req.body;
-    console.log(chalk.bgBlue("{ formData.username }>>>>>>", formData.username));
-    console.log(chalk.bgBlue("{ formData.mail }>>>>>>", formData.email));
+    // console.log(chalk.bgBlue("{ formData.username }>>>>>>", formData.username));
+    // console.log(chalk.bgBlue("{ formData.mail }>>>>>>", formData.email));
 
     try {
       // Appel la bdd et insert les nouvelle donnée
@@ -65,7 +65,7 @@ const userController = {
     // récupere les données du formulaire (email et mot de passe)
     const { email, password } = req.body;
     // Les donnée du formulaire
-    console.log(chalk.bgBlue("{ email password }>>>>>>", email));
+    // console.log(chalk.bgBlue("{ email password }>>>>>>", email));
 
     try {
       // Appel du datamapper pour récupérer l'utilisateur
@@ -103,8 +103,8 @@ const userController = {
         }
       );
 
-      console.log(chalk.bgBlack("{ TOKEN }>>>>>>", token));
-      console.log(chalk.bgGrey("{ formattedUser.id }>>>>>>", formattedUser.id));
+      // console.log(chalk.bgBlack("{ TOKEN }>>>>>>", token));
+      // console.log(chalk.bgGrey("{ formattedUser.id }>>>>>>", formattedUser.id));
 
       // Si l'utilisateur existe et le mot de passe est correct on le connecte et on renvoi le token
       res.json({ name: formattedUser.name, user_id:formattedUser.id,  token });
@@ -136,9 +136,9 @@ const userController = {
   // Module pour modifier le mot de passe.
   async updatePassword (req, res) {
     const { oldPassword, password, confirmPassword } = req.body;
-    console.log(chalk.bgBlue("{ oldPassword, password, confirmPassword }>>>>>>", { oldPassword, password, confirmPassword }));
+    // console.log(chalk.bgBlue("{ oldPassword, password, confirmPassword }>>>>>>", { oldPassword, password, confirmPassword }));
     const userId = req.params.id
-    console.log(chalk.bgBlack("{ userId }>>>>>>", userId));
+    // console.log(chalk.bgBlack("{ userId }>>>>>>", userId));
 
      // Vérifier que toutes les données (not null) sont présentes
     if (!oldPassword ||!password ||!confirmPassword) {
@@ -152,7 +152,7 @@ const userController = {
 
     try {
       const user = await userModel.getUserById(userId)
-      console.log(chalk.bgCyan("{ user }>>>>>>", Object.values(user)));
+      // console.log(chalk.bgCyan("{ user }>>>>>>", Object.values(user)));
 
          // Si l'utilisateur n'existe pas ou le mot de passe est incorrect, afficher une erreur
       if (!user) {
@@ -222,9 +222,9 @@ const userController = {
 
   // module mot de passe oublié
   async sendPasswordResetEmail (req, res) {
-    console.log("req.body>>>>>", req.body)
+    // console.log("req.body>>>>>", req.body)
     const {email} = req.body
-    console.log(chalk.bgBlack("{ email }>>>>>>", email));
+    // console.log(chalk.bgBlack("{ email }>>>>>>", email));
 
     try {
       const user = await userModel.getUserByMail(email)
@@ -379,19 +379,19 @@ const userController = {
   // Module pour ajouter une photo au profile
   async addPicture(req, res) {
     const userId = req.params.id;
-    console.log(chalk.bgBlue("{ userId }>>>>>>", userId));
+    // console.log(chalk.bgBlue("{ userId }>>>>>>", userId));
 
     // récupere le chemin de l'image uploadée
     const file = req.file.filename;
-    console.log(chalk.bgCyan("{ picture }>>>>>>", file));
+    // console.log(chalk.bgCyan("{ picture }>>>>>>", file));
 
     try {
 
       const user = await userModel.addUserPicture(userId, file);
       console.log(chalk.bgGreen("{ user }>>>>>>", Object.values(user)));
-      res.status(200).json({ message: `L'image a bien été téléchargé`, file });
+      // res.status(200).json({ message: `L'image a bien été téléchargé`, file });
     } catch (error) {
-      console.error(chalk.bgRedBright(error));
+      // console.error(chalk.bgRedBright(error));
 
       res.status(500).json({ error: `Erreur lors du téléchargement de l'image` });
       logger.customerLogger.log("error", {
@@ -461,8 +461,8 @@ const userController = {
   // Module pour ajouter les huile au favoris
   async addFavorite(req, res) {
     const { user_id, oil_id } = req.body;
-    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + user_id));
-    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + oil_id));
+    // console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + user_id));
+    // console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + oil_id));
 
     try {
 
@@ -496,10 +496,18 @@ const userController = {
       // Regarde les favoris de l'user dans la fonction findByuser du models
       const userFavorites = await userModel.findFavoritesByUserId(user_id);
       console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.length));
-      // console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.oil_id));
+      // console.log(chalk.bgWhite("{ userFavorites }>>>>>>", JSON.stringify(userFavorites)));
 
-      // Vérifie si l'huile à ajouté est déja dans les favoris de l'utilisateur
-      if (oil_id in userFavorites) {
+
+      // Vérifie si l'huile à ajouter est déjà dans les favoris de l'utilisateur
+      const oilAlreadyExists = userFavorites.some(favorite => favorite.oil_id === parseInt(oil_id));
+      // console.log(chalk.bgWhite("oilAlreadyExists", oilAlreadyExists)); => True ou false
+      // console.log(chalk.blue("userFavorites", userFavorites));
+      // console.log(chalk.green("oil_id", oil_id));
+
+
+      // condition pour voir si l'huile à ajouté est déja dans les favoris de l'utilisateur
+      if (oilAlreadyExists) {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
@@ -510,7 +518,7 @@ const userController = {
 
       // Ajoute l'huile aux favoris de l'user
       const updatedFavorites = await userModel.addFavoritsUser(user_id, oil_id);
-      console.log(chalk.bgBlue("{ updatedFavorites }>>>>>>", updatedFavorites));
+      // console.log(chalk.bgBlue("{ updatedFavorites }>>>>>>", updatedFavorites));
 
       res.status(200).json({ message: `Favori ajouté.`, updatedFavorites });
     } catch (err) {
@@ -530,10 +538,10 @@ const userController = {
   // Module pour supprimer les huile des favoris
   async deleteFavorite(req, res) {
     const { user_id, oil_id } = req.body;
-    console.log(
-      chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + user_id));
-    console.log(
-      chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + oil_id));
+    // console.log(
+    //   chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + user_id));
+    // console.log(
+    //   chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + oil_id));
 
     try {
       // recupére l'user
@@ -554,7 +562,8 @@ const userController = {
 
       // Recuépere de l'id de l'huile
       const oil = await oilModel.getOneOilById(oil_id);
-      console.log(chalk.bgYellow("{ oil_id }>>>>>>", +oil_id));
+      // console.log(chalk.bgYellow("{ oil_id }>>>>>>", +oil_id));
+
       // Check pour voir si l'huile existe bien
       if (!oil) {
         logger.customerLogger.log("error", {
@@ -568,7 +577,7 @@ const userController = {
       // Récupère les favoris de l'utilisateur
       const userFavorites = await userModel.findFavoritesByUserId(user_id);
       // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", Object.values(userFavorites)));
-      console.log(chalk.bgBlue("{ userFavorites.oil_id }>>>>>>", userFavorites[0].oil_id));
+      // console.log(chalk.bgBlue("{ userFavorites.oil_id }>>>>>>", userFavorites[0].oil_id));
 
       // verifie si je posséde au moins une huile dans les fav
       if (userFavorites.length === 0) {
@@ -583,7 +592,7 @@ const userController = {
 
       // Supprime l'huile aux favoris de l'user
       const favorite = await userModel.deleteFavoritsUser(user_id, oil_id);
-      console.log(chalk.bgBlue("{ huile favorite id }>>>>>>", oil_id));
+      // console.log(chalk.bgBlue("{ huile favorite id }>>>>>>", oil_id));
 
       res.status(200).json({ message: `Favori supprimé`, favorite });
     } catch (err) {
@@ -602,8 +611,8 @@ const userController = {
   // Module pour ajouter les huile a son aromatheque
   async addAromatheque(req, res) {
     const { user_id, oil_id } = req.body;
-    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + user_id));
-    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + oil_id));
+    // console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + user_id));
+    // console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + oil_id));
 
     try {
 
@@ -623,7 +632,7 @@ const userController = {
 
       // Recuépere de l'id de l'huile
       const oil = await oilModel.getOneOilById(oil_id);
-      console.log(chalk.bgYellow("{ oil_id }>>>>>>", +oil_id));
+      // console.log(chalk.bgYellow("{ oil_id }>>>>>>", +oil_id));
       // Check pour voir si l'huile existe bien
       if (!oil) {
         logger.customerLogger.log("error", {
@@ -639,8 +648,16 @@ const userController = {
       console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userAromatheque.length));
       // console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.oil_id));
 
-      // Vérifie si l'huile à ajouté est déja dans l'aromatheque de l'utilisateur
-      if (oil_id in userAromatheque) {
+
+      // Vérifie si l'huile à ajouter est déjà dans les favoris de l'utilisateur
+      const oilInAromathequeAlreadyExists = userAromatheque.some(aromatheque => aromatheque.oil_id === parseInt(oil_id));
+      // console.log(chalk.bgWhite("oilInAromathequeAlreadyExists", oilInAromathequeAlreadyExists));
+      // console.log(chalk.blue("userAromatheque", userAromatheque));
+      // console.log(chalk.green("oil_id", oil_id));
+
+
+      // condition pour voir si l'huile à ajouté est déja dans l'aromatheque de l'utilisateur
+      if (oilInAromathequeAlreadyExists) {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
@@ -654,7 +671,7 @@ const userController = {
 
       // Ajoute l'huile a l'aromatheque de l'user
       const updatedAromatheque = await userModel.addAromathequeUser(user_id, oil_id);
-      console.log(chalk.bgBlue("{ updatedAromatheque }>>>>>>", updatedAromatheque));
+      // console.log(chalk.bgBlue("{ updatedAromatheque }>>>>>>", updatedAromatheque));
 
       res
         .status(200)
@@ -673,13 +690,15 @@ const userController = {
   },
 
 
+  
+
 // Module pour supprimer une huile de l'aromatheque
 async deleteAromatheque(req, res) {
   const { user_id, oil_id } = req.body;
-  console.log(
-    chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + user_id));
-  console.log(
-    chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + oil_id));
+  // console.log(
+  //   chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + user_id));
+  // console.log(
+  //   chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + oil_id));
 
   try {
     // recupére l'user
@@ -700,7 +719,7 @@ async deleteAromatheque(req, res) {
 
     // Recuépere de l'id de l'huile
     const oil = await oilModel.getOneOilById(oil_id);
-    console.log(chalk.bgYellow("{ oil_id }>>>>>>", oil_id));
+    // console.log(chalk.bgYellow("{ oil_id }>>>>>>", oil_id));
     // Check pour voir si l'huile existe bien
     if (!oil) {
       logger.customerLogger.log("error", {
@@ -734,7 +753,7 @@ async deleteAromatheque(req, res) {
 
     // Supprime l'huile de aromatheque de l'user
     const aromatheque = await userModel.deleteAromathequeUser(user_id, oil_id);
-    console.log(chalk.bgBlue("{ huile favorite id }>>>>>>", oil_id));
+    // console.log(chalk.bgBlue("{ huile favorite id }>>>>>>", oil_id));
 
     res.status(200).json({ message: `aromatheque supprimé`, aromatheque });
   } catch (err) {

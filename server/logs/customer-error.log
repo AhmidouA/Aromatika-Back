@@ -559,3 +559,39 @@ Date:[2023-03-15 17:43:03] [ERROR] Methode:[DELETE] Routes:[/family/11] Erreur l
 Date:[2023-03-15 17:44:05] [ERROR] Methode:[DELETE] Routes:[/family/12] Erreur lors de la suppression de l'huile avec l'id: 12
 Date:[2023-03-15 21:03:00] [ERROR] Methode:[GET] Routes:[/profile/reset-password/3/eyJhbG....
 
+Date:[2023-09-08 10:27:41] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 1
+Date:[2023-09-08 10:27:48] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:29:06] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:29:10] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:29:15] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:36:35] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 4 et de l'huile_id 9
+Date:[2023-09-08 10:36:40] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 9
+Date:[2023-09-08 10:36:43] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:38:44] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:39:11] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:40:34] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:40:40] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:41:38] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:41:42] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:41:47] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:42:14] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:42:18] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:42:23] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:42:27] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:42:57] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur Ahmed et vous essayez d'ajouter avec utilisateur Ahmed
+Date:[2023-09-08 10:43:21] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:43:22] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:43:26] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:43:27] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:43:31] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:43:36] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:43:41] [ERROR] Methode:[POST] Routes:[/profile/favorites] L'huile est déja dans vos favoris Ahmed
+Date:[2023-09-08 10:43:45] [ERROR] Methode:[POST] Routes:[/profile/favorites] Huile non trouvée avec l'id  99
+Date:[2023-09-08 10:43:46] [ERROR] Methode:[POST] Routes:[/profile/favorites] Huile non trouvée avec l'id  99
+Date:[2023-09-08 10:49:52] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 4 et de l'huile_id 57
+Date:[2023-09-08 10:50:11] [ERROR] Methode:[POST] Routes:[/profile/favorites] Vous etes connecté avec l' utilisateur Ahmed et vous essayez d'ajouter avec utilisateur Marie
+Date:[2023-09-08 10:50:16] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 7 et de l'huile_id 43
+Date:[2023-09-08 10:50:20] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 4 et de l'huile_id 43
+Date:[2023-09-08 10:50:24] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 3 et de l'huile_id 43
+Date:[2023-09-08 10:50:27] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 43
+Date:[2023-09-08 10:50:29] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 43
