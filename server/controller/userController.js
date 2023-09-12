@@ -466,8 +466,8 @@ const userController = {
   // Module pour ajouter les huile au favoris
   async addFavorite(req, res) {
     const { user_id, oil_id } = req.body;
-    // console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + user_id));
-    // console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + oil_id));
+    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + user_id));
+    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + oil_id));
 
     try {
 
@@ -498,6 +498,29 @@ const userController = {
         return res.status(500).json({ error: `Huile non trouvée avec l'id  ${oil_id}` });
       }
 
+      // Regarde les favoris de l'user dans la fonction findByuser du models
+      const userFavorites = await userModel.findFavoritesByUserId(user_id);
+      console.log(chalk.bgWhite("{ userFavorites }>>>>>>", userFavorites.length));
+      // console.log(chalk.bgWhite("{ userFavorites }>>>>>>", JSON.stringify(userFavorites)));
+
+
+      // Vérifie si l'huile à ajouter est déjà dans les favoris de l'utilisateur
+      const oilAlreadyExists = userFavorites.some(favorite => favorite.oil_id === parseInt(oil_id));
+      // console.log(chalk.bgWhite("oilAlreadyExists", oilAlreadyExists)); => True ou false
+      // console.log(chalk.blue("userFavorites", userFavorites));
+      // console.log(chalk.green("oil_id", oil_id));
+
+
+      // condition pour voir si l'huile à ajouté est déja dans les favoris de l'utilisateur
+      if (oilAlreadyExists) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message:`L'huile est déja dans vos favoris ${user.username}`
+        });
+        return res.status(500).json({Message:  `L'huile est déja dans vos favoris ${user.username}`});
+      }
+
       // Ajoute l'huile aux favoris de l'user
       const updatedFavorites = await userModel.addFavoritsUser(user_id, oil_id);
       // console.log(chalk.bgBlue("{ updatedFavorites }>>>>>>", updatedFavorites));
@@ -520,10 +543,8 @@ const userController = {
   // Module pour supprimer les huile des favoris
   async deleteFavorite(req, res) {
     const { user_id, oil_id } = req.body;
-    console.log(
-      chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + user_id));
-    console.log(
-      chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + oil_id));
+    console.log(chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + user_id));
+    console.log(chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + oil_id));
 
     try {
       // recupére l'user
