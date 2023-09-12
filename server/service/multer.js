@@ -8,12 +8,12 @@ const path = require('path');
 const storage = multer.diskStorage({
   // Définir la destination pour les fichiers téléchargés
   destination: function (req, file, cb) {
-    cb(null, 'server/public/upload/');
+    return cb(null, 'server/public/upload/');
   },
   // Définir le nom du fichier en utilisant la date actuelle et l'extension du fichier d'origine
   filename: function (req, file, cb) {
     // cb(null, file.originalname);
-    cb(null, Date.now() + path.extname(file.originalname));
+    return cb(null, Date.now() + path.extname(file.originalname));
   }
 });
 

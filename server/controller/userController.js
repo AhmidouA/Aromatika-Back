@@ -381,10 +381,12 @@ const userController = {
     const userId = req.params.id;
     console.log("{ userId }>>>>>>", userId);
 
+    console.log("{ req.file }>>>>>>", req.file);
+
     // récupere le chemin de l'image uploadée
     const file = req.file.filename;
     // console.log(chalk.bgCyan("{ picture }>>>>>>", file));
-    console.log("{ req.file }>>>>>>", req.file);
+    
 
     try {
 
