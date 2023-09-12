@@ -65,7 +65,7 @@ const userController = {
     // récupere les données du formulaire (email et mot de passe)
     const { email, password } = req.body;
     // Les donnée du formulaire
-    // console.log(chalk.bgBlue("{ email password }>>>>>>", email));
+    console.log(chalk.bgBlue("{ email password }>>>>>>", email));
 
     try {
       // Appel du datamapper pour récupérer l'utilisateur
@@ -92,7 +92,7 @@ const userController = {
 
       // stock les info de la session dans formattedUser
       req.session.user = formattedUser;
-      // console.log(chalk.bgGreen("{ formattedUser }>>>>>>", Object.values(formattedUser)))
+      console.log(chalk.bgGreen("{ formattedUser }>>>>>>", Object.values(formattedUser)))
 
       // generation du token grace a l'email d'identification et une durée de 120min pour le token
       // j'envoi aussi les info de la session grace au payload que j'envoi dans la session user
@@ -103,7 +103,7 @@ const userController = {
         }
       );
 
-      // console.log(chalk.bgBlack("{ TOKEN }>>>>>>", token));
+      console.log(chalk.bgBlack("{ TOKEN }>>>>>>", token));
       // console.log(chalk.bgGrey("{ formattedUser.id }>>>>>>", formattedUser.id));
 
       // Si l'utilisateur existe et le mot de passe est correct on le connecte et on renvoi le token
@@ -379,19 +379,22 @@ const userController = {
   // Module pour ajouter une photo au profile
   async addPicture(req, res) {
     const userId = req.params.id;
-    // console.log(chalk.bgBlue("{ userId }>>>>>>", userId));
+    console.log("{ userId }>>>>>>", userId);
 
     // récupere le chemin de l'image uploadée
     const file = req.file.filename;
     // console.log(chalk.bgCyan("{ picture }>>>>>>", file));
+    console.log("{ req.file }>>>>>>", req.file);
 
     try {
 
       const user = await userModel.addUserPicture(userId, file);
       console.log(chalk.bgGreen("{ user }>>>>>>", Object.values(user)));
-      // res.status(200).json({ message: `L'image a bien été téléchargé`, file });
+      res.status(200).json({ message: `L'image a bien été téléchargé`, file });
+
+
     } catch (error) {
-      // console.error(chalk.bgRedBright(error));
+      console.error(chalk.bgRedBright(error));
 
       res.status(500).json({ error: `Erreur lors du téléchargement de l'image` });
       logger.customerLogger.log("error", {

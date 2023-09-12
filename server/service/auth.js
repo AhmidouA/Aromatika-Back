@@ -29,7 +29,7 @@ const auth = {
   notFound(req, res, next) {
     // Instance de error
     const error = new Error(`La page demandée est ${req.url}`);
-    error.status = 400;
+    error.status = 404; // 404 pour indiquer que la page n'a pas été trouvée
 
     res.json({ Message: "la page que vous cherchez n'existe pas" });
 

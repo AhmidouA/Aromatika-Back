@@ -255,8 +255,8 @@ const userModel = {
   async addUserPicture(userId, image) {
     const sqlQuery = `UPDATE "user" SET image = $1 WHERE id = $2 RETURNING id, image`;
     const values = [image, userId];
-    // console.log("sqlQuery", sqlQuery);
-    // console.log("values", values);
+    console.log("sqlQuery", sqlQuery);
+    console.log("values", values);
     try {
       const result = await dbClient.query(sqlQuery, values);
       // console.log("result", result);

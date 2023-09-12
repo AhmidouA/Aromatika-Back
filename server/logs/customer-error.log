@@ -595,3 +595,8 @@ Date:[2023-09-08 10:50:20] [ERROR] Methode:[POST] Routes:[/profile/favorites] Er
 Date:[2023-09-08 10:50:24] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 3 et de l'huile_id 43
 Date:[2023-09-08 10:50:27] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 1 et de l'huile_id 43
 Date:[2023-09-08 10:50:29] [ERROR] Methode:[POST] Routes:[/profile/favorites] Erreur lors de l'ajout du favori de l'user_id 2 et de l'huile_id 43
+Date:[2023-09-08 15:51:39] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-09-08 15:53:11] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-09-08 15:53:35] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-09-08 16:02:07] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
+Date:[2023-09-08 16:06:05] [ERROR] Methode:[POST] Routes:[/profile/picture/1] Erreur lors du téléchargement de l'image
