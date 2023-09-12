@@ -543,17 +543,17 @@ const userController = {
   // Module pour supprimer les huile des favoris
   async deleteFavorite(req, res) {
     const { user_id, oil_id } = req.body;
-    // console.log(
-    //   chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + user_id));
-    // console.log(
-    //   chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + oil_id));
+    console.log(
+      chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + user_id));
+    console.log(
+      chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + oil_id));
 
     try {
       // recupére l'user
       const user = await userModel.getUserById(user_id);
       console.log(chalk.bgGreen("{ user }>>>>>>", user));
-      // console.log(chalk.bgYellow("{ user_id }>>>>>>", user_id));
-      // console.log(chalk.bgYellow("{ user.id }>>>>>>", user.id));
+      console.log(chalk.bgYellow("{ user_id }>>>>>>", user_id));
+      console.log(chalk.bgYellow("{ user.id }>>>>>>", user.id));
 
       // check si l'id de la personne connecté et celle qui veut supprimer sont les meme.
       if (req.token.user.id !== parseInt(user_id)) {
@@ -567,7 +567,7 @@ const userController = {
 
       // Recuépere de l'id de l'huile
       const oil = await oilModel.getOneOilById(oil_id);
-      // console.log(chalk.bgYellow("{ oil_id }>>>>>>", +oil_id));
+      console.log(chalk.bgYellow("{ oil_id }>>>>>>", +oil_id));
 
       // Check pour voir si l'huile existe bien
       if (!oil) {
@@ -581,8 +581,8 @@ const userController = {
 
       // Récupère les favoris de l'utilisateur
       const userFavorites = await userModel.findFavoritesByUserId(user_id);
-      // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", Object.values(userFavorites)));
-      // console.log(chalk.bgBlue("{ userFavorites.oil_id }>>>>>>", userFavorites[0].oil_id));
+      console.log(chalk.bgBlue("{ userFavorites }>>>>>>", Object.values(userFavorites)));
+      console.log(chalk.bgBlue("{ userFavorites.oil_id }>>>>>>", userFavorites[0].oil_id));
 
       // verifie si je posséde au moins une huile dans les fav
       if (userFavorites.length === 0) {
@@ -597,7 +597,7 @@ const userController = {
 
       // Supprime l'huile aux favoris de l'user
       const favorite = await userModel.deleteFavoritsUser(user_id, oil_id);
-      // console.log(chalk.bgBlue("{ huile favorite id }>>>>>>", oil_id));
+      console.log(chalk.bgBlue("{ huile favorite id }>>>>>>", oil_id));
 
       res.status(200).json({ message: `Favori supprimé`, favorite });
     } catch (err) {
