@@ -446,7 +446,7 @@ const userController = {
 
     // Récupérer l'user (solution de secours)
     const user = await userModel.getUserById(userId);
-    const userImage = user?.image;
+    const userImage = user?.image ?? "../public/upload/photoDeBase.png";
     // console.log(chalk.bgGreen("{ user }>>>>>>", Object.values((user))))
     // console.log(chalk.bgCyan("userImage>>>>>>>>", userImage))
 
