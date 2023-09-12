@@ -50,6 +50,8 @@ expressJSDocSwagger(app)(options);
 
 // middleware favicon
 const favicon = require('serve-favicon');
+// Public
+app.use(express.static("public"));
 // Définir le chemin d'accès l'image favicon.ico
 app.use(favicon(path.join("./server/public/upload/favicon.ico")));
 
