@@ -1,13 +1,7 @@
 const express = require("express");
-
 const app = express();
-
 // Importez le module express-session pour gérer les sessions.
 const session = require('cookie-session');
-// Importez le module connect-redis, qui permet de stocker les sessions dans Redis.
-
-
-
 const path = require('path');
 // module dotenv
 require("dotenv").config();
@@ -48,17 +42,12 @@ expressJSDocSwagger(app)(options);
 /**** Configuration express  ****/
 /********************************/
 
-// middleware favicon
-const favicon = require('serve-favicon');
-// Public
-app.use(express.static("public"));
-// Définir le chemin d'accès l'image favicon.ico
-app.use(favicon(path.join("./server/public/upload/favicon.ico")));
 
 // les cors pour l'appel a l'Api
 const cors = require("cors");
 // middleware par default pour permettre d'appeler l'api (Tout le monde par default)
 app.use(cors());
+
 
 // formatage de données envoyées à un serveur
 app.use(express.urlencoded({ extended: true }));
@@ -70,6 +59,14 @@ app.use((err, req, res, next) => {
   logError(req, err);
   res.status(500).send('Quelque chose s\'est mal passé');
 });
+
+// middleware favicon
+const favicon = require('serve-favicon');
+// Public
+app.use(express.static("public"));
+// Définir le chemin d'accès l'image favicon.ico
+app.use(favicon(path.join("./server/public/upload/favicon.ico")));
+
 
 // Le port du serveur
 const PORT = process.env.PORT ?? 3000;
