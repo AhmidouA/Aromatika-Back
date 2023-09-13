@@ -136,7 +136,9 @@ const userController = {
   // Module pour modifier le mot de passe.
   async updatePassword (req, res) {
     const { oldPassword, password, confirmPassword } = req.body;
-    console.log(chalk.bgBlue("{ oldPassword, password, confirmPassword }>>>>>>", { oldPassword, password, confirmPassword }));
+    console.log(chalk.bgBlue("{ oldPassword  }>>>>>>", oldPassword ));
+    console.log(chalk.bgBlue("{ password }>>>>>>", password ));
+    console.log(chalk.bgBlue("{ confirmPassword }>>>>>>", confirmPassword));
     const userId = req.params.id
     console.log(chalk.bgBlack("{ userId }>>>>>>", userId));
 
@@ -162,17 +164,27 @@ const userController = {
           message: `utilisateur incorrect`,
         });
         return res.status(500).json({ message: `utilisateur incorrect` });
-      }
+      };
 
-        // check si l'id de la personne connecté et celle qui veut add sont les meme.
-        if (req.token.user.id !== parseInt(user.id)) {
-          logger.customerLogger.log("error", {
-            url: req.url,
-            method: req.method,
-            message: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez d'ajouter avec utilisateur ${user.username}`,
-          });
-          return res.status(500).json({ error: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez d'ajouter avec utilisateur ${user.username}`,  });
-        }
+       // Vérifier que le nouveau mot de passe correspond à la confirmation
+      if (password !== confirmPassword) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: `Le nouveaux mots de passe ne correspondent pas`,
+        });
+        return res.status(500).json({ message: `Le nouveaux mots de passe ne correspondent pas` });
+      };
+
+      // check si l'id de la personne connecté et celle qui veut add sont les meme.
+      if (req.token.user.id !== parseInt(user.id)) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez d'ajouter avec utilisateur ${user.username}`,
+        });
+        return res.status(500).json({ error: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez d'ajouter avec utilisateur ${user.username}`,  });
+      };
 
       const passwordMatch = await bcrypt.compare(oldPassword, user.password);
       if (!passwordMatch) {
@@ -184,15 +196,15 @@ const userController = {
         return res.status(500).json({ message: `Mot de passe incorrect` });
       }
 
-      // Vérifier que le nouveau mot de passe correspond à la confirmation
-      if (password !== confirmPassword) {
-        logger.customerLogger.log("error", {
-          url: req.url,
-          method: req.method,
-          message: `Le nouveaux mots de passe ne correspondent pas`,
+      // Vérifier que le nouveau mot de passe est différent de l'ancien mot de passe
+      if (oldPassword === password) {
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: `Le nouveau mot de passe doit être différent de l'ancien mot de passe`,
         });
-        return res.status(500).json({ message: `Le nouveaux mots de passe ne correspondent pas` });
-      }
+        return res.status(500).json({ message: `Le nouveau mot de passe doit être différent de l'ancien mot de passe` });
+      };
 
        // Hasher le nouveau mot de passe
       const hashedPassword = await bcrypt.hash(password, 10);
