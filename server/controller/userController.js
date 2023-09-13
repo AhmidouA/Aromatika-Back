@@ -545,7 +545,7 @@ const userController = {
     const { user_id } = req.body;
     const oil_id = req.params.id;
     console.log(chalk.bgBlue("{ req.body }>>>>>>","user_id " + user_id));
-    console.log(chalk.bgBlue("{ oil_id }>>>>>>", "oil_id " + oil_id));
+    console.log(chalk.bgBlue("{ req.params.id }>>>>>>", "oil_id " + oil_id));
 
     try {
       // recupére l'user
@@ -698,11 +698,10 @@ const userController = {
 
 // Module pour supprimer une huile de l'aromatheque
 async deleteAromatheque(req, res) {
-  const { user_id, oil_id } = req.body;
-  // console.log(
-  //   chalk.bgBlue("{ formattedUser }>>>>>>","user_id " + user_id));
-  // console.log(
-  //   chalk.bgBlue("{ formattedUser }>>>>>>", "oil_id " + oil_id));
+    const { user_id } = req.body;
+    const oil_id = req.params.id;
+    console.log(chalk.bgBlue("{ req.body }>>>>>>","user_id " + user_id));
+    console.log(chalk.bgBlue("{ req.params.id }>>>>>>", "oil_id " + oil_id));
 
   try {
     // recupére l'user
