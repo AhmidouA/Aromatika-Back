@@ -94,8 +94,8 @@ const userModel = {
   async updateUserPassword (userId, password) {
     const sqlQuery = `UPDATE "user" SET password=$1 WHERE id=$2;`;
     const values = [password, userId]
-    // console.log("sqlQuery", sqlQuery);
-    // console.log("values>>>>>>>>>>", values);
+    console.log("sqlQuery", sqlQuery);
+    console.log("values>>>>>>>>>>", values);
 
     try {
       const result = await dbClient.query(sqlQuery, values)

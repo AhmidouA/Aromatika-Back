@@ -136,9 +136,9 @@ const userController = {
   // Module pour modifier le mot de passe.
   async updatePassword (req, res) {
     const { oldPassword, password, confirmPassword } = req.body;
-    // console.log(chalk.bgBlue("{ oldPassword, password, confirmPassword }>>>>>>", { oldPassword, password, confirmPassword }));
+    console.log(chalk.bgBlue("{ oldPassword, password, confirmPassword }>>>>>>", { oldPassword, password, confirmPassword }));
     const userId = req.params.id
-    // console.log(chalk.bgBlack("{ userId }>>>>>>", userId));
+    console.log(chalk.bgBlack("{ userId }>>>>>>", userId));
 
      // Vérifier que toutes les données (not null) sont présentes
     if (!oldPassword ||!password ||!confirmPassword) {
@@ -152,7 +152,7 @@ const userController = {
 
     try {
       const user = await userModel.getUserById(userId)
-      // console.log(chalk.bgCyan("{ user }>>>>>>", Object.values(user)));
+      console.log(chalk.bgCyan("{ user }>>>>>>", Object.values(user)));
 
          // Si l'utilisateur n'existe pas ou le mot de passe est incorrect, afficher une erreur
       if (!user) {
