@@ -465,9 +465,10 @@ const userController = {
 
   // Module pour ajouter les huile au favoris
   async addFavorite(req, res) {
-    const { user_id, oil_id } = req.body;
-    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","user_id " + user_id));
-    console.log(chalk.bgGreen("{ formattedUser }>>>>>>","oil_id " + oil_id));
+    const { user_id } = req.body;
+    const oil_id = req.params.id;
+    console.log(chalk.bgBlue("{ req.body }>>>>>>","user_id " + user_id));
+    console.log(chalk.bgBlue("{ oil_id }>>>>>>", "oil_id " + oil_id));
 
     try {
 
