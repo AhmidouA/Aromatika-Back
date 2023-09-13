@@ -444,20 +444,11 @@ const userController = {
     const userAromatheques = await userModel.findAromathequeByUserId(userId);
     // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites[0].oil_id));
 
-
-    // pour éviter l'erreur si il n'arrive pas a lire l'image
-    let userImage = null;
+    // Récupérer l'user (solution de secours)
+    const user = await userModel.getUserById(userId);
+    let userImage = user.image;
     // console.log(chalk.bgGreen("{ user }>>>>>>", Object.values((user))))
     // console.log(chalk.bgCyan("userImage>>>>>>>>", userImage))
-    try {
-      // Récupérer l'user (solution de secours)
-      const user = await userModel.getUserById(userId);
-      userImage = user.image; // Tentez de lire l'image de l'utilisateur
-    } catch (error) {
-      
-      console.error("Erreur lors de la lecture de l'image de l'utilisateur :", error);
-    }
-   
 
     res.status(200).json({
       Message: `Vous etes bien authentifié avec l'email `,
