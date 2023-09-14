@@ -120,16 +120,16 @@ const userController = {
     }
   },
 
-  
-   // Module pour modifier le mot de passe (GET)
-   indexUpdatePasswordPage(req, res) {
-    res.json({ message: `Changer le mot de passe` });
+
+  // update Username IndexPage
+  updateUsernameIndexPage (req, res) {
+    res.json({Message : "Changer le Pseudo"})
   },
 
 
-  // Module signUp Page
+  // Module pour modifier le mot de passe (GET)
   updatePasswordIndexPage(req, res) {
-    res.json({ message: `changement de mot de passe` });   
+    res.json({ message: `Changer de mot de passe` });   
   },
 
 

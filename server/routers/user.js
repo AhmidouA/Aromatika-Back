@@ -108,6 +108,22 @@ router.get("/profile", auth.checkToken, userController.profile);
 
 
 /**
+ * GET /profile/username/{id}
+ * @summary Affiche la page du changement de Pseudo
+ * @security bearerAuth
+ * @tags User
+ * @return {html} 200 - Retourne la page du changement de mot de passe
+ * @return {object} 500 - Erreur inattendue
+ */
+//GET /profile/username/{id} - route pour récupere la page modification du Pseudo
+router.get("/profile/username/:id", userController.updateUsernameIndexPage);
+
+
+
+
+
+
+/**
  * GET /profile/password/{id}
  * @summary Affiche la page changement de mot de passe
  * @security bearerAuth
