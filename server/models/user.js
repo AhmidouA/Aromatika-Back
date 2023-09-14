@@ -144,6 +144,25 @@ const userModel = {
     }
   },
 
+  
+  // methode récuperer un user par son Psuedo
+  async getUserByUsername(username) {
+    const sqlQuery = 'SELECT * FROM "user" WHERE username = $1;';
+    const values = [username];
+    console.log("sqlQuery getUserByUsername>>>>>>>", sqlQuery);
+    console.log("values getUserByUsername>>>>>>>>>>", values);
+
+    try {
+      const result = await dbClient.query(sqlQuery, values);
+      console.log("result getUserByUsername>>>>>>>>>>", result.rows[0]);
+      return result.rows[0];
+
+    } catch (error) {
+      console.error(error);
+      throw new Error("Erreur lors de la récupération de l'utilisateur par son Pseudo.");
+    }
+  },
+
   // methode modifier le mot de passe d'un user
   async updateUsername (userId, username) {
     const sqlQuery = `UPDATE "user" SET username=$1 WHERE id=$2;`;
