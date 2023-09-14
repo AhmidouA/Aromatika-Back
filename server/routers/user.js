@@ -120,9 +120,6 @@ router.get("/profile/username/:id", userController.updateUsernameIndexPage);
 
 
 
-
-
-
 /**
  * GET /profile/password/{id}
  * @summary Affiche la page changement de mot de passe
