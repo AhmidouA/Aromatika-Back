@@ -119,17 +119,22 @@ router.get("/profile", auth.checkToken, userController.profile);
 router.get("/profile/username/:id", userController.updateUsernameIndexPage);
 
 
-
 /**
- * GET /profile/password/{id}
- * @summary Affiche la page changement de mot de passe
+ * PATCH /profile/password/{id}
+ * @summary Met à jour le mot de passe de l'utilisateur connecté
  * @security bearerAuth
  * @tags User
- * @return {html} 200 - Retourne la page du changement de mot de passe
- * @return {object} 500 - Erreur inattendue
+ * @param {string} id.path.required - ID de l'utilisateur
+ * @param {object} request.password.body.required - Nouveau mot de passe de l'utilisateur
+ * @return {object} 200 - Succès de la mise à jour du mot de passe
+ * @return {object} 500 - Tous les champs n'ont pas été remplis
+ * @return {object} 500 - Ce nom d'utilisateur est déjà pris
+ * @return {object} 500 - utilisateur incorrect`
+ * @return {object} 500 - Mauvais utilisateur
+ * @return {object} 500 - Erreur lors de la modification du Pseudo
  */
-//GET /profile/password/{id} - route pour récupere la page modification du mot de passe
-router.get("/profile/password/:id", userController.updatePasswordIndexPage);
+//PATCH /profile/password/{id} - route pour completer le formulaire modification du mot de passe
+router.patch("/profile/username/:id", auth.checkToken, userController.updateUsername);
 
 
 /**

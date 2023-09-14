@@ -144,6 +144,40 @@ const userModel = {
     }
   },
 
+  // methode modifier le mot de passe d'un user
+  async updateUsername (userId, username) {
+    const sqlQuery = `UPDATE "user" SET username=$1 WHERE id=$2;`;
+    const values = [username, userId]
+    console.log("sqlQuery updateUsername>>>>>>>", sqlQuery);
+    console.log("values updateUsername>>>>>>>>>>", values);
+
+    try {
+      const result = await dbClient.query(sqlQuery, values)
+      console.log("result updateUsername>>>>>>>>>>", result)
+      return result.rows[0]
+    } catch (error) {
+      console.error(error)
+      throw new Error("Erreur lors de la modification du Pseudo de l'utilisateur.");
+    }
+  },
+
+  // methode modifier le mot de passe d'un user
+  async updateUserPassword (userId, password) {
+    const sqlQuery = `UPDATE "user" SET password=$1 WHERE id=$2;`;
+    const values = [password, userId]
+    // console.log("sqlQuery", sqlQuery);
+    // console.log("values>>>>>>>>>>", values);
+
+    try {
+      const result = await dbClient.query(sqlQuery, values)
+      // console.log("result>>>>>>>>>>", result)
+      return result.rows[0]
+    }catch (error) {
+      console.error(error);
+      throw new Error("Erreur lors de la modification du mot de passe de l'utilisateur.");
+    }
+  },
+
 
   // methode trouver les favoris d'un user.
   async findFavoritesByUserId(id) {

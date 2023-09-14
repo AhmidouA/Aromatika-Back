@@ -127,6 +127,81 @@ const userController = {
   },
 
 
+  // Module pour modifier le Pseudo.
+  async updateUsername (req, res) {
+    const userId = req.params.id;
+    const { username } = req.body;
+    console.log(chalk.bgBlack("{ userId }>>>>>>", userId));
+    console.log(chalk.bgBlue("{ username }>>>>>>", username));
+
+    if (!username) {
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: `Tous les champs n'ont pas été remplis`,
+      });
+      return res.status(500).json({ message: `Tous les champs doivent être remplis` });
+    };
+
+    try {
+
+      // Cherche d'abord si le nom d'utilisateur existe déjà
+      const usernameExisted = await userModel.getUserByUsername(username)
+      console.log(chalk.bgYellow("{ usernameExisted }>>>>>>", usernameExisted));
+
+
+      // Verifie si l'utilisateur existe déjà
+      if(usernameExisted) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: `Ce nom d'utilisateur est déjà pris`,
+        });
+        return res.status(500).json({ message: `Ce nom d'utilisateur est déjà pris.` });
+      }
+      
+      const user = await userModel.getUserById(userId)
+      console.log(chalk.bgCyan("{ userName }>>>>>>", user.username));
+
+      
+      // Si l'utilisateur n'existe pas ou le mot de passe est incorrect, afficher une erreur
+      if (!user) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: `utilisateur incorrect`,
+        });
+        return res.status(500).json({ message: `utilisateur incorrect` });
+      };
+
+      // check si l'id de la personne connecté et celle qui veut modifier sont les meme.
+      if (req.token.user.id !== parseInt(user.id)) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez de modifier avec utilisateur ${user.username}`,
+        });
+        return res.status(500).json({ error: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez de modifier avec utilisateur ${user.username}`,  });
+      };
+
+
+      await userModel.updateUsername(userId, username)
+      res.json({ message: `Le Pseudo a été modifié avec succès` });
+
+    } catch (error) {
+      console.error(chalk.bgRedBright(error));
+
+      res.status(500).json({ error: `Erreur lors de la modification du Pseudo` });
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: `Erreur lors de la modification du Pseudo`
+      });
+    }
+  },
+
+
+
   // Module pour modifier le mot de passe (GET)
   updatePasswordIndexPage(req, res) {
     res.json({ message: `Changer de mot de passe` });   
@@ -136,11 +211,11 @@ const userController = {
   // Module pour modifier le mot de passe.
   async updatePassword (req, res) {
     const { oldPassword, password, confirmPassword } = req.body;
-    console.log(chalk.bgBlue("{ oldPassword  }>>>>>>", oldPassword ));
-    console.log(chalk.bgBlue("{ password }>>>>>>", password ));
-    console.log(chalk.bgBlue("{ confirmPassword }>>>>>>", confirmPassword));
+    // console.log(chalk.bgBlue("{ oldPassword  }>>>>>>", oldPassword ));
+    // console.log(chalk.bgBlue("{ password }>>>>>>", password ));
+    // console.log(chalk.bgBlue("{ confirmPassword }>>>>>>", confirmPassword));
     const userId = req.params.id
-    console.log(chalk.bgBlack("{ userId }>>>>>>", userId));
+    // console.log(chalk.bgBlack("{ userId }>>>>>>", userId));
 
      // Vérifier que toutes les données (not null) sont présentes
     if (!oldPassword ||!password ||!confirmPassword) {
@@ -154,9 +229,9 @@ const userController = {
 
     try {
       const user = await userModel.getUserById(userId)
-      console.log(chalk.bgCyan("{ user }>>>>>>", Object.values(user)));
+      // console.log(chalk.bgCyan("{ user }>>>>>>", Object.values(user)));
 
-         // Si l'utilisateur n'existe pas ou le mot de passe est incorrect, afficher une erreur
+      // Si l'utilisateur n'existe pas ou le mot de passe est incorrect, afficher une erreur
       if (!user) {
         logger.customerLogger.log("error", {
           url: req.url,
@@ -181,9 +256,9 @@ const userController = {
         logger.customerLogger.log("error", {
           url: req.url,
           method: req.method,
-          message: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez d'ajouter avec utilisateur ${user.username}`,
+          message: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez de modifier avec utilisateur ${user.username}`,
         });
-        return res.status(500).json({ error: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez d'ajouter avec utilisateur ${user.username}`,  });
+        return res.status(500).json({ error: `Vous etes connecté avec l' utilisateur ${req.token.user.name} et vous essayez de modifier avec utilisateur ${user.username}`,  });
       };
 
       const passwordMatch = await bcrypt.compare(oldPassword, user.password);
