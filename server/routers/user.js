@@ -134,7 +134,7 @@ router.get("/profile/username/:id", userController.updateUsernameIndexPage);
  * @return {object} 500 - Erreur lors de la modification du Pseudo
  */
 //PATCH /profile/password/{id} - route pour completer le formulaire modification du mot de passe
-router.patch("/profile/username/:id", auth.checkToken, userController.updateUsername);
+router.put("/profile/username/:id", auth.checkToken, userController.updateUsername);
 
 
 /**
@@ -152,7 +152,7 @@ router.patch("/profile/username/:id", auth.checkToken, userController.updateUser
  * @return {object} 500 - Erreur lors de la modification du mot de passe
  */
 //PATCH /profile/password/{id} - route pour completer le formulaire modification du mot de passe
-router.patch("/profile/password/:id", auth.checkToken, userController.updatePassword);
+router.put("/profile/password/:id", auth.checkToken, userController.updatePassword);
 
 
 /**
