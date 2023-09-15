@@ -99,7 +99,7 @@ const userController = {
 
       const token = jwt.sign({ email, user: formattedUser, user_id:formattedUser.id },process.env.SECRET,
         {
-          expiresIn: "120m",
+          expiresIn: "1m",
         }
       );
 
