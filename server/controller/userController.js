@@ -185,10 +185,11 @@ const userController = {
       };
 
 
-      // Update le pseudo
-      user.username = username;
       await userModel.updateUsername(userId, username)
-      res.json({ message: `Le Pseudo a été modifié avec succès`, username: username  });
+      res.json({  message: `Le Pseudo a été modifié avec succès`, 
+                  username: user.username,
+                  username1: username
+              });
 
     } catch (error) {
       console.error(chalk.bgRedBright(error));
