@@ -185,7 +185,10 @@ const userController = {
       };
 
 
+
       await userModel.updateUsername(userId, username)
+      console.log("username dans udpateUsername>>>>", username)
+      console.log("user.username dans udpateUsername>>>>", user.username)
       res.json({  message: `Le Pseudo a été modifié avec succès`, 
                   username: user.username,
                   username1: username
