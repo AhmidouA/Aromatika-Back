@@ -106,7 +106,7 @@ const userController = {
       // Refresh token
       const refreshToken = jwt.sign(
         { email, user: formattedUser, user_id:formattedUser.id },
-        process.env.REFRESH_TOKEN_SECRET,
+        process.env.REFRESH_SECRET,
         {
           expiresIn: "10s",
         }
