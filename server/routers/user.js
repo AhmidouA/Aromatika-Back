@@ -104,7 +104,7 @@ router.get("/logout", auth.checkToken, userController.logout);
  * @return {object} 500 - Utilisateur non trouvé
  */
 //GET /profile - route pour le profil de l'utilisateur avec un middleware token
-router.get("/profile", auth.checkToken, auth.refreshTokenMiddleware, userController.profile);
+router.get("/profile", auth.checkToken, userController.profile);
 
 
 /**

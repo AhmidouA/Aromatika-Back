@@ -94,20 +94,12 @@ const userController = {
       req.session.user = formattedUser;
       console.log(chalk.bgGreen("{ formattedUser }>>>>>>", Object.values(formattedUser)))
 
-      // Générer un refresh token
-      const refreshToken = jwt.sign({ email: user.email, user_id: user.id }, process.env.SECRET, {
-        expiresIn: "12h",
-      });
-
-      // Stocker le refresh token dans la session de l'utilisateur
-      req.session.refreshToken = refreshToken;
-
       // generation du token grace a l'email d'identification et une durée de 120min pour le token
       // j'envoi aussi les info de la session grace au payload que j'envoi dans la session user
 
       const token = jwt.sign({ email, user: formattedUser, user_id:formattedUser.id },process.env.SECRET,
         {
-          expiresIn: "20s",
+          expiresIn: "1h",
         }
       );
 
