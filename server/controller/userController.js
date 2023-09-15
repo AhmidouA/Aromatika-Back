@@ -99,7 +99,16 @@ const userController = {
 
       const token = jwt.sign({ email, user: formattedUser, user_id:formattedUser.id },process.env.SECRET,
         {
-          expiresIn: "1m",
+          expiresIn: "10s",
+        }
+      );
+
+      // Refresh token
+      const refreshToken = jwt.sign(
+        { email, user: formattedUser, user_id:formattedUser.id },
+        process.env.REFRESH_TOKEN_SECRET,
+        {
+          expiresIn: "10s",
         }
       );
 
@@ -107,7 +116,7 @@ const userController = {
       // console.log(chalk.bgGrey("{ formattedUser.id }>>>>>>", formattedUser.id));
 
       // Si l'utilisateur existe et le mot de passe est correct on le connecte et on renvoi le token
-      res.json({ name: formattedUser.name, user_id:formattedUser.id,  token });
+      res.json({ name: formattedUser.name, user_id:formattedUser.id,  token, refreshToken });
     } catch (err) {
       console.error(chalk.bgRedBright(err));
 
@@ -119,6 +128,55 @@ const userController = {
       });
     }
   },
+
+
+  // Module profile
+  async profile(req, res) {
+    // Avoir les valeurs de l'objet du token depuis req.token
+    const reqValeus = Object.values(req.token);
+    // console.log(chalk.bgCyan("{ reqValeus }>>>>>>", reqValeus));
+    // console.log(chalk.bgCyan("{ reqValeus }>>>>>>", reqValeus[1].id));
+
+    // La date de creation du compte (Demande du front pour afficher au profil)
+    // générer grace a la session user dans login
+    // Prendre la 1er valeur de l'objet envoyer = le mail de l'utilisateur
+    const userMail = reqValeus[0];
+    // console.log(chalk.bgCyan("userMail>>>>>>>>", userMail))
+    const created_at = reqValeus[1].createdAt;
+    // console.log(chalk.bgCyan("created_at>>>>>>>>", created_at))
+    const userName = reqValeus[1].name;
+    // console.log(chalk.bgCyan("userName>>>>>>>>", userName))
+    const userId = reqValeus[1].id;
+    // console.log(chalk.bgCyan("userId>>>>>>>>", userName))
+    // const userImage = reqValeus[1].image;
+    // console.log(chalk.bgCyan("userImage>>>>>>>>", userImage))
+
+    // Récupérer les favoris de l'user
+    const userFavorites = await userModel.findFavoritesByUserId(userId);
+    // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites[0].oil_id));
+
+    // Récupérer l'aromatheque de l'user
+    const userAromatheques = await userModel.findAromathequeByUserId(userId);
+    // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites[0].oil_id));
+
+    // Récupérer l'user (solution de secours)
+    const user = await userModel.getUserById(userId);
+    let userImage = user.image;
+    // console.log(chalk.bgGreen("{ user }>>>>>>", Object.values((user))))
+    // console.log(chalk.bgCyan("userImage>>>>>>>>", userImage))
+
+    res.status(200).json({
+      Message: `Vous etes bien authentifié avec l'email `,
+      userMail: userMail,
+      created_at: created_at,
+      userName: userName,
+      userFavorites: userFavorites,
+      userAromatheques:userAromatheques,
+      userImage: userImage,
+      userId: userId
+    });
+  },
+
 
 
   // update Username IndexPage
@@ -505,53 +563,6 @@ const userController = {
     fs.createReadStream(`server/public/upload/${file}`).pipe(res);
   },
 
-
-  // Module profile
-  async profile(req, res) {
-    // Avoir les valeurs de l'objet du token depuis req.token
-    const reqValeus = Object.values(req.token);
-    // console.log(chalk.bgCyan("{ reqValeus }>>>>>>", reqValeus));
-    // console.log(chalk.bgCyan("{ reqValeus }>>>>>>", reqValeus[1].id));
-
-    // La date de creation du compte (Demande du front pour afficher au profil)
-    // générer grace a la session user dans login
-    // Prendre la 1er valeur de l'objet envoyer = le mail de l'utilisateur
-    const userMail = reqValeus[0];
-    // console.log(chalk.bgCyan("userMail>>>>>>>>", userMail))
-    const created_at = reqValeus[1].createdAt;
-    // console.log(chalk.bgCyan("created_at>>>>>>>>", created_at))
-    const userName = reqValeus[1].name;
-    // console.log(chalk.bgCyan("userName>>>>>>>>", userName))
-    const userId = reqValeus[1].id;
-    // console.log(chalk.bgCyan("userId>>>>>>>>", userName))
-    // const userImage = reqValeus[1].image;
-    // console.log(chalk.bgCyan("userImage>>>>>>>>", userImage))
-
-    // Récupérer les favoris de l'user
-    const userFavorites = await userModel.findFavoritesByUserId(userId);
-    // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites[0].oil_id));
-
-    // Récupérer l'aromatheque de l'user
-    const userAromatheques = await userModel.findAromathequeByUserId(userId);
-    // console.log(chalk.bgBlue("{ userFavorites }>>>>>>", userFavorites[0].oil_id));
-
-    // Récupérer l'user (solution de secours)
-    const user = await userModel.getUserById(userId);
-    let userImage = user.image;
-    // console.log(chalk.bgGreen("{ user }>>>>>>", Object.values((user))))
-    // console.log(chalk.bgCyan("userImage>>>>>>>>", userImage))
-
-    res.status(200).json({
-      Message: `Vous etes bien authentifié avec l'email `,
-      userMail: userMail,
-      created_at: created_at,
-      userName: userName,
-      userFavorites: userFavorites,
-      userAromatheques:userAromatheques,
-      userImage: userImage,
-      userId: userId
-    });
-  },
 
 
   // Module pour ajouter les huile au favoris
