@@ -25,6 +25,42 @@ const auth = {
     }
   },
 
+    // Middleware pour rafraichir le token
+    async refreshTokenMiddleware(req, res, next) {
+      try {
+        // Vérifier si l'utilisateur a un refresh token valide
+        if (!req.refreshToken) {
+          return res.status(401).json({
+            Message: "Refresh token manquant",
+          });
+        }
+  
+        // Vérifier si le refresh token est valide
+        const refreshToken = jwt.verify(req.refreshToken, process.env.REFRESH_SECRET);
+  
+        // Vérifier si le refresh token est expiré
+        if (refreshToken.exp < Date.now()) {
+          return res.status(401).json({
+            Message: "Refresh token expiré",
+          });
+        }
+  
+        // Générer un nouveau token d'accès
+        const accessToken = await generateAccessToken(refreshToken.user);
+  
+        // Mettre à jour le token d'accès dans la session de l'utilisateur
+        req.session.token = accessToken;
+  
+        // Envoyer le nouveau token d'accès à la réponse
+        res.json({ token: accessToken });
+        return;
+      } catch (err) {
+        res.status(401).json({ Message: err.message });
+      }
+    },
+
+  
+
   // middleware d'erreur 404
   notFound(req, res, next) {
     // Instance de error
