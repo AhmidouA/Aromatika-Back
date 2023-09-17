@@ -171,7 +171,7 @@ POST /profile/forgot-password
 @tags User
 @param {string} request.body.email.required - Adresse email de l'utilisateur
 @return {object} 200 - Email de réinitialisation envoyé avec succès
-@return {object} 400 - Adresse email non fournie
+@return {object} 404 - Adresse email non correcte
 @return {object} 500 - Erreur lors de l'envoi de l'email de réinitialisation
 */
 //POST /profile/forgot-password - route pour completer le formulaire mot de passe oublié

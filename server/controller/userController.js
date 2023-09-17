@@ -385,7 +385,7 @@ const userController = {
       // generation du token grace a l'email d'identification et une durée de 10min pour le token
       const token = jwt.sign({ email: user.mail, userId: user.id },process.env.SECRET,
         {
-          expiresIn: "10m",
+          expiresIn: "12h",
         }
       );
       console.log(chalk.bgBlack("{ email: user.mail, userId: user.id }>>>>>>", Object.values({ email: user.mail, userId: user.id })));
