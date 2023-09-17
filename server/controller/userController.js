@@ -379,7 +379,7 @@ const userController = {
         method: req.method,
         message: `Le compte n'existe pas ${email}`
       });
-      return res.json(`Le compte n'existe pas ${email}`)
+      return res.status(404).json(`Le compte n'existe pas ${email}`)
     }
 
       // generation du token grace a l'email d'identification et une durée de 10min pour le token
