@@ -90,24 +90,6 @@ const userModel = {
   },
 
 
-  // methode modifier le mot de passe d'un user
-  async updateUserPassword (userId, password) {
-    const sqlQuery = `UPDATE "user" SET password=$1 WHERE id=$2;`;
-    const values = [password, userId]
-    console.log("sqlQuery", sqlQuery);
-    console.log("values>>>>>>>>>>", values);
-
-    try {
-      const result = await dbClient.query(sqlQuery, values)
-      // console.log("result>>>>>>>>>>", result)
-      return result.rows[0]
-    }catch (error) {
-      console.error(error);
-      throw new Error("Erreur lors de la modification du mot de passe de l'utilisateur.");
-    }
-  },
-
-
   // methode récuperer un user
   async getUserById(userId) {
     const sqlQuery = 'SELECT * FROM "user" WHERE id = $1;';
