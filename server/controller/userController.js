@@ -377,7 +377,7 @@ const userController = {
           method: req.method,
           message: `Le compte n'existe pas ${email}`
         });
-        return res.json(`Le compte n'existe pas`)
+        return res.json({ message: `Le compte n'existe pas`})
       }
 
       // generation du token grace a l'email d'identification et une durée de 10min pour le token
@@ -423,7 +423,7 @@ const userController = {
           method: req.method,
           message: `Le compte n'existe pas`
         });
-        return res.json(`Le compte n'existe pas`)
+        return res.json({ message:`Le compte n'existe pas`})
       }
 
       // Avoir les valeurs de l'objet du token depuis req.token
@@ -475,7 +475,7 @@ const userController = {
           method: req.method,
           message: `Le compte n'existe pas`
         });
-        return res.json(`Le compte n'existe pas`)
+        return res.json({ message:`Le compte n'existe pas`})
       }
 
       // Avoir les valeurs de l'objet du token depuis req.token
