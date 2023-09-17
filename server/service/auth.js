@@ -20,7 +20,7 @@ const auth = {
       
       next();
     } catch (err) {
-      console.log(chalk.bgRedBright(err));
+      console.log(chalk.bgRedBright("error dans le auth.checkToken", err));
       res.status(401).json({ Message: "Token d'authentification invalide" });
     }
   },
