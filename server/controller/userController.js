@@ -362,14 +362,14 @@ const userController = {
 
   // module mot de passe oublié
   async sendPasswordResetEmail (req, res) {
-    // console.log("req.body>>>>>", req.body)
+    console.log("req.body>>>>>", req.body)
     const {email} = req.body
-    // console.log(chalk.bgBlack("{ email }>>>>>>", email));
+    console.log(chalk.bgBlack("{ email }>>>>>>", email));
 
     try {
       const user = await userModel.getUserByMail(email)
       console.log(chalk.bgGreen("{ user }>>>>>>", email));
-      // console.log(chalk.bgCyan("{ user.mail }>>>>>>", user.mail));
+      console.log(chalk.bgCyan("{ user.mail }>>>>>>", user.mail));
 
       if (!user) {
         logger.customerLogger.log("error", {
@@ -377,7 +377,7 @@ const userController = {
           method: req.method,
           message: `Le compte n'existe pas ${email}`
         });
-        return res.json(`Le compte n'existe pas ${email}`)
+        return res.json(`Le compte n'existe pas`)
       }
 
       // generation du token grace a l'email d'identification et une durée de 10min pour le token
@@ -386,7 +386,7 @@ const userController = {
           expiresIn: "10m",
         }
       );
-      // console.log(chalk.bgBlack("{ email: user.mail, userId: user.id }>>>>>>", Object.values({ email: user.mail, userId: user.id })));
+      console.log(chalk.bgBlack("{ email: user.mail, userId: user.id }>>>>>>", Object.values({ email: user.mail, userId: user.id })));
       console.log(chalk.bgBlack("{ TOKEN }>>>>>>", token));
 
       await mail.sendPasswordResetEmail(user,token)
@@ -408,8 +408,8 @@ const userController = {
   // Module réinitialisation du mot de passe Page
   async resetPasswordIndexPage (req, res) {
     const {id, token} = req.params
-    // console.log(chalk.bgBlack("{ id }>>>>>>", id));
-    // console.log(chalk.bgBlack("{ token }>>>>>>", token));
+    console.log(chalk.bgBlack("{ id }>>>>>>", id));
+    console.log(chalk.bgBlack("{ token }>>>>>>", token));
 
     try{
       // appel l'user par son id depuis la bdd
