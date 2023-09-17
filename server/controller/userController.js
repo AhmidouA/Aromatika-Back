@@ -366,19 +366,21 @@ const userController = {
     const {email} = req.body
     console.log(chalk.bgBlack("{ email }>>>>>>", email));
 
+
     try {
       const user = await userModel.getUserByMail(email)
       console.log(chalk.bgGreen("{ user }>>>>>>", email));
-      console.log(chalk.bgCyan("{ user.mail }>>>>>>", user.mail));
-
-      if (!user) {
-        logger.customerLogger.log("error", {
-          url: req.url,
-          method: req.method,
-          message: `Le compte n'existe pas ${email}`
-        });
-        return res.json({ message: `Le compte n'existe pas`})
-      }
+      // console.log(chalk.bgCyan("{ user.mail }>>>>>>", user.mail));   
+      
+      
+    if (!user) {
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: `Le compte n'existe pas ${email}`
+      });
+      return res.json(`Le compte n'existe pas ${email}`)
+    }
 
       // generation du token grace a l'email d'identification et une durée de 10min pour le token
       const token = jwt.sign({ email: user.mail, userId: user.id },process.env.SECRET,
