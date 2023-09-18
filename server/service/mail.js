@@ -12,7 +12,7 @@ const mail = {
         }
     })
 
-    const restPassword = `http://localhost:3000/profile/forgot-password/${user.id}/${token}`;
+    const restPassword = `http://localhost:3000/forgot-password/${user.id}/${token}`;
     const mailOption = {
         from: process.env.EMAIL_USERNAME,
         to: user.mail,
