@@ -479,7 +479,7 @@ const userController = {
           method: req.method,
           message: `Le compte n'existe pas`
         });
-        return res.status(500)({ message:`Le compte n'existe pas`})
+        return res.status(500).json({ message:`Le compte n'existe pas`})
       }
 
       // Avoir les valeurs de l'objet du token depuis req.token
