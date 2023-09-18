@@ -202,9 +202,9 @@ POST /profile/reset-password/{id}/{token}
 @param {string} request.body.password.required - Le nouveau mot de passe
 @param {string} request.body.confirmPassword.required - La confirmation du nouveau mot de passe
 @return {object} 200 - Message de succès
-@return {object} 500 - Tous les champs doivent être remplis
-@return {object} 500 - Utilisateur non trouvé ou token invalide
-@return {object} 500 - Le nouveau mot de passe et la confirmation ne correspondent pas
+@return {object} 400 - Tous les champs doivent être remplis
+@return {object} 400 - Utilisateur non trouvé ou token invalide
+@return {object} 400 - Le nouveau mot de passe et la confirmation ne correspondent pas
 @return {object} 500 - Erreur lors de la modification du mot de passe de l'utilisateur
 */
 //POST //profile/reset-password - route pour avoir le formulaire mot de passe oublié

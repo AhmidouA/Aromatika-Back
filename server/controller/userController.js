@@ -469,7 +469,7 @@ const userController = {
         method: req.method,
         message: `Tous les champs n'ont pas été remplis`,
       });
-      return res.status(500).json({ message: `Tous les champs doivent être remplis` });
+      return res.status(400).json({ message: `Tous les champs doivent être remplis` });
     }
     try{
 
@@ -484,7 +484,7 @@ const userController = {
           method: req.method,
           message: `Le compte n'existe pas`
         });
-        return res.status(500).json({ message:`Le compte n'existe pas`})
+        return res.status(400).json({ message:`Le compte n'existe pas`})
       }
 
       // Avoir les valeurs de l'objet du token depuis req.token
@@ -503,7 +503,7 @@ const userController = {
           method: req.method,
           message: `Le nouveaux mots de passe ne correspondent pas`,
         });
-        return res.status(500).json({ message: `Le nouveaux mots de passe ne correspondent pas` });
+        return res.status(400).json({ message: `Le nouveaux mots de passe ne correspondent pas` });
       }
 
       // Hasher le nouveau mot de passe
