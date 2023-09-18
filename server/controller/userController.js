@@ -457,6 +457,11 @@ const userController = {
     const {id, token} = req.params
     const {password, confirmPassword } = req.body;
 
+    console.log(chalk.bgBlack("{ id }>>>>>>", id));
+    console.log(chalk.bgBlack("{ token }>>>>>>", token));
+    console.log(chalk.bgBlack("{ password }>>>>>>", password));
+    console.log(chalk.bgBlack("{ confirmPassword }>>>>>>", confirmPassword));
+
      // Vérifier que toutes les données (not null) sont présentes
      if (!password ||!confirmPassword) {
       logger.customerLogger.log("error", {
