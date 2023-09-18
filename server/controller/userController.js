@@ -409,47 +409,45 @@ const userController = {
 
   // Module réinitialisation du mot de passe Page
   async resetPasswordIndexPage (req, res) {
-    res.json({ message: `Recuperation du mot de passe` });   
+    const {id, token} = req.params
+    console.log(chalk.bgBlack("{ id }>>>>>>", id));
+    console.log(chalk.bgBlack("{ token }>>>>>>", token));
+
+    try{
+      // appel l'user par son id depuis la bdd
+      const user = await userModel.getUserById(id)
+      console.log(chalk.bgBlack("{ user.id }>>>>>>", id));
+
+      // check si l'user existe
+      if (!user) {
+        logger.customerLogger.log("error", {
+          url: req.url,
+          method: req.method,
+          message: `Le compte n'existe pas`
+        });
+        return res.status(400).json({ message:`Le compte n'existe pas`})
+      }
+
+      // Avoir les valeurs de l'objet du token depuis req.token
+      const verify = jwt.verify(token, process.env.SECRET);
+      console.log(chalk.bgBlue("{ verify }>>>>>>", verify.email));
+
+      if (!verify) {
+        return res.status(400).json({Message : `Utilisateur non autorisé`});
+      }
+
+      res.json({Message: `Utilisateur autorisé`})
+    } catch (error) {
+      console.error(chalk.bgRedBright(error));
+
+      res.status(500).json({ error: `Erreur lors de la récupération du mot de passe` });
+      logger.customerLogger.log("error", {
+        url: req.url,
+        method: req.method,
+        message: `Erreur lors de la récupération du mot de passe `
+      });
+    }
   },
-    // const {id, token} = req.params
-    // console.log(chalk.bgBlack("{ id }>>>>>>", id));
-    // console.log(chalk.bgBlack("{ token }>>>>>>", token));
-
-    // try{
-    //   // appel l'user par son id depuis la bdd
-    //   const user = await userModel.getUserById(id)
-    //   console.log(chalk.bgBlack("{ user.id }>>>>>>", id));
-
-    //   // check si l'user existe
-    //   if (!user) {
-    //     logger.customerLogger.log("error", {
-    //       url: req.url,
-    //       method: req.method,
-    //       message: `Le compte n'existe pas`
-    //     });
-    //     return res.json({ message:`Le compte n'existe pas`})
-    //   }
-
-    //   // Avoir les valeurs de l'objet du token depuis req.token
-    //   const verify = jwt.verify(token, process.env.SECRET);
-    //   console.log(chalk.bgBlue("{ verify }>>>>>>", verify.email));
-
-    //   if (!verify) {
-    //     res.json({Message : `Utilisateur non autorisé`});
-    //   }
-
-    //   res.json({Message: `Utilisateur autorisé`})
-    // } catch (error) {
-    //   console.error(chalk.bgRedBright(error));
-
-    //   res.status(500).json({ error: `Erreur lors de la récupération du mot de passe` });
-    //   logger.customerLogger.log("error", {
-    //     url: req.url,
-    //     method: req.method,
-    //     message: `Erreur lors de la récupération du mot de passe `
-    //   });
-    // }
-  // },
 
 
   // Module réinitialisation du mot de passe form
