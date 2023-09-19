@@ -61,8 +61,8 @@ const userModel = {
   async loginUser(userMail, password) {
     const sqlQuery = `SELECT * FROM "user" WHERE mail=$1`;
     const values = [userMail];
-    // console.log("sqlQuery", sqlQuery)
-    // console.log("values>>>>>>>>>>", values)
+    console.log("sqlQuery", sqlQuery)
+    console.log("values>>>>>>>>>>", values)
 
     try {
       const result = await dbClient.query(sqlQuery, values);

@@ -11,6 +11,7 @@ const chalk = require("chalk");
 const fs = require("fs");
 // module nodemailer pour les envois des mail auto (reset password)
 const { mail } = require("../service");
+const { json } = require("express");
 
 
 
@@ -34,8 +35,10 @@ const userController = {
   async signup(req, res) {
     // recupere les donnée du body
     const formData = req.body;
-    // console.log(chalk.bgBlue("{ formData.username }>>>>>>", formData.username));
-    // console.log(chalk.bgBlue("{ formData.mail }>>>>>>", formData.email));
+    console.log(chalk.bgBlue("{ formData.username }>>>>>>", formData.username));
+    console.log(chalk.bgBlue("{ formData.mail }>>>>>>", formData.email));
+    console.log(chalk.bgBlue("{ formData.mail }>>>>>>", formData.password));
+    console.log(chalk.bgBlue("{ formData.mail }>>>>>>", formData.confirmPassword));
 
     try {
       // Appel la bdd et insert les nouvelle donnée
@@ -74,7 +77,7 @@ const userController = {
     try {
       // Appel du datamapper pour récupérer l'utilisateur
       const user = await userModel.loginUser(email, password);
-      console.log(chalk.bgGreen("{ user }>>>>>>", Object.values(user)))
+      console.log(chalk.bgGreen("{ user }>>>>>>", JSON.stringify(user)))
 
       // Si l'utilisateur n'existe pas ou le mot de passe est incorrect, afficher une erreur
       if (!user) {
@@ -97,7 +100,7 @@ const userController = {
 
       // stock les info de la session dans formattedUser
       req.session.user = formattedUser;
-      console.log(chalk.bgGreen("{ formattedUser }>>>>>>", Object.values(formattedUser)))
+      console.log(chalk.bgGreen("{ formattedUser }>>>>>>", JSON.stringify()(formattedUser)))
 
       // generation du token grace a l'email d'identification et une durée de 120min pour le token
       // j'envoi aussi les info de la session grace au payload que j'envoi dans la session user
@@ -114,8 +117,8 @@ const userController = {
       // Si l'utilisateur existe et le mot de passe est correct on le connecte et on renvoi le token
       res.json({ name: formattedUser.name, user_id:formattedUser.id,  token });
     } catch (err) {
-      console.error(chalk.bgRedBright(err));
       formattedUser = null; // Vous pouvez initialiser formattedUser à null en cas d'erreur
+      console.error(chalk.bgRedBright(err)); 
 
       res.status(500).json({ message: `utilisateur non inscrit`, formattedUser });
       logger.customerLogger.log("error", {
@@ -229,6 +232,8 @@ const userController = {
         return res.status(500).json({ message: `utilisateur incorrect` });
       };
 
+      console.log('req.token.user.id:', req.token.user.id);
+      console.log('user.id:', user.id); 
       // check si l'id de la personne connecté et celle qui veut modifier sont les meme.
       if (req.token.user.id !== parseInt(user.id)) {
         logger.customerLogger.log("error", {
