@@ -65,11 +65,16 @@ const userController = {
     // récupere les données du formulaire (email et mot de passe)
     const { email, password } = req.body;
     // Les donnée du formulaire
-    console.log(chalk.bgBlue("{ email password }>>>>>>", email));
+    console.log(chalk.bgBlue("{ email }>>>>>>", email));
+    console.log(chalk.bgBlue("{ password }>>>>>>", password));
+
+    // Initialisez formattedUser
+    let formattedUser= null;
 
     try {
       // Appel du datamapper pour récupérer l'utilisateur
       const user = await userModel.loginUser(email, password);
+      console.log(chalk.bgGreen("{ user }>>>>>>", Object.values(user)))
 
       // Si l'utilisateur n'existe pas ou le mot de passe est incorrect, afficher une erreur
       if (!user) {
@@ -82,7 +87,7 @@ const userController = {
       }
 
       // stocke la session de l'utilisateur. Elle permet de garder la session active de l'utilisateur par rapport a son role
-      const formattedUser = {
+      formattedUser = {
         id: user.id,
         name: user.username,
         createdAt: user.created_at,
@@ -110,6 +115,7 @@ const userController = {
       res.json({ name: formattedUser.name, user_id:formattedUser.id,  token });
     } catch (err) {
       console.error(chalk.bgRedBright(err));
+      formattedUser = null; // Vous pouvez initialiser formattedUser à null en cas d'erreur
 
       res.status(500).json({ message: `utilisateur non inscrit`, formattedUser });
       logger.customerLogger.log("error", {
