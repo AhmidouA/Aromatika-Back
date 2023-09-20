@@ -77,7 +77,7 @@ const userController = {
     try {
       // Appel du datamapper pour récupérer l'utilisateur
       const user = await userModel.loginUser(email, password);
-      console.log(chalk.bgGreen("{ user }>>>>>>", JSON.stringify(user)))
+      console.log(chalk.bgGreen("{ user }>>>>>>", Object.values(user)))
 
       // Si l'utilisateur n'existe pas ou le mot de passe est incorrect, afficher une erreur
       if (!user) {
