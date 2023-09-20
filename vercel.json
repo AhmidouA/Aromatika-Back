@@ -1,15 +1,31 @@
 {
     "version": 2,
-    "routes": [
+    "builds": [
       {
-        "src": "/(.*)",
-        "dest": "/"
+        "src": "index.js",
+        "use": "@vercel/node"
       }
     ],
-    "functions": {
-      "user": "./server/routers/user.js",
-      "oil": "./server/routers/oil.js",
-      "category": "./server/routers/category.js",
-      "family": "./server/routers/family.js"
+    "routes": [
+        {
+          "src": "/user(.*)",
+          "dest": "index.js"
+        },
+        {
+          "src": "/oil(.*)",
+          "dest": "index.js"
+        },
+        {
+          "src": "/category(.*)",
+          "dest": "index.js"
+        },
+        {
+          "src": "/family(.*)",
+          "dest": "index.js"
+        },
+        {
+          "src": "/(.*)",
+          "dest": "index.js"
+        }
+      ]
     }
-  }
