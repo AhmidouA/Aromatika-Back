@@ -7,9 +7,17 @@
       }
     ],
     "functions": {
-      "user": "./server/routers/user.js",
-      "oil": "./server/routers/oil.js",
-      "category": "./server/routers/category.js",
-      "family": "./server/routers/family.js"
+      "user": {
+        "handler": "./server/routers/user.js"
+      },
+      "oil": {
+        "handler": "./server/routers/oil.js"
+      },
+      "category": {
+        "handler": "./server/routers/category.js"
+      },
+      "family": {
+        "handler": "./server/routers/family.js"
+      }
     }
   }
