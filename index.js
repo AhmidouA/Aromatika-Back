@@ -61,7 +61,7 @@ app.use((err, req, res, next) => {
 });
 
 // middleware favicon
-const favicon = require('serve-favicon');
+// const favicon = require('serve-favicon');
 // Public (pour les image = profile)
 app.use(express.static("public"));
 // Définir le chemin d'accès l'image favicon.ico
