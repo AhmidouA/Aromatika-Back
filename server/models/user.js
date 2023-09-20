@@ -294,7 +294,7 @@ const userModel = {
     console.log("values", values);
     try {
       const result = await dbClient.query(sqlQuery, values);
-      // console.log("result", result);
+      console.log("result", result);
       return result.rows[0];
     } catch (error) {
       console.error(error);

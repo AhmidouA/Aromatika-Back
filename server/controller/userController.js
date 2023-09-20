@@ -543,7 +543,7 @@ const userController = {
 
     // récupere le chemin de l'image uploadée
     const file = req.file.filename;
-    // console.log(chalk.bgCyan("{ picture }>>>>>>", file));
+    console.log(chalk.bgCyan("{ picture }>>>>>>", file));
     
 
     try {
