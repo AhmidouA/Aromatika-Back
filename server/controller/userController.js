@@ -100,7 +100,7 @@ const userController = {
 
       // stock les info de la session dans formattedUser
       req.session.user = formattedUser;
-      console.log(chalk.bgGreen("{ formattedUser }>>>>>>", JSON.stringify()(formattedUser)))
+      console.log(chalk.bgGreen("{ formattedUser }>>>>>>", Object.values(formattedUser)))
 
       // generation du token grace a l'email d'identification et une durée de 120min pour le token
       // j'envoi aussi les info de la session grace au payload que j'envoi dans la session user
