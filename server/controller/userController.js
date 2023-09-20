@@ -569,6 +569,7 @@ const userController = {
   // Module stream Image
   streamPicture(req, res) {
     const file = req.params.file;
+    console.log("file dans stream Picture", file)
     fs.createReadStream(`server/public/upload/${file}`).pipe(res);
   },
 
