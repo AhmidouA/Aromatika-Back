@@ -6,18 +6,10 @@
         "dest": "/"
       }
     ],
-    "functions": [
-      {
-        "src": "./server/routers/user.js"
-      },
-      {
-        "src": "./server/routers/oil.js"
-      },
-      {
-        "src": "./server/routers/category.js"
-      },
-      {
-        "src": "./server/routers/family.js"
-      }
-    ]
+    "functions": {
+      "user": "./server/routers/user.js",
+      "oil": "./server/routers/oil.js",
+      "category": "./server/routers/category.js",
+      "family": "./server/routers/family.js"
+    }
   }
