@@ -1,5 +1,5 @@
 [build]
 functions = "server"
 
-[functions]
-include = "server/**/*.js"
+[functions.include]
+  external_node_modules = ["server/**/*.js", "module-two"]
