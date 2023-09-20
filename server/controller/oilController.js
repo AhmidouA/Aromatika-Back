@@ -56,25 +56,20 @@ const oilController = {
         method: req.method,
         message: `Tous les champs n'ont pas été remplis`,
       });
-      return res
-        .status(400)
-        .json({ message: `Tous les champs doivent être remplis` });
+      return res.status(400).json({ message: `Tous les champs doivent être remplis` });
     }
 
     try {
       // Appel de la méthode du modèle (dataMapper) pour inserer unee huile
       const oil = await oilModel.insertOil(req.body);
-      console.log(chalk.bgGreen(oil));
+      console.log(chalk.bgGreen("oil Dans create Oil", oil));
       res.status(201).json(oil);
+
     } catch (err) {
       console.error(
-        chalk.bgRedBright(
-          `Erreur lors de la creation de l'huile: ${err.message}`
-        )
-      );
-      res
-        .status(500)
-        .json({ message: `Le nom ou le nom botanique existent déja` });
+
+      chalk.bgRedBright(`Erreur lors de la creation de l'huile: ${err.message}`));
+      res.status(500).json({ message: `Le nom ou le nom botanique existent déja` });
       logger.customerLogger.log("error", {
         url: req.url,
         method: req.method,
