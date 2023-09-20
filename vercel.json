@@ -9,24 +9,22 @@
     ],
     "routes": [
       {
-        "src": "/api/category(.*)",
-        "dest": "/server/routers/category.js"
+        "src": "/server/routers/category.js"
       },
       {
-        "src": "/api/family(.*)", 
-        "dest": "/server/routers/family.js" 
+        "src": "/server/routers/family.js" 
       },
       {
-        "src": "/api/oil(.*)", 
-        "dest": "/server/routers/oil.js"
+        "src": "/server/routers/oil.js"
       },
       {
-        "src": "/api/user(.*)", 
-        "dest": "/server/routers/user.js" 
+        "src": "/server/routers/user.js" 
       },
       {
-        "src": "/(.*)",
-        "dest": "/server/index.js" 
-      }
+        "src": "/server/index.js" 
+      },
+      {
+        "src": "/(.*)"
+      }   
     ]
   }
