@@ -1,0 +1,5 @@
+[build]
+functions = "server"
+
+[functions]
+include = "server/**/*.js"

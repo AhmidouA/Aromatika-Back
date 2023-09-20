@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "build": "netlify deploy --prod",
     "test": "jest"
   },
   "keywords": [],
@@ -22,6 +23,8 @@
     "express-jsdoc-swagger": "^1.8.0",
     "jsonwebtoken": "^9.0.0",
     "multer": "^1.4.5-lts.1",
+    "netlify-cli": "^16.4.1",
+    "netlify-lambda": "^2.0.16",
     "nodemailer": "^6.9.1",
     "pg": "^8.9.0",
     "serve-favicon": "^2.5.0",

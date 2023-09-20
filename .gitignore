@@ -8,3 +8,6 @@ script
 noteCode.md
 logs
 noteJest.md
+deployed.md
+# Local Netlify folder
+.netlify
