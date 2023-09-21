@@ -8,25 +8,9 @@
       }
     ],
     "routes": [
-        {
-          "src": "/user(.*)",
-          "dest": "index.js"
-        },
-        {
-          "src": "/oil(.*)",
-          "dest": "index.js"
-        },
-        {
-          "src": "/category(.*)",
-          "dest": "index.js"
-        },
-        {
-          "src": "/family(.*)",
-          "dest": "index.js"
-        },
-        {
-          "src": "/(.*)",
-          "dest": "index.js"
-        }
-      ]
-    }
+      {
+        "src": "/(.*)",
+        "dest": "server.js"
+      }
+    ]
+  }
