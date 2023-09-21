@@ -65,7 +65,7 @@ app.use((err, req, res, next) => {
 // Public (pour les image = profile)
 app.use(express.static("public"));
 // Définir le chemin d'accès l'image favicon.ico
-app.use(favicon(path.join("./server/public/upload/favicon.ico")));
+// app.use(favicon(path.join("./server/public/upload/favicon.ico")));
 
 
 // Le port du serveur
