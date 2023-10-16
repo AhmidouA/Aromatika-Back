@@ -12,7 +12,7 @@ const mail = {
         }
     })
 
-    const restPassword = `http://localhost:3000/forgot-password/${user.id}/${token}`;
+    const restPassword = `https://aromatika-front.vercel.app/forgot-password/${user.id}/${token}`;
     const mailOption = {
         from: process.env.EMAIL_USERNAME,
         to: user.mail,
