@@ -1,21 +1,17 @@
 const { oilModel } = require("../models");
-// logger des erreurs client
 const logger = require("../service/logger");
-// la seul qui marche avec require  "chalk": "^4.1.2",
+
 const chalk = require("chalk");
 
 const oilController = {
-  // Methode pour récupèrer les données d'une huile
+
   async getOilById(req, res) {
-    // on récuepre l'id de huile en params
+
     const oilId = req.params.id;
     console.log(chalk.bgBlue("{ oilId }>>>>>>", oilId));
     try {
       const oil = await oilModel.getOneOilById(oilId);
       console.log(chalk.bgGreen("{ oil }>>>>>>", oil));
-
-      // Si aucune huile n'a été trouvée, enregistrement de l'erreur dans les logs et
-      //renvoi d'une réponse avec un message d'erreur
       if (!oil) {
         res.status(500).json({ message: `Huile avec l'id ${oilId} n'a pas été trouvée.` });
 
@@ -49,7 +45,6 @@ const oilController = {
       )
     );
 
-    // Vérifier que toutes les données (not null) sont présentes
     if (!name ||!botanic_name ||!description ||!extraction ||!molecule ||!plant_family ||!scent) {
       logger.customerLogger.log("error", {
         url: req.url,
@@ -60,7 +55,6 @@ const oilController = {
     }
 
     try {
-      // Appel de la méthode du modèle (dataMapper) pour inserer unee huile
       const oil = await oilModel.insertOil(req.body);
       console.log(chalk.bgGreen("oil Dans create Oil", oil));
       res.status(201).json(oil);
@@ -78,9 +72,7 @@ const oilController = {
     }
   },
 
-  // Methode pour modifie une huile
   async updateOilById(req, res) {
-    // récupére l'id de l'huile
     const { id } = req.params;
     console.log(chalk.bgGreen(("{ id }>>>>>>", id)));
     const {name,botanic_name,description,extraction,molecule,plant_family,scent,image} = req.body;
@@ -91,7 +83,6 @@ const oilController = {
       )
     );
 
-    // Vérifier que toutes les données (not null) sont présentes
     if (!name ||!botanic_name ||!description ||!extraction ||!molecule ||!plant_family ||!scent ) {
       logger.customerLogger.log("error", {
         url: req.url,
@@ -101,8 +92,6 @@ const oilController = {
       return res.status(400).json({ message: `Tous les champs doivent être remplis` });}
 
     try {
-
-      // Appel de la méthode du modèle (dataMapper) pour modifier unee huile
       const updatedOil = await oilModel.updateOneOil(id, req.body);
       console.log(chalk.green(updatedOil));
       res.status(200).json({Message: `L'huile a bien été modfié ${updatedOil}`});
@@ -120,14 +109,12 @@ const oilController = {
     }
   },
 
-  // Methode pour supprime une huile
   async deleteOilById(req, res) {
     // récupére l'id de l'huile
     const oilId = req.params.id;
     console.log(chalk.bgBlack("{ oilId }>>>>>>", oilId));
 
     try {
-      // Appel de la méthode du modèle (dataMapper) pour supprimer unee huile
       const oil = await oilModel.deleteOneOil(oilId);
       const oilName = oil.name;
       console.log(chalk.bgGreen("oilName>>>>>>", oilName));

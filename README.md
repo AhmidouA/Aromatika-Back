@@ -4,7 +4,7 @@ Aromatikä est une application pour gérer les huiles essentielles. Cette applic
 ## Installation
 1- Cloner le dépôt git
 ```bash
-git clone https://github.com/ton-nicolas-92/aromatika.git
+git clone https://github.com/AhmidouA/aromatika.git
 ```
 
 2- Installer les dépendances

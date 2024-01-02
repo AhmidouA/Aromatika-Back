@@ -1,18 +1,17 @@
 const { categoryModel } = require("../models");
-// logger des erreurs client
 const logger = require("../service/logger");
-// la seul qui marche avec require  "chalk": "^4.1.2",
+
 const chalk = require("chalk");
 
 const categoryController = {
-  // Méthode pour avoir toutes les catégorie
+
   async getAllCategories(req, res) {
-    // on récuepre le nom de famille des catégories en params
+
     const family = req.params.family;
     console.log(chalk.bgBlue("{ family }>>>>>>", family));
 
     try {
-      // // Appel de la méthode du modèle (dataMapper) pour donner toutes les catégorie
+
       const categories = await categoryModel.GetCategories(family);
       console.log(chalk.bgGreen("{ categories }>>>>>>", categories));
 
@@ -38,17 +37,15 @@ const categoryController = {
     }
   },
 
-  // Méthode pour donner une catégorie avec ses huiles
+
   async getOneCategories(req, res) {
     const id = req.params.id;
     console.log(chalk.bgBlue("{ id }>>>>>>", id));
 
     try {
-      // Appel de la méthode du modèle (dataMapper) pour donner une catégorie
       const category = await categoryModel.getOneCategory(id);
       console.log(chalk.bgGreen("category>>>>>>", category));
 
-      // Appel de la méthode du modèle (dataMapper) pour donner toutes les huile d'une catégorie
       const categoryWithOil = await categoryModel.getOneCategoryWithOil(id);
       console.log(chalk.bgCyan("categoryWithOil>>>>>>", categoryWithOil));
 
@@ -79,13 +76,12 @@ const categoryController = {
     }
   },
 
-  // Méthode pour ajouter une catégorie
   async addCategory(req, res) {
     const name = req.body;
     console.log(chalk.bgBlue("{ name }>>>>>>", Object.values(name)));
 
     try {
-      // Appel de la méthode du modèle (dataMapper) pour inserer une catégorie
+
       const category = await categoryModel.insertCategory(name);
       console.log(chalk.bgGreen("category>>>>>>", category));
       res.status(200).json(category.rows[0]);
@@ -100,7 +96,6 @@ const categoryController = {
     }
   },
 
-  // Méthode pour mettre à jour une catégorie
   async updateCategory(req, res) {
     const name = req.body.name;
     const categoryId = req.params.id;
@@ -108,11 +103,8 @@ const categoryController = {
     console.log(chalk.bgBlue("{ name }>>>>>>", name));
 
     try {
-      // Appel de la méthode du modèle (dataMapper) pour mettre à jour la catégorie
       const result = await categoryModel.updateOneCategory(categoryId, name);
-      // console.log(chalk.bgGreen("result>>>>>>", result));
 
-      // vérifie qui il trouve au moins une catégorie
       if (result.rowCount > 0) {
         res.status(200).json({message: `La catégorie ${name.name} a bien été mise à jour avec succès`});
       } else {
@@ -135,19 +127,17 @@ const categoryController = {
     }
   },
 
-  // Méthode pour supprimer une catégorie
+
   async deleteCategory(req, res) {
     const categoryId = req.params.id;
     console.log(chalk.bgBlue("categoryId>>>>>>", categoryId));
 
     try {
-      // Récupérer la catégorie avant de la supprimer
       const category = await categoryModel.getOneCategory(categoryId);
-      // console.log(chalk.bgGreen("category>>>>>>", category));
       const categoryName = category.name;
       console.log(chalk.bgGreen("categoryName>>>>>>", categoryName));
 
-      // Supprimer la catégorie
+
       const result = await categoryModel.deleteOneCategory(categoryId);
       res .status(200).json({ Message: `la catégorie ${categoryName} a bien été supprimée `});
 

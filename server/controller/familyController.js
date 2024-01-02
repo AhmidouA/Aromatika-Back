@@ -1,18 +1,14 @@
 const { familyModel } = require("../models");
-// logger des erreurs client
 const logger = require("../service/logger");
-// la seul qui marche avec require  "chalk": "^4.1.2",
+
 const chalk = require("chalk");
 
 const categoryController = {
-  // Méthode pour avoir toutes les familles
   async getAllFamilies(req, res) {
     try {
-      // on récupère les nom des familles
       const families = await familyModel.getFamilies();
       console.log(chalk.bgBlue("{ families }>>>>>>", families));
 
-      // condition si il ne trouve pas
       if (!families) {
         logger.customerLogger.log("error", {
           url: req.url,
@@ -35,17 +31,13 @@ const categoryController = {
   },
 
 
-  // module avoir une famille par Id
   async getFamilyById(req, res) {
     const familyId = req.params.id;
     console.log(chalk.bgBlue("{ family }>>>>>>", familyId));
 
     try {
       const family = await familyModel.getOneFamilyById(familyId);
-      // console.log(chalk.bgGreen("{ family }>>>>>>", family));
 
-      // Si aucune famille n'a été trouvée, enregistrement de l'erreur dans les logs et
-      //renvoi d'une réponse avec un message d'erreur
       if (!family) {
         res.status(500).json({
           message: `La famille avec l'id ${familyId} n'a pas été trouvée`,
@@ -71,12 +63,10 @@ const categoryController = {
   },
 
 
-  // Module creation d'une famille
   async createFamily(req, res) {
     const familyName = req.body.name;
     console.log(chalk.bgBlue("{ req Body }>>>>>>", familyName));
 
-    // Vérifier que toutes les données (not null) sont présentes
     if (!familyName) {
       logger.customerLogger.log("error", {
         url: req.url,
@@ -87,9 +77,7 @@ const categoryController = {
     }
 
     try {
-      // Appel de la méthode du modèle (dataMapper) pour inserer unee huile
       const family = await familyModel.insertFamily(familyName);
-      // console.log(chalk.bgGreen(family));
       res.status(200).json({ Message: `Vous avez crée la famille: ${familyName}`});
 
     } catch (err) {
@@ -107,7 +95,6 @@ const categoryController = {
   },
 
 
-  // Module pour update une famille
   async updateFamily(req, res) {
     const name = req.body.name;
     const familyId = req.params.id;
@@ -123,11 +110,9 @@ const categoryController = {
       return res.status(500).json({ message: `Tous les champs doivent être remplis` });}
 
     try {
-      // Appel de la méthode du modèle (dataMapper) pour mettre à jour la catégorie
       const updatefamily = await familyModel.updateOneFamily(familyId, name);
       console.log(chalk.bgBlue("{ family }>>>>>>", updatefamily));
 
-      // Cheek au moins si une famille existe 
       if (!updatefamily) {
         return res.status(500).json({message:`La famille ${name} est introuvable et son id est le: ${familyId}`});
       }
@@ -145,14 +130,12 @@ const categoryController = {
     }
   },
 
-  // module pour supprimer une famille
   async deleteFamily (req, res) {
    // récupére l'id de l'huile
    const familyId = req.params.id;
    console.log(chalk.bgBlack("{ familyId }>>>>>>", familyId));
 
    try {
-     // Appel de la méthode du modèle (dataMapper) pour supprimer unee huile
      const family = await familyModel.deleteOneFamily(familyId);
      const familyName = family.name;
      console.log(chalk.bgGreen("oilName>>>>>>", familyName));
