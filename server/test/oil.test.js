@@ -1,6 +1,5 @@
-// Importez les modules nécessaires
-const oilController = require('../controller/oilController'); // Assurez-vous d'ajuster le chemin d'importation en fonction de votre structure de fichiers
-const { userModel, oilModel } = require("../models"); // Assurez-vous d'ajuster le chemin d'importation en fonction de votre structure de fichiers
+const oilController = require('../controller/oilController'); 
+const { userModel, oilModel } = require("../models");
 
 
 require('dotenv').config();
