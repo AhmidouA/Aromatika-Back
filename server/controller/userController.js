@@ -83,7 +83,7 @@ const userController = {
         { email, user: formattedUser, user_id: formattedUser.id },
         process.env.SECRET,
         {
-          expiresIn: "1h",
+          expiresIn: "8h",
         }
       );
 
